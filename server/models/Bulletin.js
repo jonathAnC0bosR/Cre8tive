@@ -1,13 +1,18 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const portfolioSchema = new Schema({
-    postTitle: {
+const bulletinSchema = new Schema({
+    bulletPostTitle: {
         type: String,
         required: true,
         trim: true
-    },  
-    postContent: {
+    },
+    offert:{
+        type: String,
+        required: true,
+        trim: true
+    },
+    expectation:{
         type: String,
         required: true,
         trim: true
@@ -16,15 +21,12 @@ const portfolioSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    comments: {
-        type: String
-    },
     userID:{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
 });
 
-const Portfolio = mongoose.model('Portfolio', portfolioSchema);
+const Bulletin = mongoose.model('Bulletin', bulletinSchema);
 
-module.exports = Portfolio;
+module.exports = Bulletin;
