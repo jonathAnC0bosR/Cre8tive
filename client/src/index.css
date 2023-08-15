@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    font-family: 'Lato', sans-serif;
+}
+
