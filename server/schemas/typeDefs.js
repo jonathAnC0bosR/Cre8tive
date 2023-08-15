@@ -10,6 +10,15 @@ const typeDefs = `
     type Query {
         portfolioPosts: [Portfolio]
     }
+
+    type Mutation {
+        uploadImage(file: Upload!): Image
+    }
+
+    type Image {
+       publicId: String
+       url: String
+    }
 `;
 
 module.exports = typeDefs;
