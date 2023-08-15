@@ -22,7 +22,7 @@ const portfolioSchema = new Schema({
     userID:{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
 });
 
 const Portfolio = mongoose.model('Portfolio', portfolioSchema);
