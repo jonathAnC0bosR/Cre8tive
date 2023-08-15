@@ -1,0 +1,38 @@
+[
+    {
+        "username":"Lizzz",
+        "mail":"lizzz@hotmail.com",
+        "password":"12345678",
+        "age":"22",
+        "occupation":"Digital Artist",
+        "location":"CDMX, Mexico",
+        "rating": 4 
+    },
+    {
+        "username":"Jonathan",
+        "mail":"jonathan@hotmail.com",
+        "password":"12345678",
+        "age":"23",
+        "occupation":"3D modeler",
+        "location":"CDMX, Mexico",
+        "rating": 4 
+    },
+    {
+        "username":"Salome",
+        "mail":"salo@hotmail.com",
+        "password":"12345678",
+        "age":"21",
+        "occupation":"Illustrator",
+        "location":"Toluca, Mexico",
+        "rating": 5 
+    },
+    {
+        "username":"Cristofer",
+        "mail":"cris@hotmail.com",
+        "password":"12345678",
+        "age":"26",
+        "occupation":"Photographer",
+        "location":"Monterrey, Mexico",
+        "rating": 1
+    }
+]
