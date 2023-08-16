@@ -7,17 +7,9 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 //----------- Cloudinary:
-const { cloudinaryConfig, uploader } = require('./config/cloudinaryConfig'); //cloudinary config medium 
+const cloudinary = require('./config/cloudinaryConfig'); 
 // --  Multer: 
-// const { multerUploads, dataUri } = require('./middlewares/multer') //multer require 1 medium
-const multerUploads = require('./middlewares/multer') //multer require 2 medium
-const multer = require('multer');
-const Datauri = require('datauri');
-// -- Multer 2: 
-// const storage = multer.memoryStorage();
-// const upload = multer({ storage });
-// const myUploadMiddleware = upload.single("sample_file");
-
+const multerUploads = require('./middlewares/multer')
 //-----------
 
 const PORT = process.env.PORT || 3001;
@@ -28,44 +20,53 @@ const server = new ApolloServer({
 });
 
 //-----------
-app.use('*', cloudinaryConfig);
 app.post('/upload', multerUploads, async (req, res) => {
-  try {
-    const dUri = new Datauri();
-    // const dataUrifun = req => 
-    //   dUri.format(path.extname(req.file.originalname).toString(), 
-    //   req.file.buffer);
-    // const fileUri = dUri.format(
-    //   path.extname(req.file.originalname).toString(), 
-    //   req.file.buffer
-    // );
-    console.log(req.file)
-    if (req.file) {
+//   try {
+//     if (req.file) {
+//       const result = await cloudinary.uploader.upload(req.file.buffer, {
+//         folder: 'Cre8tive' // Optional folder name in Cloudinary
+//       });
 
-      const fileUri = dUri.format( 
-      req.file.buffer, 'image/jpeg'
-      );
-      // const file = await dataUrifun(req).content;
-      const imageUploadResult = await uploader.upload(fileUri.content);
-      const image = imageUploadResult.url;
-
-      return res.status(200).json({
-        message: 'Your image has been uploaded successfully to Cloudinary',
-        data: {
-          image
-        }
-      });
-    }
-  } catch (err) {
-    console.error('Error:', err);
-    return res.status(400).json({
-      message: 'Something went wrong while processing your request',
-      data: {
-        err
-      }
-    });
+//       return res.status(200).json({
+//         message: 'Image uploaded to Cloudinary',
+//         data: {
+//           imageUrl: result.secure_url
+//         }
+//       });
+//     } else {
+//       return res.status(400).json({
+//         message: 'No image file provided'
+//       });
+//     }
+//   } catch (err) {
+//     console.error('Error:', err);
+//     return res.status(500).json({
+//       message: 'Error uploading image to Cloudinary',
+//       error: err.message
+//     });
+//   }
+try {
+  if (!req.file) {
+    return res.status(400).json({ message: 'No image file provided' });
   }
-});
+  const result = await cloudinary.uploader.upload_stream({
+    folder: 'Cre8tive', // You can customize the folder where images will be stored in Cloudinary
+    public_id: `image_${Date.now()}`, // Use a unique ID for each image
+    format: 'jpg' // You can specify the desired format of the uploaded image
+  }, (error, result) => {
+    if (error) {
+      return res.status(500).json({ message: 'Error uploading image to Cloudinary' });
+    }
+    res.status(200).json({ message: 'Image uploaded successfully', imageUrl: result.secure_url });
+  });
+  //console.log(result)
+  req.file.buffer.pipe(result);
+} catch (error) {
+  console.error(error);
+  res.status(500).json({ message: 'Internal server error' });
+}
+ }
+);
 
 //-----------
 
@@ -75,11 +76,6 @@ const startApolloServer = async () => {
   
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
-
-  //----------
-  //app.use('*', cloudinaryConfig);
-  //----------
-
   app.use('/graphql', expressMiddleware(server));
 
   // if we're in production, serve client/dist as static assets
