@@ -7,7 +7,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="pt-20 sm:pt-0 lg:pt-0 md:pt-0 bg-gradient-to-r from-[#0C0F11] to-[#22282D] min-h-screen flex justify-center  w-screen">
+    <div className="pt-20 lg:text-sm sm:pt-0 lg:pt-0 md:pt-0 bg-gradient-to-r from-[#0C0F11] to-[#22282D] min-h-screen flex justify-center  w-screen">
       <div className="bg-zinc-950 lg:w-1/3 w-5/6 p-7  sm:mt-20 lg:mt-20">
         <form className="flex flex-col " onSubmit={handleSubmit}>
           <h1 className="text-center text-xl text-white ">Signup</h1>
