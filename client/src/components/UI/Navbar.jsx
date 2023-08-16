@@ -5,9 +5,11 @@ import { AiOutlineHome } from "react-icons/ai";
 import { GoPerson } from "react-icons/go";
 import { LuSearch } from "react-icons/lu";
 import { BiLogOut } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navRef = useRef(null);
   const toggleNav = () => setIsOpen(!isOpen);
 
@@ -42,26 +44,45 @@ const Navbar = () => {
               </div>
               <div className="m-4 ">
                 <div className="grid grid-rows-4 ">
-                  <div className="flex flex-row items-center mb-3">
+                  <Link to={"/"}>
                     {" "}
-                    <AiOutlineHome size={"2em"} color="pink" />
-                    <p className="mx-auto">Home</p>
-                  </div>
-                  <div className="flex flex-row items-center mb-3">
-                    {" "}
-                    <GoPerson size={"2em"} color="pink" />
-                    <p className="mx-auto">Profile</p>
-                  </div>
+                    <div className="flex flex-row items-center mb-3">
+                      {" "}
+                      <AiOutlineHome size={"2em"} color="pink" />
+                      <p onClick={toggleNav} className="mx-auto">
+                        Home
+                      </p>
+                    </div>
+                  </Link>
+                  <Link to={'/profile'}>
+                    <div className="flex flex-row items-center mb-3">
+                      {" "}
+                      <GoPerson size={"2em"} color="pink" />
+                      <p onClick={toggleNav} className="mx-auto">Profile</p>
+                    </div>
+                  </Link>
                   <div className="flex flex-row items-center mb-3">
                     {" "}
                     <LuSearch size={"2em"} color="pink" />
                     <p className="mx-auto">Jobs</p>
                   </div>
-                  <div className="flex flex-row items-center mb-3">
-                    {" "}
-                    <BiLogOut size={"2em"} color="pink" />
-                    <p className="mx-auto">Logout</p>
-                  </div>
+                  {isLoggedIn ? (
+                    <div className="flex flex-row items-center mb-3">
+                      {" "}
+                      <BiLogOut size={"2em"} color="pink" />
+                      <p className="mx-auto">Logout</p>
+                    </div>
+                  ) : (
+                    <Link to={"/login"}>
+                      <div className="flex flex-row items-center mb-3">
+                        {" "}
+                        <BiLogOut size={"2em"} color="pink" />
+                        <p onClick={toggleNav} className="mx-auto">
+                          Login
+                        </p>
+                      </div>
+                    </Link>
+                  )}
                 </div>
               </div>
             </motion.div>
