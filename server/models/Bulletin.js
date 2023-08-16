@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const  {serviceSchema } = require('./Service');
 
 const bulletinSchema = new Schema({
     bulletPostTitle: {
@@ -7,16 +8,10 @@ const bulletinSchema = new Schema({
         required: true,
         trim: true
     },
-    offert:{
-        type: String,
-        required: true,
-        trim: true
-    },
-    expectation:{
-        type: String,
-        required: true,
-        trim: true
-    },
+    serviceOffer:[serviceSchema],
+
+    serviceExpectation:[serviceSchema],
+
     createdAt: {
         type: Date,
         default: Date.now
