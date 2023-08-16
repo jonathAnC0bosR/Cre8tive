@@ -29,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div ref={navRef} className="fixed top-0 right-0 z-50 lg:text-sm">
+    <div ref={navRef} className="fixed top-0 right-0 z-50 lg:text-sm md:hidden lg:hidden">
       {isOpen ? (
         <>
           <div className="text-white">
