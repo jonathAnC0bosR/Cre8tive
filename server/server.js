@@ -1,4 +1,14 @@
+require('dotenv').config();
 const express = require('express');
+const cloudinary = require('cloudinary').v2;
+if (typeof (process.env.CLOUDINARY_URL) === 'undefined') {
+  console.warn('!! cloudinary config is undefined !!');
+  console.warn('export CLOUDINARY_URL or set dotenv file');
+} else {
+  console.log('cloudinary config:');
+  console.log(cloudinary.config());
+}
+console.log('-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
@@ -6,12 +16,25 @@ const path = require('path');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
+const imageRouter = require('./routes/image.routes'); // <== has to be added
+
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_API_SECRET,
+//   secure: true,
+// });
 const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
+
+//  Start handling routes here
+// const index = require('./routes/index'); // <== already included
+// app.use('/', index); // <== already included
+ 
 
 const startApolloServer = async () => {
   await server.start();
@@ -20,6 +43,7 @@ const startApolloServer = async () => {
   app.use(express.json());
   
   app.use('/graphql', expressMiddleware(server));
+  app.use('/api', imageRouter); // <== has to be added
 
   // if we're in production, serve client/dist as static assets
   if (process.env.NODE_ENV === 'production') {
