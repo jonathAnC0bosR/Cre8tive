@@ -5,7 +5,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { GoPerson } from "react-icons/go";
 import { LuSearch } from "react-icons/lu";
 import { BiLogOut } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import NavLink from "./NavLink";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div ref={navRef} className="fixed top-0 right-0 z-50">
+    <div ref={navRef} className="fixed top-0 right-0 z-50 lg:text-sm">
       {isOpen ? (
         <>
           <div className="text-white">
@@ -39,49 +39,53 @@ const Navbar = () => {
               className="bg-zinc-950  max-h-fit"
             >
               {" "}
-              <div className="lg:p-3 md:p-3 p-1 hover:cursor-pointer">
+              <div className="lg:p-3 md:p-3  p-1 hover:cursor-pointer">
                 <FaBars onClick={toggleNav} size={"2em"} />
               </div>
-              <div className="m-4 ">
+              <div className="p-4">
                 <div className="grid grid-rows-4 ">
-                  <Link to={"/"}>
-                    {" "}
-                    <div className="flex flex-row items-center mb-3">
-                      {" "}
-                      <AiOutlineHome size={"2em"} color="pink" />
-                      <p onClick={toggleNav} className="mx-auto">
-                        Home
-                      </p>
-                    </div>
-                  </Link>
-                  <Link to={'/profile'}>
-                    <div className="flex flex-row items-center mb-3">
-                      {" "}
-                      <GoPerson size={"2em"} color="pink" />
-                      <p onClick={toggleNav} className="mx-auto">Profile</p>
-                    </div>
-                  </Link>
-                  <div className="flex flex-row items-center mb-3">
-                    {" "}
+                  <NavLink
+                    hover="hover:bg-pink-500"
+                    route="/"
+                    onClick={toggleNav}
+                    title="Home"
+                  >
+                    <AiOutlineHome size={"2em"} color="pink" />
+                  </NavLink>
+                  <NavLink
+                    hover="hover:bg-orange-500"
+                    route="/profile"
+                    onClick={toggleNav}
+                    title="Profile"
+                  >
+                    <GoPerson size={"2em"} color="pink" />
+                  </NavLink>
+                  <NavLink
+                    hover="hover:bg-teal-600"
+                    route="/jobs"
+                    onClick={toggleNav}
+                    title="Jobs"
+                  >
                     <LuSearch size={"2em"} color="pink" />
-                    <p className="mx-auto">Jobs</p>
-                  </div>
+                  </NavLink>
                   {isLoggedIn ? (
-                    <div className="flex flex-row items-center mb-3">
-                      {" "}
+                    <NavLink
+                      hover="hover:bg-yellow-600"
+                      route="/login"
+                      onClick={toggleNav}
+                      title="Logout"
+                    >
                       <BiLogOut size={"2em"} color="pink" />
-                      <p className="mx-auto">Logout</p>
-                    </div>
+                    </NavLink>
                   ) : (
-                    <Link to={"/login"}>
-                      <div className="flex flex-row items-center mb-3">
-                        {" "}
-                        <BiLogOut size={"2em"} color="pink" />
-                        <p onClick={toggleNav} className="mx-auto">
-                          Login
-                        </p>
-                      </div>
-                    </Link>
+                    <NavLink
+                      hover="hover:bg-yellow-600"
+                      route="/login"
+                      onClick={toggleNav}
+                      title="Login"
+                    >
+                      <BiLogOut size={"2em"} color="pink" />
+                    </NavLink>
                   )}
                 </div>
               </div>

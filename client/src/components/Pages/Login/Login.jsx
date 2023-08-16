@@ -6,7 +6,7 @@ const Login = () => {
     e.preventDefault();
   };
   return (
-    <div className="bg-gradient-to-r from-[#0C0F11] to-[#22282D] min-h-screen flex justify-center items-center w-screen">
+    <div className="lg:text-sm bg-gradient-to-r from-[#0C0F11] to-[#22282D] min-h-screen flex justify-center items-center w-screen">
       <div className="bg-zinc-950 lg:w-1/3 w-5/6 p-6 sm:mt-40 lg:mt-20">
         <form className="flex flex-col " onSubmit={handleSubmit}>
           <h1 className="text-center text-xl text-white ">Login</h1>
