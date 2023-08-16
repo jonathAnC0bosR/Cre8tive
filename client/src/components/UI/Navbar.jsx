@@ -53,7 +53,7 @@ const Navbar = () => {
                     <AiOutlineHome size={"2em"} color="pink" />
                   </NavLink>
                   <NavLink
-                    hover="hover:bg-orange-500"
+                    hover="hover:bg-orange-700"
                     route="/profile"
                     onClick={toggleNav}
                     title="Profile"
