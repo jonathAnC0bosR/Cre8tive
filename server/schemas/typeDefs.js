@@ -17,7 +17,7 @@ const typeDefs = `
         userID(_id: ID!):User
     }
 
-    type User{
+    type User {
         _id: ID
         username: String
         mail: String
@@ -30,10 +30,20 @@ const typeDefs = `
         portfolioPosts(_id: ID!): Portfolio
     }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
+
     type Query {
         portfolioPosts: [Portfolio]
         bulletinPosts: [Bulletin]
-        user: User
+        users: [User]
+    }
+
+    type Mutation {
+        addUser(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
     }
 `;
 

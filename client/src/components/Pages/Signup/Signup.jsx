@@ -1,9 +1,46 @@
+import { useState } from "react";
+
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ADD_USER } from "../../../utils/mutations";
+import { useMutation } from "@apollo/client";
+
+import Auth from "../../../utils/auth";
 
 const Signup = () => {
-  const handleSubmit = (e) => {
+  const [formState, setFormState] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
+
+  const [passwordIsShown, setPasswordIsShown] = useState(false);
+  const togglePassword = () => setPasswordIsShown(!passwordIsShown);
+
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -13,22 +50,29 @@ const Signup = () => {
           <h1 className="text-center text-xl text-white ">Signup</h1>
           <label className="text-white my-3">Email:</label>
           <input
-            className="focus:outline-none rounded-md "
+            className="focus:outline-none rounded-md h-7 "
             type="text"
-            name="username"
+            name="email"
+            onChange={handleInputChange}
           />
           <label className="text-white my-3">Username:</label>
           <input
-            className="focus:outline-none rounded-md "
+            className="focus:outline-none rounded-md h-7 "
             type="text"
             name="username"
+            onChange={handleInputChange}
           />
           <label className="text-white my-3">Password:</label>
           <input
-            className="focus:outline-none mb-1 rounded-md "
-            type="password"
-            name="username"
+            className="focus:outline-none mb-1 rounded-md h-7 "
+            type={passwordIsShown ? "text" : "password"}
+            name="password"
+            onChange={handleInputChange}
           />
+          <div className="flex items-center">
+            <input onClick={togglePassword} className="mr-2" type="checkbox" />
+            <label className="text-white">Show Password</label>
+          </div>
 
           <motion.button
             className="my-10 h-10  mx-auto w-32 text-white bg-pink-600 rounded-full"
@@ -68,7 +112,7 @@ const Signup = () => {
               </span>
             </Link>
           </p>
-          <Link to={'/'}>
+          <Link to={"/"}>
             <p className="underline hover:font-bold hover:cursor-pointer">
               &lt; Go Back to Home Instead
             </p>
