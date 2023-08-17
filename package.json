@@ -16,5 +16,8 @@
   "devDependencies": {
     "autoprefixer": "^10.4.15",
     "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "react-social-media-embed": "^2.3.5"
   }
 }
