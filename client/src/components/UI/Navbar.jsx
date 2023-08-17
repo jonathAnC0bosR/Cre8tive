@@ -7,9 +7,16 @@ import { LuSearch } from "react-icons/lu";
 import { BiLogOut } from "react-icons/bi";
 import NavLink from "./NavLink";
 
+import Auth from "../../utils/auth";
+
 const Navbar = () => {
+
+  const logout = (e) => {
+    e.preventDefault();
+    Auth.logout();
+  }
+
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navRef = useRef(null);
   const toggleNav = () => setIsOpen(!isOpen);
 
@@ -29,7 +36,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div ref={navRef} className="fixed top-0 right-0 z-50 lg:text-sm md:hidden lg:hidden">
+    <div
+      ref={navRef}
+      className="fixed top-0 right-0 z-50 lg:text-sm md:hidden lg:hidden"
+    >
       {isOpen ? (
         <>
           <div className="text-white">
@@ -68,11 +78,11 @@ const Navbar = () => {
                   >
                     <LuSearch size={"2em"} color="pink" />
                   </NavLink>
-                  {isLoggedIn ? (
+                  {Auth.loggedIn() ? (
                     <NavLink
                       hover="hover:bg-yellow-600"
-                      route="/login"
-                      onClick={toggleNav}
+                      route="/"
+                      onClick={logout}
                       title="Logout"
                     >
                       <BiLogOut size={"2em"} color="pink" />

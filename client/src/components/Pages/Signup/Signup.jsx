@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -6,6 +6,8 @@ import { ADD_USER } from "../../../utils/mutations";
 import { useMutation } from "@apollo/client";
 
 import Auth from "../../../utils/auth";
+import Footer from "../../UI/Footer";
+import AnimatedButton from "../../UI/AnimatedButton";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -13,6 +15,30 @@ const Signup = () => {
     username: "",
     password: "",
   });
+
+  const [isFocused, setIsFocused] = useState(true);
+
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [samePassword, setSamePassword] = useState(null);
+
+  const handleConfirm = (e) => {
+    const { value } = e.target;
+    setConfirmPassword(value);
+  };
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      if (isFocused) {
+        setSamePassword(confirmPassword === formState.password);
+      }
+    }, 1000);
+
+    return () => {
+      //Clean up function
+      clearTimeout(identifier);
+    };
+  }, [confirmPassword, formState.password]);
 
   const [passwordIsShown, setPasswordIsShown] = useState(false);
   const togglePassword = () => setPasswordIsShown(!passwordIsShown);
@@ -73,51 +99,25 @@ const Signup = () => {
             <input onClick={togglePassword} className="mr-2" type="checkbox" />
             <label className="text-white">Show Password</label>
           </div>
+          <label className="text-white my-3">Confirm password</label>
+          <input
+            name="confirm"
+            type="password"
+            className="focus:outline-none mb-1 rounded-md h-7"
+            onChange={handleConfirm}
+            onFocus={() => setIsFocused(true)}
+          />
+          {!samePassword && (
+            <>
+              <label className="text-red-900 font-bold ">
+                The passwords does not match
+              </label>
+            </>
+          )}
 
-          <motion.button
-            className="my-10 h-10  mx-auto w-32 text-white bg-pink-600 rounded-full"
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 500, damping: 10 }}
-            whileTap={{ scale: 0.8 }}
-          >
-            Sign up
-          </motion.button>
+          {samePassword && <AnimatedButton title="Sign up" />}
         </form>
-        <div className="text-white text-center">
-          <fieldset className="border-t border-slate-300">
-            <legend className="px-4">Or</legend>
-          </fieldset>
-          <div className="grid grid-cols-2 mb-5">
-            <img
-              width="48"
-              height="48"
-              src="https://img.icons8.com/color/48/gmail-new.png"
-              alt="gmail-new"
-              className="mx-auto"
-            />
-            <img
-              width="48"
-              height="48"
-              src="https://img.icons8.com/color/48/facebook.png"
-              alt="facebook"
-              className="mx-auto"
-            />
-          </div>
-          <p>
-            Have an account?{" "}
-            <Link to={"/login"}>
-              {" "}
-              <span className="underline hover:font-semibold hover:cursor-pointer">
-                Sign in!
-              </span>
-            </Link>
-          </p>
-          <Link to={"/"}>
-            <p className="underline hover:font-bold hover:cursor-pointer">
-              &lt; Go Back to Home Instead
-            </p>
-          </Link>
-        </div>
+        <Footer account="Have" />
       </div>
     </div>
   );
