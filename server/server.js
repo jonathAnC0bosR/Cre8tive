@@ -6,6 +6,9 @@ const path = require('path');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
+const imageRouter = require('./routes/imageRoutes'); 
+// //-----------
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
@@ -20,6 +23,10 @@ const startApolloServer = async () => {
   app.use(express.json());
   
   app.use('/graphql', expressMiddleware(server));
+
+  //---------image uploads route
+  app.use('/api', imageRouter); // <== has to be added
+  //---------
 
   // if we're in production, serve client/dist as static assets
   if (process.env.NODE_ENV === 'production') {
