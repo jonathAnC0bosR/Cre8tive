@@ -8,9 +8,9 @@ const bulletinSchema = new Schema({
         required: true,
         trim: true
     },
-    // serviceOffer:[serviceSchema],
+    serviceOffer:[serviceSchema],
 
-    // serviceExpectation:[serviceSchema],
+    serviceExpectation:[serviceSchema],
 
     createdAt: {
         type: Date,
