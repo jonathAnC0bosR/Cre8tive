@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import backimg from "../../assets/images/Cre8ive_Bckground-02.png";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   const Variants = {
@@ -86,15 +87,17 @@ const Landing = () => {
         <h1 className=" mb-[12%] text-white text-xl md:text-2xl lg:text-4xl">
           Join now!
         </h1>
-        <motion.button
-          variants={Variants}
-          whileHover={{ scale: 1.1 }}
-          transition={{type:'spring', damping: 10, stiffness: 300}}
-          animate="visible"
-          className=" text-white font-bold py-2 px-4 rounded"
-        >
-          Create an account
-        </motion.button>
+        <Link to={'/signup'}>
+          <motion.button
+            variants={Variants}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", damping: 10, stiffness: 300 }}
+            animate="visible"
+            className=" text-white font-bold py-2 px-4 rounded"
+          >
+            Create an account
+          </motion.button>
+        </Link>
       </div>
     </div>
   );
