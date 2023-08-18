@@ -11,8 +11,8 @@ const typeDefs = `
     type Bulletin{
         _id: ID
         bulletPostTitle: String
-        serviceOffer: String
-        serviceExpectation: String
+        serviceOffer: [Service]
+        serviceExpectation: [Service]
         createdAt: String
         userID(_id: ID!):User
     }
@@ -20,14 +20,29 @@ const typeDefs = `
     type User {
         _id: ID
         username: String
-        mail: String
+        email: String
         password: String
         age: Int
         occupation: String
         location: String
         rating: Int
+        skills(_id: ID!): Skill
         bulletinPosts(_id: ID!): Bulletin
         portfolioPosts(_id: ID!): Portfolio
+    }
+
+    type Skill {
+        _id: ID
+        skillTitle: String
+        userID(_id: ID!): User
+    }
+
+    type Service {
+        _id: ID
+        serviceTitle: String
+        serviceDescription: String
+        userID(_id: ID!): User
+        skillID(_id: ID!): Skill
     }
 
     type Auth {
@@ -39,6 +54,8 @@ const typeDefs = `
         portfolioPosts: [Portfolio]
         bulletinPosts: [Bulletin]
         users: [User]
+        skills: [Skill]
+        services:[Service]
     }
 
     type Mutation {
