@@ -44,6 +44,10 @@ const userSchema = new Schema({
       ref: "Portfolio",
     },
   ],
+  profileImage: {
+    type: String, 
+    default: "https://res.cloudinary.com/dafx57m43/image/upload/v1692337951/Cre8tive/mbgnl82rnb9ifqvqmlwn.jpg"
+  }
 });
 
 userSchema.pre("save", async function (next) {

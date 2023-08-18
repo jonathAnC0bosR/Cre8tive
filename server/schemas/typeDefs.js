@@ -28,6 +28,7 @@ const typeDefs = `
         rating: Int
         bulletinPosts(_id: ID!): Bulletin
         portfolioPosts(_id: ID!): Portfolio
+        profileImage: String
     }
 
     type Auth {
@@ -39,11 +40,13 @@ const typeDefs = `
         portfolioPosts: [Portfolio]
         bulletinPosts: [Bulletin]
         users: [User]
+        getProfileImg(id: ID!): String
     }
 
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
+        updateProfileImg(id: ID!, profileImage: String!): User
     }
 `;
 
