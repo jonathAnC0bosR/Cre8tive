@@ -10,9 +10,16 @@ const resolvers = {
     users: async () => {
         return User.find();
     }, 
+
     getProfileImg: async (parent, args) => {
-      return await User.findById(args.id)
+      try {
+        const user = await User.findById(args.id);
+        return user;
+      } catch (error) {
+        throw new Error('Error fetching profile image');
+      }
     },
+    
     bulletinPosts: async () => {
       return await Bulletin.find();
     },

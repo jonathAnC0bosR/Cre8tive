@@ -55,7 +55,7 @@ const typeDefs = `
         portfolioPosts: [Portfolio]
         bulletinPosts: [Bulletin]
         users: [User]
-        getProfileImg(id: ID!): String
+        getProfileImg(id: ID!): User
         skills: [Skill]
         services:[Service]
     }

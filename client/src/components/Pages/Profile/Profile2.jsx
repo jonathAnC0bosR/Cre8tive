@@ -1,18 +1,34 @@
-import { FacebookEmbed } from 'react-social-media-embed';
-import { InstagramEmbed } from 'react-social-media-embed';
-import { TwitterEmbed } from 'react-social-media-embed';
-import { PinterestEmbed } from 'react-social-media-embed';
-
-import profilePicEx from "../../../assets/images/profilePicEx.jpg";
+import profilePicEx from "../../../assets/images/placeholderProfile.jpg";
 import pencil from "../../../assets/images/pencil.svg";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+
+
 import { useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { UPDATE_PROFILEIMG} from '../../../utils/mutations'
+import { PLEASE } from '../../../utils/queries'
 
 const Profile = () => {
+    const userId = '64df223f75e79433f71e8e2b';
+    const [image, setImage] = useState(null);
+    
 
-    // const [image, setimage] = useState(profilePicEx);
+    // function displayImg() {
+        const { data } = useQuery( PLEASE, {
+            variables: {"getProfileImgId": userId}
+        });
+
+    useEffect(()=>{
+        if (data && data.getProfileImg) {
+            const profileImgURL = data.getProfileImg.profileImage;
+            console.log('Profile Image URL:', profileImgURL);
+            // return profileImgURL;
+            setImage(profileImgURL);
+        }
+    }, [data] )  
+    // }
+    
     const [add2Model, {error}]= useMutation(UPDATE_PROFILEIMG);
 
     const uploadedImg = async (e) => {
@@ -25,27 +41,30 @@ const Profile = () => {
             myUrl = some.data
             console.log("-----------response from fetch:", myUrl);
             try {
-                const {idk} = await add2Model({
+                const {idk} = add2Model({
                     variables: {
-                        id: '64df223f75e79433f71e8e2c', 
+                        id: userId, 
                         profileImage: myUrl
                     }
-                });
-                console.log('--------added img URL to DB')
+                }). then((idk) => {
+                    console.log('--------added img URL to DB')
+                    const urlyes = idk.data.updateProfileImg.profileImage;
+                    setImage(urlyes)
+                    }
+                )
             } catch (error) {
                 console.log("Failed to add to DB: ",error);
             }
         } catch (error) {
             console.log("Failed to upload: ",error);
         }
-        
     }
 
     return (
     <div id="Portfolio div" className='pt-[70px] bg-gradient-to-r from-[#0C0F11] to-[#22282D]'>
-    <div>
-        <h1 className='text-white' >Profile</h1>
-    </div>
+        <div>
+            <h1 className='text-white' >Profile</h1>
+        </div>
 
         <div id="ProfileImg" >
             <div>
@@ -57,7 +76,7 @@ const Profile = () => {
                          
                 <div className="overflow-hidden rounded-full w-32 h-32">
                     <img
-                    src={profilePicEx}
+                    src={image}
                     alt="Circular Image"
                     className="w-full h-full object-cover"
                     />
@@ -79,6 +98,7 @@ const Profile = () => {
 
 
         </div>  
+
 
         <br></br>
         <br></br>
