@@ -11,8 +11,8 @@ const typeDefs = `
     type Bulletin{
         _id: ID
         bulletPostTitle: String
-        serviceOffer: String
-        serviceExpectation: String
+        serviceOffer: [Service]
+        serviceExpectation: [Service]
         createdAt: String
         userID(_id: ID!):User
     }
@@ -20,14 +20,33 @@ const typeDefs = `
     type User {
         _id: ID
         username: String
-        mail: String
+        email: String
         password: String
         age: Int
         occupation: String
         location: String
         rating: Int
+        aboutMe: String
+        github: String
+        artStation: String
+        skills(_id: ID!): Skill
         bulletinPosts(_id: ID!): Bulletin
         portfolioPosts(_id: ID!): Portfolio
+        profileImage: String
+    }
+
+    type Skill {
+        _id: ID
+        skillTitle: String
+        userID(_id: ID!): User
+    }
+
+    type Service {
+        _id: ID
+        serviceTitle: String
+        serviceDescription: String
+        userID(_id: ID!): User
+        skillID(_id: ID!): Skill
     }
 
     type Auth {
@@ -39,11 +58,16 @@ const typeDefs = `
         portfolioPosts: [Portfolio]
         bulletinPosts: [Bulletin]
         users: [User]
+        getProfileImg(id: ID!): String
+        skills: [Skill]
+        services:[Service]
     }
 
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
+        updateProfileImg(id: ID!, profileImage: String!): User
+        updateUser(_id:ID!, aboutMe: String, location:String, occupation:String, age:String, username:String):User
     }
 `;
 

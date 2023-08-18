@@ -1,5 +1,5 @@
 const {AuthenticationError} = require('apollo-server-express')
-const { User, Portfolio } = require("../models");
+const {Portfolio, User, Bulletin, Skill, Service}  = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -9,6 +9,18 @@ const resolvers = {
     },
     users: async () => {
         return User.find();
+    }, 
+    getProfileImg: async (parent, args) => {
+      return await User.findById(args.id)
+    },
+    bulletinPosts: async () => {
+      return await Bulletin.find();
+    },
+    skills: async () => {
+      return Skill.find();
+    },
+    services: async() =>{
+      return Service.find();
     }
   },
 
@@ -32,6 +44,23 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    updateProfileImg: async (parent, {id, profileImage}) =>{
+      try {
+        const updatedUser = await User.findByIdAndUpdate(
+          id,
+          { profileImage },
+          { new: true }
+        );
+        return updatedUser;
+      } catch (error) {
+        throw new Error('Error updating profile image');
+      }
+    },
+    updateUser: async (parent, args) => {
+        return await User.findByIdAndUpdate(args._id, args, {
+          new: true
+        })
     },
   },
 };

@@ -1,7 +1,7 @@
 [
     {
         "username":"Lizzz",
-        "mail":"lizzz@hotmail.com",
+        "email":"lizzz@hotmail.com",
         "password":"12345678",
         "age":"22",
         "occupation":"Digital Artist",
@@ -10,7 +10,7 @@
     },
     {
         "username":"Jonathan",
-        "mail":"jonathan@hotmail.com",
+        "email":"jonathan@hotmail.com",
         "password":"12345678",
         "age":"23",
         "occupation":"3D modeler",
@@ -19,7 +19,7 @@
     },
     {
         "username":"Salome",
-        "mail":"salo@hotmail.com",
+        "email":"salo@hotmail.com",
         "password":"12345678",
         "age":"21",
         "occupation":"Illustrator",
@@ -28,7 +28,7 @@
     },
     {
         "username":"Cristofer",
-        "mail":"cris@hotmail.com",
+        "email":"cris@hotmail.com",
         "password":"12345678",
         "age":"26",
         "occupation":"Photographer",

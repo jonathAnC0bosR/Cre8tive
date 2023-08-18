@@ -6,10 +6,10 @@ const skillSchema = new Schema({
         type: String,
         required: true,
     },
-    userID:{
+    userID:[{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
+    }]
 });
 
 const Skill = mongoose.model('Skill', skillSchema );
