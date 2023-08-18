@@ -33,6 +33,12 @@ db.once('open', async () => {
         await newBulletin.save();
     };
 
+    //TODO: RANDOMLY ASSIGN SKILLS TO USERS
+
+    //TODO: RANDOMLY ASSIGN SKILLS TO SERVICES
+
+    //TODO:RANDOMLY ASSIGN SERVICES TO BULLETIN POSTS
+
     console.log('Seeded complete 🍃');
     process.exit(0);
 });
