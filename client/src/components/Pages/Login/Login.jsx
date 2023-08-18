@@ -67,7 +67,7 @@ const Login = () => {
           <p className="text-white text-end text-sm hover:underline hover:font-bold hover:cursor-pointer">
             Forgot your password?
           </p>
-          <AnimatedButton title="Login" />
+          <AnimatedButton styles='bg-pink-600' title="Login" />
         </form>
         <Footer account="Don't have" />
       </div>

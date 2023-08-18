@@ -20,7 +20,7 @@ const Signup = () => {
 
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [samePassword, setSamePassword] = useState(null);
+  const [samePassword, setSamePassword] = useState(true);
 
   const handleConfirm = (e) => {
     const { value } = e.target;
@@ -115,7 +115,7 @@ const Signup = () => {
             </>
           )}
 
-          {samePassword && <AnimatedButton title="Sign up" />}
+          {samePassword && <AnimatedButton styles='bg-pink-600' title="Sign up" />}
         </form>
         <Footer account="Have" />
       </div>
