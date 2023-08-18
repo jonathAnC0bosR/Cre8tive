@@ -56,7 +56,12 @@ const resolvers = {
       } catch (error) {
         throw new Error('Error updating profile image');
       }
-    }
+    },
+    updateUser: async (parent, args) => {
+        return await User.findByIdAndUpdate(args._id, args, {
+          new: true
+        })
+    },
   },
 };
 
