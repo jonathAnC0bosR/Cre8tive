@@ -1,5 +1,5 @@
 const {AuthenticationError} = require('apollo-server-express')
-const { User, Portfolio } = require("../models");
+const {Portfolio, User, Bulletin, Skill, Service}  = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -9,6 +9,15 @@ const resolvers = {
     },
     users: async () => {
         return User.find();
+    },
+    bulletinPosts: async () => {
+      return await Bulletin.find();
+    },
+    skills: async () => {
+      return Skill.find();
+    },
+    services: async() =>{
+      return Service.find();
     }
   },
 
