@@ -28,6 +28,10 @@ const userSchema = new Schema({
   rating: {
     type: Number,
   },
+  skills:{
+    type: Schema.Types.ObjectId,
+    ref:"Skill",
+  },
   bulletinPosts: [
     {
       type: Schema.Types.ObjectId,

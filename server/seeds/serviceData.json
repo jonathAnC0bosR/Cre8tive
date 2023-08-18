@@ -1,0 +1,40 @@
+[
+    {
+        "serviceTitle":"Logo Design for a Brand",
+        "serviceDescription":"Objective: Create a distinctive and modern logo for a new technology company. Specifications: Use the company's color palette, include geometric shapes, and follow brand guidelines.Format: The logo must be delivered in .AI and .SVG vector format. Completion: The final design must be adaptable to different sizes and applications."
+    },
+    {
+        "serviceTitle":"Illustration for a Children's Book Cover",
+        "serviceDescription":"Objective: Design an attractive and child-friendly illustration for a children's book cover.Specifications: Incorporate main characters from the book, using bright colors and playful strokes.Format: Deliver in .AI files, and a .JPEG version for preview.Completion: The illustration must be suitable for printing on various cover sizes."
+    },{
+        "serviceTitle":"Creation of Infographics for a Health Campaign",
+        "serviceDescription":"Objective: Develop informative infographics for a public health campaign.Specifications: Use icons, charts, and text to represent statistics and data clearly and concisely.Format: Produce in Adobe Illustrator with final files in .AI and .PDF.Completion: The infographics must be adaptable for use online and in printed material."
+    },{
+        "serviceTitle":"Menu Design for a Restaurant",
+        "serviceDescription":"Objective: Create an elegant and functional menu for a high-end restaurant.Specifications: Include photographs of dishes, enticing descriptions, and prices, following the restaurant's aesthetics.Format: The final file will be delivered in .AI and .PDF format for printing.Completion: The menu must be easily updatable by restaurant staff while maintaining the original design."
+    },{
+        "serviceTitle":"Corporate Headshot Photography",
+        "serviceDescription":"Objective: Capture professional and consistent headshots for a company's executive team.Specifications: Use uniform background and lighting to reflect the corporate branding, including appropriate attire and poses.Format: Deliver high-resolution images in .JPEG and .RAW formats.Completion: Ensure that the images are suitable for use on the company website, social media, and print materials."
+    },{
+        "serviceTitle":"Photograph a line of products",
+        "serviceDescription":"Specifications: Shoot from multiple angles, with consistent lighting and background, focusing on details and usability.Format: Supply images in .JPEG format optimized for web use, and .RAW for print applications.Completion: The images must fit seamlessly within the website design and be adaptable for advertising purposes."
+    },{
+        "serviceTitle":"Wedding Photography",
+        "serviceDescription":"Objective: Document a wedding ceremony and reception, capturing the key moments and emotions.Specifications: Include candid and posed shots of the couple, family, and guests, along with details of the venue and décor.Format: Deliver edited high-resolution images in both .JPEG for sharing and .RAW for printing.Completion: The final package should include an album design and options for prints and enlargements."
+    },{
+        "serviceTitle":"Travel and Landscape Photography for a Magazine",
+        "serviceDescription":"Objective: Create striking travel and landscape photographs for a travel magazine's feature article.Specifications: Focus on capturing the essence of the location, including landscapes, architecture, local life, and culture.Format: Images should be delivered in high-resolution .JPEG and .RAW formats, suitable for both print and online publication.Completion: The final images must be in line with the magazine's aesthetic and ready for use in various layouts and promotional materials."
+    },{
+        "serviceTitle":"E-commerce Website Design",
+        "serviceDescription":"Objective: Design an intuitive and responsive e-commerce website for an online retail store.Specifications: Implement clear navigation, search functions, product pages, and secure checkout; must reflect brand's aesthetic.Format: Deliver design in layered files suitable for development, such as Sketch or Figma, along with prototypes.Completion: Ensure compatibility across browsers and devices, and provide documentation for developers."
+    },{
+        "serviceTitle":"Mobile App Design for a Health & Fitness Platform",
+        "serviceDescription":"Objective: Create a user-friendly mobile app interface for a health and fitness platform with tracking and community features.Specifications: Design user profiles, tracking dashboards, community forums, and in-app notifications; prioritize user engagement.Format: Supply design files and interactive prototypes using tools like Adobe XD or Figma.Completion: Provide final designs with detailed guidelines for developers, ensuring adherence to platform guidelines (iOS, Android)."
+    },{
+        "serviceTitle":"Redesign of a Non-Profit Organization's Website",
+        "serviceDescription":"Objective: Modernize and optimize a non-profit organization's website to increase engagement and donations.Specifications: Include compelling calls-to-action, donor testimonials, clear navigation, and an accessible design for all users.Format: Deliver design files in formats like Sketch or Adobe XD, along with prototypes for different pages.Completion: The design should be SEO-friendly and comply with web accessibility standards (WCAG)."
+    },{
+        "serviceTitle":"UI/UX Design for a SaaS Dashboard",
+        "serviceDescription":"Objective: Develop an intuitive and sleek dashboard for a Software-as-a-Service (SaaS) product, focusing on user productivity.Specifications: Design user flows for account setup, analytics, settings, support, etc.; ensure smooth integration with existing features.Format: Use tools like Figma or InVision to create both wireframes and high-fidelity designs, along with clickable prototypes.Completion: Deliver final designs and detailed specifications for developers, focusing on a seamless user experience."
+    }
+]
