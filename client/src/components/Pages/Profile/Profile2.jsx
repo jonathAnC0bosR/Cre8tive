@@ -7,22 +7,38 @@ import profilePicEx from "../../../assets/images/profilePicEx.jpg";
 import pencil from "../../../assets/images/pencil.svg";
 import { useState } from 'react';
 import axios from 'axios';
+import { useMutation } from '@apollo/client';
+import { UPDATE_PROFILEIMG} from '../../../utils/mutations'
 
 const Profile = () => {
 
     // const [image, setimage] = useState(profilePicEx);
+    const [add2Model, {error}]= useMutation(UPDATE_PROFILEIMG);
 
     const uploadedImg = async (e) => {
         let upImg = e.target.files[0];
-        console.log(upImg)
         const data = new FormData();
         data.set("image", upImg);
+        let myUrl;
         try {
             const some = await axios.post("http://localhost:3001/api/upload", data);
-            console.log("-----------response from fetch:", some)
+            myUrl = some.data
+            console.log("-----------response from fetch:", myUrl);
+            try {
+                const {idk} = await add2Model({
+                    variables: {
+                        id: '64df223f75e79433f71e8e2c', 
+                        profileImage: myUrl
+                    }
+                });
+                console.log('--------added img URL to DB')
+            } catch (error) {
+                console.log("Failed to add to DB: ",error);
+            }
         } catch (error) {
             console.log("Failed to upload: ",error);
         }
+        
     }
 
     return (
@@ -33,7 +49,7 @@ const Profile = () => {
 
         <div id="ProfileImg" >
             <div>
-                <label for="imageInput" id="customButton"></label>
+                <label htmlFor="imageInput" id="customButton"></label>
                 <input type="file" id="imageInput" multiple={false} className="hidden" onChange={ uploadedImg }></input>
             </div>
 

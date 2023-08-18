@@ -19,7 +19,7 @@ router.post("/upload", async (req, res) => {
     const b64 = Buffer.from(req.file.buffer).toString("base64");
     let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
     const cldRes = await handleUpload(dataURI);
-    console.log("-------------- Image uploaded successfully!");
+    console.log("-------------- Image uploaded to Cloudinary successfully!");
     const myUrl = cldRes.secure_url;
     res.json(myUrl);
   } catch (error) {

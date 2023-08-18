@@ -29,6 +29,7 @@ const typeDefs = `
         skills(_id: ID!): Skill
         bulletinPosts(_id: ID!): Bulletin
         portfolioPosts(_id: ID!): Portfolio
+        profileImage: String
     }
 
     type Skill {
@@ -54,6 +55,7 @@ const typeDefs = `
         portfolioPosts: [Portfolio]
         bulletinPosts: [Bulletin]
         users: [User]
+        getProfileImg(id: ID!): String
         skills: [Skill]
         services:[Service]
     }
@@ -61,6 +63,7 @@ const typeDefs = `
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
+        updateProfileImg(id: ID!, profileImage: String!): User
     }
 `;
 

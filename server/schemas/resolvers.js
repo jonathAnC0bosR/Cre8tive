@@ -9,6 +9,9 @@ const resolvers = {
     },
     users: async () => {
         return User.find();
+    }, 
+    getProfileImg: async (parent, args) => {
+      return await User.findById(args.id)
     },
     bulletinPosts: async () => {
       return await Bulletin.find();
@@ -42,6 +45,18 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    updateProfileImg: async (parent, {id, profileImage}) =>{
+      try {
+        const updatedUser = await User.findByIdAndUpdate(
+          id,
+          { profileImage },
+          { new: true }
+        );
+        return updatedUser;
+      } catch (error) {
+        throw new Error('Error updating profile image');
+      }
+    }
   },
 };
 
