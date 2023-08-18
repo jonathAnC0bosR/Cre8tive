@@ -11,8 +11,8 @@ const typeDefs = `
     type Bulletin{
         _id: ID
         bulletPostTitle: String
-        offert: String
-        expectation: String
+        serviceOffer: String
+        serviceExpectation: String
         createdAt: String
         userID(_id: ID!):User
     }
