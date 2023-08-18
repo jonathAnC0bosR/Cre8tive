@@ -13,7 +13,9 @@ import "./index.css";
 import Landing from "./components/landing/landing";
 import Signup from "./components/Pages/Signup/Signup";
 import Profile from "./components/Pages/Profile/Profile";
+import Profile2 from "./components/Pages/Profile/Profile2";
 import BBpost from "./components/Pages/BBpost/BBpost";
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -43,8 +45,9 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile2 />} />
           <Route path="/BBpost" element={<BBpost />} />
+
         </Routes>
       </Router>
     </ApolloProvider>
