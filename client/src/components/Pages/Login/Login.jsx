@@ -45,7 +45,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="lg:text-sm bg-gradient-to-r from-[#0C0F11] to-[#22282D] min-h-screen flex justify-center items-center w-screen">
+    <div className="lg:text-sm pt-20 bg-gradient-to-r from-[#0C0F11] to-[#22282D] min-h-screen flex justify-center items-center w-screen">
       <img
           src={img1}
           className="h-3/4 left-0 top-0 absolute z-[0] ">

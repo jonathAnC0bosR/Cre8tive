@@ -10,7 +10,7 @@ const Header = () => {
   }
   return (
     <>
-      <div className="bg-zinc-950 text-white fixed w-screen grid grid-cols-4 z-[3] items-center ">
+      <div className="bg-zinc-950 text-white fixed w-screen grid grid-cols-4 z-[10] items-center ">
         <Link to={"/"}>
           <img
             src={logo}

@@ -26,6 +26,9 @@ const typeDefs = `
         occupation: String
         location: String
         rating: Int
+        aboutMe: String
+        github: String
+        artStation: String
         skills(_id: ID!): Skill
         bulletinPosts(_id: ID!): Bulletin
         portfolioPosts(_id: ID!): Portfolio
@@ -64,6 +67,7 @@ const typeDefs = `
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         updateProfileImg(id: ID!, profileImage: String!): User
+        updateUser(_id:ID!, aboutMe: String, location:String, occupation:String, age:String, username:String):User
     }
 `;
 

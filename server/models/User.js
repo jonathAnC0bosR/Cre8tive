@@ -19,18 +19,33 @@ const userSchema = new Schema({
   age: {
     type: Number,
   },
+  firstName: {
+    type: String,
+  },
+  lastName: {
+    type:String,
+  },
   occupation: {
     type: String,
   },
   location: {
     type: String,
   },
+  aboutMe: {
+    type: String,
+  },
+  github: {
+    type: String,
+  },
+  artStation: {
+    type: String,
+  },
   rating: {
     type: Number,
   },
-  skills:{
+  skills: {
     type: Schema.Types.ObjectId,
-    ref:"Skill",
+    ref: "Skill",
   },
   bulletinPosts: [
     {
@@ -45,9 +60,10 @@ const userSchema = new Schema({
     },
   ],
   profileImage: {
-    type: String, 
-    default: "https://res.cloudinary.com/dafx57m43/image/upload/v1692337951/Cre8tive/mbgnl82rnb9ifqvqmlwn.jpg"
-  }
+    type: String,
+    default:
+      "https://res.cloudinary.com/dafx57m43/image/upload/v1692337951/Cre8tive/mbgnl82rnb9ifqvqmlwn.jpg",
+  },
 });
 
 userSchema.pre("save", async function (next) {
