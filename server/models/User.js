@@ -47,7 +47,13 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Skill",
   },
-  bulletinPosts: [
+  bulletinPosts: [ //(IF OFFERING A JOB)
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Bulletin",
+    },
+  ],
+  ActiveJobs:[//IF ACCEPTED A JOB
     {
       type: Schema.Types.ObjectId,
       ref: "Bulletin",
