@@ -12,10 +12,8 @@ import Auth from '../../../utils/auth'
 
 const Profile = () => {
     const authService = Auth;
-    const userId = '64df223f75e79433f71e8e2b';
     const user = authService.getProfile().data;
     const {_id} = user;
-    console.log("id --------", _id);
 
     const [image, setImage] = useState(null);
     
