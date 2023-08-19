@@ -32,3 +32,29 @@ export const UPDATE_PROFILEIMG = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation Mutation(
+    $id: ID!
+    $age: String
+    $aboutMe: String
+    $location: String
+    $occupation: String
+    $username: String
+  ) {
+    updateUser(
+      _id: $id
+      age: $age
+      aboutMe: $aboutMe
+      location: $location
+      occupation: $occupation
+      username: $username
+    ) {
+      aboutMe
+      age
+      email
+      username
+      location
+    }
+  }
+`;

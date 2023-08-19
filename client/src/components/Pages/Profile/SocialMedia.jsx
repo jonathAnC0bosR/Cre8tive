@@ -3,7 +3,7 @@ import { InstagramEmbed } from 'react-social-media-embed';
 import { TwitterEmbed } from 'react-social-media-embed';
 import { PinterestEmbed } from 'react-social-media-embed';
 
-const Profile = () => {
+const SocialMedia = () => {
     return (<><div><h1>Portfolio page </h1></div>
         
         
@@ -90,4 +90,4 @@ const Profile = () => {
     )
 }
 
-export default Profile;
+export default SocialMedia;

@@ -1,0 +1,30 @@
+.custom-scrollbar {
+    scrollbar-color: #E04189 transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    /* Set the width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #323232;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #E04189;
+    /* Make the thumb pink */
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #C83A7D;
+    /* Lighter pink on hover */
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    /* Customize the shadow values */
+}
