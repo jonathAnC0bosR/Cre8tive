@@ -11,3 +11,22 @@ h1 {
     font-family: 'Lato', sans-serif;
 }
 
+.backCircle {
+    background: white;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backCircle[data-isOpen="true"] {
+    width: 400px;
+}
+
+.topCircle {
+    width: 40px;
+    height: 40px;
+    background: #f107a3;
+    border-radius: 50%;
+  }
