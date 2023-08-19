@@ -69,6 +69,22 @@ const resolvers = {
           new: true
         })
     },
+    addBulletin: async (parent, { bulletPostTitle, serviceOffer, serviceExpectation }) => {
+     return Bulletin.create({ bulletPostTitle, serviceOffer, serviceExpectation  });
+    },
+    accceptBulletin: async (parent, {_id, acceptingUser}) =>{
+      try {
+        const activatedBulletin = await Bulletin.findByIdAndUpdate(
+          _id,
+          { isActive:true },
+          {acceptingUser: {acceptingUser} },
+          { new: true }
+        );
+        return activatedBulletin;
+      } catch (err) {
+        throw new Error('error in activating the Bulletin post');
+      }
+    },
   },
 };
 
