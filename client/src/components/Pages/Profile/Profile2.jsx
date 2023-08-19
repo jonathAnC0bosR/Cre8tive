@@ -8,15 +8,21 @@ import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { UPDATE_PROFILEIMG} from '../../../utils/mutations'
 import { PLEASE } from '../../../utils/queries'
+import Auth from '../../../utils/auth'
 
 const Profile = () => {
+    const authService = Auth;
     const userId = '64df223f75e79433f71e8e2b';
+    const user = authService.getProfile().data;
+    const {_id} = user;
+    console.log("id --------", _id);
+
     const [image, setImage] = useState(null);
     
 
     // function displayImg() {
         const { data } = useQuery( PLEASE, {
-            variables: {"getProfileImgId": userId}
+            variables: {"getProfileImgId": _id}
         });
 
     useEffect(()=>{
@@ -43,7 +49,7 @@ const Profile = () => {
             try {
                 const {idk} = add2Model({
                     variables: {
-                        id: userId, 
+                        id: _id, 
                         profileImage: myUrl
                     }
                 }). then((idk) => {
