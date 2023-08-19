@@ -9,6 +9,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useMutation } from '@apollo/client';
 import { UPDATE_PROFILEIMG} from '../../../utils/mutations'
+import topBanerImg from "../../../assets/images/topBanerProfile.png"
 
 const Profile = () => {
 
@@ -46,7 +47,7 @@ const Profile = () => {
     <div>
         <h1 className='text-white' >Profile</h1>
     </div>
-
+    <img src={topBanerImg}></img>
         <div id="ProfileImg" >
             <div>
                 <label htmlFor="imageInput" id="customButton"></label>
