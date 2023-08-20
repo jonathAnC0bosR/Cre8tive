@@ -26,46 +26,10 @@ export default function Upload(props){
             console.log("-----------response from Cloudinary:", myUrl);
             props.updateProp(myUrl);
 
-            // try {
-                // const {idk} = add2Model({
-                //     variables: {
-                //         id: _id, 
-                //         profileImage: myUrl
-                //     }
-                // }). then((idk) => {
-                //     console.log('--------added img URL to DB')
-                //     const urlyes = idk.data.updateProfileImg.profileImage;
-                //     setImage(urlyes)
-                //     }
-                // )
-            // } catch (error) {
-            //     console.log("Failed to add to DB: ",error);
-            // }
         } catch (error) {
             console.log("Failed to upload: ",error);
         }
     }
-
-    // const saveImgDB = (myUrl) => {
-    //     try {
-    //         const {idk} = add2Model({ //pass mutation as prop
-    //             variables: {
-    //                 id: _id, // id as prop
-    //                 profileImage: myUrl 
-    //             }
-    //         }). then((idk) => {
-    //             console.log('--------added img URL to DB')
-    //             const urlyes = idk.data.updateProfileImg.profileImage;
-    //             setImage(urlyes) //---- set image has to be handled----------------
-    //             }
-    //         )
-
-    //     } catch (error) {
-    //         console.log("Failed to add to DB: ", error);
-
-    //     }
-
-    // }
     
     const inputFileRef = useRef(null);
     const handleLabelClick = () => {

@@ -2,10 +2,9 @@ import icon1 from "../../../assets/images/icon1.svg";
 import icon2 from "../../../assets/images/icon2.svg";
 import icon3 from "../../../assets/images/icon3.svg";
 import exImg from "../../../assets/images/example-img.png";
-import pencil from "../../../assets/images/pencilOrange.svg";
 import React, { useState } from 'react';
 import UploadPencil from "../../UI/uploadPencil"
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { ADD_BBPOST } from '../../../utils/mutations'
 import Auth from '../../../utils/auth'
 
