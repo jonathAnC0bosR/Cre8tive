@@ -13,9 +13,9 @@ export default function ServicesButton() {
 
   const handleButtonClick = () => {
     setIsProcessing(true);
-    
+
     props.setOpenModal('form-elements');
-    
+
     // You can use a timeout to simulate the modal loading delay or your actual modal loading logic
     setTimeout(() => {
       props.setOpenModal('form-elements');
@@ -32,11 +32,18 @@ export default function ServicesButton() {
       >
         {isProcessing ? <AiOutlineLoading className="h-6 w-6 animate-spin" /> : 'Negotiate'}
       </Button>
-      <Modal show={props.openModal === 'form-elements'} size="md" popup onClose={() => props.setOpenModal(undefined)} >
-        <div className="w-1/2">
+
+      <Modal
+        show={props.openModal === 'form-elements'}
+        size="md"
+        popup
+        onClose={() => props.setOpenModal(undefined)}
+        className="w-2/3 flex fixed justify-center align-middle "
+      >
+        <div className="">
           <Modal.Header />
           <Modal.Body>
-            <div className="space-y-6 w-1/3 justify-center">
+            <div className="space-y-6 justify-self-center">
               <h3 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
               <div>
                 <div className="mb-2 block">
