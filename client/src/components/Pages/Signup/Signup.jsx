@@ -7,7 +7,8 @@ import { useMutation } from "@apollo/client";
 
 import Auth from "../../../utils/auth";
 import Footer from "../../UI/Footer";
-import AnimatedButton from "../../UI/AnimatedButton2"; //return to AnimatedButton
+import AnimatedButton from "../../UI/AnimatedButton"; //return to AnimatedButton
+// import AnimatedButton from "../UserServices/services";
 import img1 from "../../../assets/images/colorPiece1.png";
 import img2 from "../../../assets/images/colorPiece2.png";
 

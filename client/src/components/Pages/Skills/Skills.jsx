@@ -5,8 +5,8 @@ import { LiaPencilAltSolid } from "react-icons/lia";
 import { LiaCubeSolid } from "react-icons/lia";
 import { LiaCodeSolid } from "react-icons/lia";
 import { LiaEdit } from "react-icons/lia";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import { Carousel } from "react-responsive-carousel";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../Skills/skillStyles.css";
 
 const Skills = () => {

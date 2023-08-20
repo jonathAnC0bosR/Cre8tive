@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import "././index.css";
+import { animate, motion, spring } from "framer-motion";
+import "../../index.css";
 
-export default function App() {
+const AnimatedButton = (props) => {
+
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -11,10 +12,27 @@ export default function App() {
       layout
       data-isOpen={isOpen}
       initial={{ borderRadius: 50 }}
-      className="backCircle"
+      className={`${props.styles} backCircle my-10 h-10 mx-auto bg-white text-pink-600 rounded-full`}
+      type={props.type}
       onClick={() => setIsOpen(!isOpen)}
+      whileHover={{ 
+        scale: 1.5, 
+        style: 'bg-white text-white',
+        
+      }}
+      transition={{ type: "spring", stiffness: 400, damping: 21 }}
     >
-      <motion.div layout className="topCircle" />
+      <motion.div
+        layout
+        className="topCircle"
+        initial={{ }}
+      />
+        
     </motion.div>
   );
 }
+
+
+
+export default AnimatedButton;
+

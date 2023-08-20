@@ -12,7 +12,6 @@ h1 {
 }
 
 .backCircle {
-    background: white;
     width: 100px;
     height: 100px;
     display: flex;
@@ -25,8 +24,19 @@ h1 {
 }
 
 .topCircle {
-    width: 40px;
-    height: 40px;
-    background: #f107a3;
+    width: "w-32";
+    height: "h-10";
+    background: white;
     border-radius: 50%;
+    transform-origin: 0%;
+}
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: var(--red);
+    transform-origin: 0%;
   }
