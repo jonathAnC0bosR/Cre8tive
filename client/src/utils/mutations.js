@@ -58,3 +58,44 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const ADD_BBPOST = gql`
+  mutation Mutation(
+    $bulletPostTitle: String!, 
+    $bulletText: String!, 
+    $userId: ID!, 
+    $serviceOffer: [ID], 
+    $serviceNeed: [ID], 
+    $deliveryTime: String, 
+    $imageUrl: String, 
+    $createdAt: String
+    ) {
+    addBBPost(
+      bulletPostTitle: $bulletPostTitle, 
+      bulletText: $bulletText, 
+      userID: $userId, 
+      serviceOffer: $serviceOffer, 
+      serviceNeed: $serviceNeed, 
+      deliveryTime: $deliveryTime, 
+      imageURL: $imageUrl, 
+      createdAt: $createdAt) 
+    {
+    _id
+    bulletPostTitle
+    bulletText
+    createdAt
+    deliveryTime
+    imageURL
+    serviceNeed {
+      _id
+    }
+    serviceOffer {
+      _id
+    }
+    userID {
+      _id
+      username
+    }
+  }
+}
+`;

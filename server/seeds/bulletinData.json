@@ -1,6 +1,9 @@
 [
     {
-        "bulletPostTitle":"3D model character"
+        "bulletPostTitle":"3D model character",
+        "bulletText": "A text a text that is so much like a text",
+        "deliveryTime": "3", 
+        "imageURL": "https://res.cloudinary.com/dafx57m43/image/upload/v1692337951/Cre8tive/mbgnl82rnb9ifqvqmlwn.jpg"
     },
     {
         "bulletPostTitle":"Video-mapping needed"
