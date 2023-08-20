@@ -32,6 +32,14 @@ const bulletinSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
+    ,acceptingUser:{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    isActive:{
+        type:Boolean,
+        default: false
+    }
 });
 
 const Bulletin = mongoose.model('Bulletin', bulletinSchema);

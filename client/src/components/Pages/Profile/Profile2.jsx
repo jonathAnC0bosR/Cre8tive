@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
+
 import { useQuery, useMutation } from '@apollo/client';
 import { UPDATE_PROFILEIMG } from '../../../utils/mutations'
+
 import { PLEASE } from '../../../utils/queries'
 import Auth from '../../../utils/auth'
 import UploadPencil from "../../../components/UI/uploadPencil"
@@ -67,9 +69,11 @@ const Profile = () => {
 
     return (
     <div id="Portfolio div" className='pt-[70px] bg-gradient-to-r from-[#0C0F11] to-[#22282D]'>
+
         <div>
             <h1 className='text-white' >Profile</h1>
         </div>
+
 
         <div id="ProfileImg" >
 

@@ -85,6 +85,7 @@ const resolvers = {
           new: true
         })
     },
+
     addBBPost: async (parent, args) => {
       try {
         const newPost = await Bulletin.create(args);
@@ -93,7 +94,22 @@ const resolvers = {
       throw new Error('Failed to create bulletin');
     }
 
-    }
+    },
+
+    accceptBulletin: async (parent, {_id, acceptingUser}) =>{
+      try {
+        const activatedBulletin = await Bulletin.findByIdAndUpdate(
+          _id,
+          { isActive:true },
+          {acceptingUser: {acceptingUser} },
+          { new: true }
+        );
+        return activatedBulletin;
+      } catch (err) {
+        throw new Error('error in activating the Bulletin post');
+      }
+    },
+
   },
 };
 
