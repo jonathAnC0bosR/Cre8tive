@@ -3,6 +3,22 @@ const {Portfolio, User, Bulletin, Skill, Service}  = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
+  Bulletin: {
+    userID: async (parent) => {
+      // Fetch the user associated with the bulletin using parent.userID
+      const user = await User.findById(parent.userID);
+      return user;
+    },
+  },
+  User: {
+    bulletinPosts: async (parent) => {
+      // Fetch the bulletin posts associated with the user using parent._id
+      const bulletins = await Bulletin.find({ userID: parent._id });
+      return bulletins;
+    },
+  },
+
+
   Query: {
     portfolioPosts: async () => {
       return Portfolio.find();
@@ -69,6 +85,15 @@ const resolvers = {
           new: true
         })
     },
+    addBBPost: async (parent, args) => {
+      try {
+        const newPost = await Bulletin.create(args);
+      return newPost;
+    } catch (error) {
+      throw new Error('Failed to create bulletin');
+    }
+
+    }
   },
 };
 

@@ -8,9 +8,21 @@ const bulletinSchema = new Schema({
         required: true,
         trim: true
     },
+    bulletText:{
+        type: String,
+    }, 
+
     serviceOffer:[Service.schema],
 
-    serviceExpectation:[Service.schema],
+    serviceNeed:[Service.schema],
+
+    deliveryTime: {
+        type: String,
+    },
+
+    imageURL: {
+        type: String,
+    },
 
     createdAt: {
         type: Date,

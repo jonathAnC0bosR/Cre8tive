@@ -4,11 +4,55 @@ import icon3 from "../../../assets/images/icon3.svg";
 import exImg from "../../../assets/images/example-img.png";
 import pencil from "../../../assets/images/pencilOrange.svg";
 import React, { useState } from 'react';
+import UploadPencil from "../../UI/uploadPencil"
+import { useQuery, useMutation } from '@apollo/client';
+import { ADD_BBPOST } from '../../../utils/mutations'
+import Auth from '../../../utils/auth'
 
 
 const CreateBBpost = () => {
-    const [inputValue, setInputValue] = useState('');
-    const [textareaValue, setTextareaValue] = useState('');
+
+    //--- getting logged user ID
+    const authService = Auth;
+    const user = authService.getProfile().data;
+    const {_id} = user;
+
+    //url state variable
+    const [URL, setURL]= useState("");
+    const updateStateURL = (val) => {
+        setURL(val);
+    };
+
+    const [createBBPost, {error}]= useMutation(ADD_BBPOST);
+
+    const handleCreate = async (e) => {
+        e.preventDefault();
+        // console.log("submit.........", e);
+        // console.log(URL);
+        const title = e.target[0].value;
+        const text = e.target[1].value;
+        const created = new Date().toISOString();
+        try {
+            const {newPost} = createBBPost({
+                variables:{
+                    bulletPostTitle: title,
+                    bulletText: text,
+                    userId: _id,
+                    createdAt: created,
+                    imageUrl: URL,
+                    deliveryTime: null,
+                    serviceNeed: null,
+                    serviceOffer: null
+                }
+            }).then((newPost)=>{
+                console.log('--------added new post to DB');
+            })
+
+        } catch (error) {
+            console.log("---Failed to add to DB: ",error);
+        }
+
+    }
 
     return (
     <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex items-center justify-center ">
@@ -17,7 +61,7 @@ const CreateBBpost = () => {
                 <h1 className="text-white" >Create Post</h1>
             </div>
 
-            <form className="flex flex-col" >
+            <form className="flex flex-col" onSubmit={handleCreate} >
                 <input type="text" className="rounded-lg bg-[#353535] h-8 w-2/3 m-4 p-2 text-white" placeholder=" Give your post a title!"  ></input>
                 <textarea className="rounded-lg bg-[#353535] ml-4 mb-5 p-3 h-36 text-white"  placeholder="Tell us about the job..."></textarea>
                 
@@ -56,35 +100,21 @@ const CreateBBpost = () => {
 
                 </div>
 
-                <div>
-                    <label htmlFor="imageInput" id="customButton"></label>
-                    <input type="file" id="imageInput" multiple={false} className="hidden" ></input>
-                    {/* onChange={ uploadedImg } */}
-                </div>
-
                 <div className='flex  relative  items-center justify-center m-4 p-2' >   
-                    <label htmlFor="imageInput" className="cursor-pointer">     
-                        <div className="">
-                            <img
-                            src={exImg}
-                            className="w-full h-full  rounded-xl hover:opacity-70"
-                            />
-                        </div>
-                        <div className="absolute top-10 right-[120px] flex items-center" >
-                            <h1 className="text-white m-2 text-lg" >Attach image</h1>                        
-                            <div className="overflow-hidden rounded-full w-12 h-12 bg-white flex items-center justify-center">
-                                <img
-                                src={pencil}
-                                alt="Circular Image"
-                                className="h-2/3 object-cover"
-                                />
-                            </div>
-                        </div>
+                    <div className="">
+                        <img
+                        src={exImg}
+                        className="w-full h-full  rounded-xl hover:opacity-70"
+                        />
+                    </div>
 
-                    </label>
+                    <div className="absolute top-10 right-[120px]" > 
+                        <UploadPencil updateProp={updateStateURL} />
+                    </div>
                 </div>
 
-                <button className="m-6 text-pink-600 font-bold bg-white  h-10  mx-auto w-32 text-white rounded-full" >Create Job</button>
+                <button className="m-6 text-pink-600 font-bold bg-white h-10  mx-auto w-32 rounded-full"  >Create Post!</button>
+                
 
             </form>
 
