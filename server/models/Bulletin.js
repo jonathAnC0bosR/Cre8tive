@@ -8,9 +8,21 @@ const bulletinSchema = new Schema({
         required: true,
         trim: true
     },
+    bulletText:{
+        type: String,
+    }, 
+
     serviceOffer:[Service.schema],
 
-    serviceExpectation:[Service.schema],
+    serviceNeed:[Service.schema],
+
+    deliveryTime: {
+        type: String,
+    },
+
+    imageURL: {
+        type: String,
+    },
 
     createdAt: {
         type: Date,
@@ -19,6 +31,14 @@ const bulletinSchema = new Schema({
     userID:{
         type: Schema.Types.ObjectId,
         ref: 'User'
+    }
+    ,acceptingUser:{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    isActive:{
+        type:Boolean,
+        default: false
     }
 });
 

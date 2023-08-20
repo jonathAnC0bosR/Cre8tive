@@ -21,7 +21,8 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.11.2",
     "react-awesome-loaders": "^0.1.37",
-    "flowbite": "^1.8.1"
+    "flowbite": "^1.8.1",
+    "flowbite-react": "0.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

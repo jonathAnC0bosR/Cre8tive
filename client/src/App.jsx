@@ -1,4 +1,4 @@
-import {
+  import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
@@ -15,7 +15,12 @@ import Signup from "./components/Pages/Signup/Signup";
 import EditProfile from "./components/Pages/Profile/EditProfile";
 
 import Profile2 from "./components/Pages/Profile/Profile2";
+
+
+import Profile3 from "./components/Pages/Profile/Profile3";
+
 import BBpost from "./components/Pages/BBpost/BBpost";
+import CreateBBpost from "./components/Pages/BBpost/CreateBBpost";
 import Skills from "./components/Pages/Skills/Skills";
 
 
@@ -55,10 +60,11 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path= '/editProfile' element={<EditProfile />}  />
 
-
           <Route path="/profile" element={<Profile2 />} />
+          <Route path="/CreateBBpost" element={<CreateBBpost />} />
           <Route path="/BBpost" element={<BBpost />} />
           <Route path="/skills" element={<Skills />} />
+          <Route path="/profile3" element={<Profile3 />} />
         </Routes>
       </Router>
     </ApolloProvider>

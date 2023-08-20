@@ -8,6 +8,7 @@ const BBpost = () => {
   return (
     // main div
     <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex flex-col">
+
       <div className="bg-gradient-to-r from-[#353434] to-[#424141] text-white rounded-bl-lg rounded-br-lg flex-grow mx-4 sm:m-4 md:m-12">
         <img src={backImg} className="w-full h-96" alt="Background Image"></img>
         <div className="flex flex-row justify-between px-10 py-8">
@@ -23,6 +24,7 @@ const BBpost = () => {
           luctus leo. Donec in laoreet neque. Maecenas id mattis arcu.
         </p>
       </div>
+      
       <div className="flex flex-col my-10 bg-gradient-to-r from-[#353434] to-[#424141] p-8 rounded-lg mx-4 sm:m-4 md:m-12">
         <div className="flex justify-between items-center mb-4">
           <RiUserReceivedFill size={"2.8em"} color="pink" />

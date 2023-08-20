@@ -47,7 +47,13 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Skill",
   },
-  bulletinPosts: [
+  bulletinPosts: [ //(IF OFFERING A JOB)
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Bulletin",
+    },
+  ],
+  ActiveJobs:[//IF ACCEPTED A JOB
     {
       type: Schema.Types.ObjectId,
       ref: "Bulletin",
@@ -62,7 +68,7 @@ const userSchema = new Schema({
   profileImage: {
     type: String,
     default:
-      "https://res.cloudinary.com/dafx57m43/image/upload/v1692337951/Cre8tive/mbgnl82rnb9ifqvqmlwn.jpg",
+      "https://res.cloudinary.com/dafx57m43/image/upload/v1692499672/Cre8tive/lcav0tseedyuftfnpuxf.jpg",
   },
 });
 

@@ -31,6 +31,95 @@ h1 {
     transform-origin: 0%;
 }
 
+/* Style for  */
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileContainer {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    margin: -5%;
+    -ms-flex-align: center;
+    width: 100%;
+}
+.avatarImage {
+    margin-left: 42.5%;
+}
+
+.pencilButton {
+    margin: -120px 50%;
+}
+.profileInfo {
+    color: white;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 18px;
+    width: 95%;
+}
+
+.profileInfo h1 {
+    font-size: 30px;
+}
+.profileInfo a {
+    color: gray;
+    font-size: 15px;
+    text-decoration: underline;
+}
+.profileInfo h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+.socialButtons {
+    display: flex;
+    align-self: center;
+    margin: 10px;
+}
+.socialButtons * {
+    margin-right: 10px;
+}
+
+.skillsContainer {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    
+    margin: 40px;
+    border-top: 10px;
+    border-color: brown;
+    
+}
+.skillsContainer h3 {
+    display: flex;
+    align-self: center;
+    margin-top: 0;
+    margin-left: -60px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.skillsTags {
+    display: flex;
+    flex-direction: row;
+    margin-left: 130px;
+}
+
+.bulletSkill {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    background-color: #262626;
+    border-radius: 5px;
+    border-color: #E04189;
+    border-width: 2px;
+    padding: 8px; /* Increase padding for more separation */
+    margin: 5px; /* Adjust margin between bulletSkill elements */
+    color: #E04189;
+  }
+  .bulletSkill p {
+    margin-left: 10px; /* Add space between icon and text */
+  }
 .progress-bar {
     position: fixed;
     top: 0;
