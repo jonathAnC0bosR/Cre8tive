@@ -26,7 +26,7 @@ const Skills = () => {
           {/* Title of the section with icon */}
           <div className="flex items-center mb-4 gap-2">
             <LiaCameraSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl text-df4088 font-bold">
+            <h2 className="text-white text-xl font-bold">
               Photography
             </h2>
           </div>
@@ -38,7 +38,7 @@ const Skills = () => {
                 Portraits 4 Grad
               </h3>
               {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden relative ">
+              <div className="relative rounded-b-lg w-72 overflow-hidden ">
                 {/* Pseudo-element for the blurred background */}
                 <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
                 {/* Content */}
@@ -53,7 +53,7 @@ const Skills = () => {
           {/* Title of the section with icon */}
           <div className="flex items-center mb-4 gap-2">
             <LiaPencilAltSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl text-df4088 font-bold">
+            <h2 className="text-white text-xl font-bold">
               Illustration
             </h2>
           </div>
@@ -65,7 +65,7 @@ const Skills = () => {
                 Portraits 4 Grad
               </h3>
               {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden relative ">
+              <div className="relative rounded-b-lg w-72 overflow-hidden ">
                 {/* Pseudo-element for the blurred background */}
                 <div className="absolute inset-0 bg-[url('assets/images/Photo-Illustration.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
                 {/* Content */}
@@ -79,7 +79,7 @@ const Skills = () => {
         <div className="mb-8">
           <div className="flex items-center mb-4 gap-2">
             <LiaCubeSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl text-df4088 font-bold">
+            <h2 className="text-white text-xl font-bold">
               3D Design
             </h2>
           </div>
@@ -91,7 +91,7 @@ const Skills = () => {
                 Portraits 4 Grad
               </h3>
               {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden relative ">
+              <div className="relative rounded-b-lg w-72 overflow-hidden  ">
                 {/* Pseudo-element for the blurred background */}
                 <div className="absolute inset-0 bg-[url('assets/images/Photo-3D.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
                 {/* Content */}
@@ -105,7 +105,7 @@ const Skills = () => {
         <div className="mb-8">
           <div className="flex items-center mb-4 gap-2">
             <LiaCodeSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl text-df4088 font-bold">UI/UX</h2>
+            <h2 className="text-white text-xl font-bold">UI/UX</h2>
           </div>
           {/* Here the cards get stored */}
           <div className="flex overflow-x-scroll custom-scrollbar">
@@ -115,7 +115,7 @@ const Skills = () => {
                 Portraits 4 Grad
               </h3>
               {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden relative ">
+              <div className="relative rounded-b-lg w-72 overflow-hidden ">
                 {/* Pseudo-element for the blurred background */}
                 <div className="absolute inset-0 bg-[url('assets/images/Photo-UIUX.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
                 {/* Content */}
@@ -129,7 +129,7 @@ const Skills = () => {
         <div className="mb-8">
           <div className="flex items-center mb-4 gap-2">
             <LiaEdit size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl text-df4088 font-bold">
+            <h2 className="text-white text-xl font-bold">
               Graphic Design
             </h2>
           </div>
@@ -141,7 +141,7 @@ const Skills = () => {
                 Portraits 4 Grad
               </h3>
               {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden relative ">
+              <div className="relative rounded-b-lg w-72 overflow-hidden ">
                 {/* Pseudo-element for the blurred background */}
                 <div className="absolute inset-0 bg-[url('assets/images/Photo-GDesign.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
                 {/* Content */}
