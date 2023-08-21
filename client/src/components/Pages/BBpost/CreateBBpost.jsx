@@ -17,12 +17,12 @@ const CreateBBpost = () => {
     const {_id} = user;
 
     //url state variable
-    const [URL, setURL]= useState("");
+    const [URL, setURL]= useState(null);
     const updateStateURL = (val) => {
         setURL(val);
     };
 
-    const [createBBPost, {error}]= useMutation(ADD_BBPOST);
+    const [createBBPost]= useMutation(ADD_BBPOST);
 
     const handleCreate = async (e) => {
         e.preventDefault();
@@ -103,7 +103,7 @@ const CreateBBpost = () => {
                 <div className='flex  relative  items-center justify-center m-4 p-2' >   
                     <div className="">
                         <img
-                        src={exImg}
+                        src={URL? URL : exImg }
                         className="w-full h-full  rounded-xl hover:opacity-70"
                         />
                     </div>
