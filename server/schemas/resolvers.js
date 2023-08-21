@@ -9,6 +9,16 @@ const resolvers = {
       const user = await User.findById(parent.userID);
       return user;
     },
+    // serviceOffer: async (parent) => {
+    //   // Populate the serviceOffer field with Skill data including skillTitle
+    //   const skills = await Skill.find({ _id: { $in: parent.serviceOffer } });
+    //   return skills;
+    // },
+    // serviceNeed: async (parent) => {
+    //   // Populate the serviceNeed field with Skill data including skillTitle
+    //   const skills = await Skill.find({ _id: { $in: parent.serviceNeed } });
+    //   return skills;
+    // },
   },
   User: {
     bulletinPosts: async (parent) => {
@@ -26,10 +36,18 @@ const resolvers = {
     users: async () => {
         return User.find();
     }, 
+    getUser: async (parent, args) => {
+      try {
+        const getSingleUser= await User.findById(args.id);
+        return getSingleUser;
+      } catch (error) {
+        throw new Error('Error fetching profile image');
+      }
+    },
 
     getProfileImg: async (parent, args) => {
       try {
-        const user = await User.findById(args.id);
+        const user = await User.findById(args.id).populate('skills');
         return user;
       } catch (error) {
         throw new Error('Error fetching profile image');
@@ -37,14 +55,57 @@ const resolvers = {
     },
     
     bulletinPosts: async () => {
-      return await Bulletin.find();
+      return await Bulletin.find()
+      .populate(
+        {
+        path: 'serviceNeed serviceOffer', // Specify the paths to populate
+        select: 'skillTitle' // Only select the skillTitle field
+      }
+      )
+      ;
     },
     skills: async () => {
       return Skill.find();
     },
     services: async() =>{
       return Service.find();
-    }
+    }, 
+    
+    getBulletinsByServiceOffer: async (_, { skillTitle }) =>{
+      try {
+        const skill = await Skill.findOne({ skillTitle });
+        if (!skill) {
+          return [];
+        }
+
+        const bulletins = await Bulletin.find({
+          serviceOffer: skill._id,
+        }).populate('serviceOffer').populate('serviceNeed');
+
+        return bulletins;
+      } catch (error) {
+        throw new Error('Error fetching bulletins: ' + error.message);
+      }
+    }, 
+
+    getBulletinsByServiceNeed: async (_, { skillTitle }) => {
+      try {
+        const skill = await Skill.findOne({ skillTitle });
+        if (!skill) {
+          return [];
+        }
+
+        const bulletins = await Bulletin.find({
+          serviceNeed: skill._id,
+        }).populate('serviceOffer').populate('serviceNeed');
+
+        return bulletins;
+      } catch (error) {
+        throw new Error('Error fetching bulletins: ' + error.message);
+      }
+    },
+
+
   },
 
   Mutation: {
@@ -100,8 +161,6 @@ const resolvers = {
       try {
         const activateBulletin = await Bulletin.findByIdAndUpdate(
           id,
-          // { acceptingUser },
-          // { isActive: true },
           { acceptingUser, isActive: true },
           { new: true }
         );
@@ -124,6 +183,32 @@ const resolvers = {
         throw new Error('Failed to delete bulletin');
       }
     },
+
+    addSkillsToBulletinServiceOffer: async (_, { bulletinId, skillIds }) =>{
+      try {
+        const bulletin = await Bulletin.findById(bulletinId);
+        const skills = await Skill.find({ _id: { $in: skillIds } });
+        bulletin.serviceOffer.push(...skillIds);
+        await bulletin.save();
+
+        return bulletin;
+      } catch (error) {
+        throw new Error('Error adding skills to bulletin: ' + error.message);
+      }
+    }, 
+
+    addSkillsToBulletinServiceNeed: async (_, { bulletinId, skillIds }) =>{
+      try {
+        const bulletin = await Bulletin.findById(bulletinId);
+        const skills = await Skill.find({ _id: { $in: skillIds } });
+        bulletin.serviceNeed.push(...skillIds);
+        await bulletin.save();
+
+        return bulletin;
+      } catch (error) {
+        throw new Error('Error adding skills to bulletin: ' + error.message);
+      }
+    }, 
 
   },
 };

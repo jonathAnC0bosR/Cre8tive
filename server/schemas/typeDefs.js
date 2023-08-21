@@ -12,8 +12,8 @@ const typeDefs = `
         _id: ID
         bulletPostTitle: String
         bulletText: String
-        serviceOffer: [Service]
-        serviceNeed: [Service]
+        serviceOffer: [Skill]
+        serviceNeed: [Skill]
         deliveryTime: String
         imageURL: String
         createdAt: String
@@ -34,9 +34,9 @@ const typeDefs = `
         aboutMe: String
         github: String
         artStation: String
-        skills(_id: ID!): Skill
-        bulletinPosts(_id: ID!): [Bulletin]
-        portfolioPosts(_id: ID!): [Portfolio]
+        skills: [Skill]
+        bulletinPosts: [Bulletin]
+        portfolioPosts: [Portfolio]
         profileImage: String
     }
 
@@ -63,9 +63,13 @@ const typeDefs = `
         portfolioPosts: [Portfolio]
         bulletinPosts: [Bulletin]
         users: [User]
+        getUser(id: ID!): User
         getProfileImg(id: ID!): User
         skills: [Skill]
         services:[Service]
+        getBulletinsByServiceOffer(skillTitle: String!): [Bulletin]
+        getBulletinsByServiceNeed(skillTitle: String!): [Bulletin]
+
     }
 
     type Mutation {
@@ -88,11 +92,21 @@ const typeDefs = `
             acceptingUser: ID!) 
         : Bulletin
         deleteBBPost(bulletinId: ID!): DeleteBulletinResponse!
+        addSkillsToBulletinServiceOffer(
+                bulletinId: ID!
+                skillIds: [ID!]!
+        ): Bulletin
+        addSkillsToBulletinServiceNeed(
+            bulletinId: ID!
+            skillIds: [ID!]!
+    ): Bulletin
+
     }
     type DeleteBulletinResponse {
         success: Boolean!
         message: String
     }
+    
 `;
 
 module.exports = typeDefs;
