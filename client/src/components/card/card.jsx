@@ -2,16 +2,21 @@ import { BiPencil } from "react-icons/bi";
 import ActiveJobsCard from "../UI/ActiveJobsCard";
 
 
-const PostCard = () => {
-  
+const PostCard = ({bbPosts}) => {
+  console.log(bbPosts)
 
     return (
+      
         <div id="postCard" className="pt-[70px]" >
+
             <h1>this is post card</h1>
-            <div className="flex flex-col mb-5">
+
+            {
+            bbPosts.map((post)=>{
+              <div className="flex flex-col mb-5">
               {/* Card Title */}
               <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
-                <h3>Portraits 4 Grad</h3>
+                <h3>{post.bulletPostTitle} </h3>
                 <button>
                   <BiPencil size={"1.5em"} />
                 </button>
@@ -24,6 +29,9 @@ const PostCard = () => {
                 <ActiveJobsCard />
               </div>
             </div>
+
+            }) }
+            
 
         </div>
     )

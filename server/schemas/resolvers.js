@@ -9,6 +9,16 @@ const resolvers = {
       const user = await User.findById(parent.userID);
       return user;
     },
+    // serviceOffer: async (parent) => {
+    //   // Populate the serviceOffer field with Skill data including skillTitle
+    //   const skills = await Skill.find({ _id: { $in: parent.serviceOffer } });
+    //   return skills;
+    // },
+    // serviceNeed: async (parent) => {
+    //   // Populate the serviceNeed field with Skill data including skillTitle
+    //   const skills = await Skill.find({ _id: { $in: parent.serviceNeed } });
+    //   return skills;
+    // },
   },
   User: {
     bulletinPosts: async (parent) => {
@@ -45,7 +55,14 @@ const resolvers = {
     },
     
     bulletinPosts: async () => {
-      return await Bulletin.find();
+      return await Bulletin.find()
+      .populate(
+        {
+        path: 'serviceNeed serviceOffer', // Specify the paths to populate
+        select: 'skillTitle' // Only select the skillTitle field
+      }
+      )
+      ;
     },
     skills: async () => {
       return Skill.find();

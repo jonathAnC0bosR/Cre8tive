@@ -74,4 +74,25 @@ query GetBulletinsByServiceOffer($skillTitle: String!) {
 `;
 //"skillTitle"
 
-
+export const GET_BBPOSTS = gql`
+query Query {
+  bulletinPosts {
+    bulletPostTitle
+    userID {
+      _id
+      location
+      username
+      profileImage
+    }
+    serviceNeed {
+      skillTitle
+      _id
+    }
+    serviceOffer {
+      skillTitle
+      _id
+    }
+    imageURL
+  }
+}
+`;
