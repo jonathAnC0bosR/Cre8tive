@@ -16,6 +16,7 @@ import Pana4 from '../../../assets/images/Pana-4.png';
 import "../Skills/SkillStyles.css";
 
 const Home = (props) => {
+  
   return (
     // main div
     <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex flex-col">

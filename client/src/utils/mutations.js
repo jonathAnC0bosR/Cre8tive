@@ -120,3 +120,25 @@ export const ACTIVE_BBPOST = gql`
     }
   }
 `
+
+export const ADD_NEED_SKILL = gql`
+mutation Mutation($bulletinId: ID!, $skillIds: [ID!]!) {
+  addSkillsToBulletinServiceNeed(bulletinId: $bulletinId, skillIds: $skillIds) {
+    bulletPostTitle
+  }
+}
+`;
+// {  "bulletinId": null,
+//   "skillIds": nulll
+// }
+
+export const ADD_OFFER_SKILL = gql`
+mutation AddSkillsToBulletinServiceOffer($bulletinId: ID!, $skillIds: [ID!]!) {
+  addSkillsToBulletinServiceOffer(bulletinId: $bulletinId, skillIds: $skillIds) {
+    bulletPostTitle
+  }
+}
+`;
+// {  "bulletinId": null,
+//   "skillIds": nulll
+// }

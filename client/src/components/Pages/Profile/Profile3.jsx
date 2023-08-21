@@ -2,36 +2,31 @@ import { FacebookEmbed } from 'react-social-media-embed';
 import { InstagramEmbed } from 'react-social-media-embed';
 import { TwitterEmbed } from 'react-social-media-embed';
 import { PinterestEmbed } from 'react-social-media-embed';
-import React, { useState } from 'react';
 
-import profilePicEx from "../../../assets/images/profilePicEx.jpg";
-import pencil from "../../../assets/images/pencil.svg";
-import axios from 'axios';
-import { useMutation } from '@apollo/client';
+import { BsGithub,BsLinkedin,BsFillCameraFill } from "react-icons/bs";
+import { HiOutlineMail } from "react-icons/hi";
+import { FaExternalLinkAlt } from 'react-icons/fa';
+
+
+import { useState, useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import { UPDATE_PROFILEIMG} from '../../../utils/mutations'
+import { GET_PROFILEIMG, GET_USER } from '../../../utils/queries'
+import Auth from '../../../utils/auth'
+import UploadPencil from "../../../components/UI/uploadPencil"
 
-import { BsGithub } from "react-icons/bs";
-import { BsLinkedin } from "react-icons/bs";
-import { BsFillCameraFill } from "react-icons/bs";
-
+import artStation from "../../../assets/images/artstation.svg"
 import topBanerImg from "../../../assets/images/topBanerProfile.png"
-import profilePic from "../../../assets/images/user.webp"
+import topBanerImg2 from "../../../assets/images/colorPiece6.jpg"
 import EditProfile from './EditProfile';
-//import Posts from '../Posts/Posts';
 
 
 
-const goToEditProfile = () => {
+// const goToEditProfile = () => {
+// }
 
-
-}
-const openEditProfileModal = () => {
-    setIsEditProfileModalOpen(true);
-  };
   
-  const closeEditProfileModal = () => {
-    setIsEditProfileModalOpen(false);
-  };
+  
 
 
 
@@ -39,92 +34,179 @@ const Profile = () => {
 
     // code to edit profile
     const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-
-
+    const openEditProfileModal = () => {
+        setIsEditProfileModalOpen(true);
+    };
+    const closeEditProfileModal = () => {
+        setIsEditProfileModalOpen(false);
+    };
     
-    // const [image, setimage] = useState(profilePicEx);
+    //---------------------------------------
+    //--- getting logged user ID
+    const authService = Auth;
+    const user = authService.getProfile().data;
+    const {_id, username} = user;
+    console.log("--",username)
+
+    //url state variable
+    const [URL, setURL]= useState(null);
+    const [image, setImage] = useState(null);
+
+    const updateStateURL = (val) => {
+        setURL(val);
+    };
+
+    // const [responseQuery, setresponseQuery] = useState('');
+    // displayImg
+        const { loading, data } = useQuery( GET_PROFILEIMG, {
+            variables: {"getProfileImgId": _id}
+        });
+        const userData = data?.getProfileImg || [];
+        console.log("data from query: ", loading , userData)
+        console.log(userData.aboutMe)
+
+
+
+    // useEffect(()=>{
+    //     if (data && data.getProfileImg) {
+    //         const profileImgURL = data.getProfileImg.profileImage;
+    //         const aboutMe = data.getProfileImg.aboutMe;
+    //         const github = data.getProfileImg.github;
+    //         const location = data.getProfileImg.location;
+    //         const occupation = data.getProfileImg.occupation;
+    //         const rating = data.getProfileImg.rating;
+    //         // console.log('Profile Image URL:', profileImgURL);
+    //         setImage(profileImgURL);
+    //     }
+    // }, [data] )  
+    
     const [add2Model, {error}]= useMutation(UPDATE_PROFILEIMG);
 
-    const uploadedImg = async (e) => {
-        let upImg = e.target.files[0];
-        const data = new FormData();
-        data.set("image", upImg);
-        let myUrl;
-        try {
-            const some = await axios.post("http://localhost:3001/api/upload", data);
-            myUrl = some.data
-            console.log("-----------response from fetch:", myUrl);
+    useEffect(()=>{
+        if (URL!=null) {
             try {
-                const {idk} = await add2Model({
+                const {idk} = add2Model({
                     variables: {
-                        id: '64df223f75e79433f71e8e2c', 
-                        profileImage: myUrl
+                        id: _id, 
+                        profileImage: URL
                     }
-                });
-                console.log('--------added img URL to DB')
+                }). then((idk) => {
+                    console.log('--------added img URL to DB')
+                    const urlyes = idk.data.updateProfileImg.profileImage;
+                    setImage(urlyes)
+                    }
+                )
             } catch (error) {
                 console.log("Failed to add to DB: ",error);
             }
-        } catch (error) {
-            console.log("Failed to upload: ",error);
+
         }
-        
-    }
+
+    }, [URL]);
+
 
     return (
-        <div id="profile div" className=' bg-gradient-to-r from-[#0C0F11] to-[#22282D]'>
+        <div id="profile div" className='pt-[70px] bg-gradient-to-r from-[#0C0F11] to-[#22282D]'>
             <div className='mainContainer' >
                 <div className='topBaner'>
-                    <img src={topBanerImg}></img>
+                    <img src={topBanerImg2}></img>
                 </div>
-                <div className='profileContainer'>
-                    <div className="avatarImage overflow-hidden rounded-full w-32 h-32">
-                        <img
-                            src={profilePic}
-                            alt="Circular Image"
-                            className="w-full h-full object-cover" />
-                    </div>
-                    <label htmlFor="imageInput" className="relative cursor-pointer">
-                        <div className="pencilButton overflow-hidden rounded-full w-12 h-12 bg-orange-500 flex items-center justify-center absolute top-20">
-                            <img
-                                src={pencil}
+                <div className='profileContainer flex items-center justify-center '>
+                    {/* -------------------------profile image and icon */}
+                    <div className='flex items-center justify-center' >
+                        <div className='flex relative  ' >
+                            <div className="overflow-hidden rounded-full w-32 h-32">
+                                <img
+                                src={image}
                                 alt="Circular Image"
-                                className="h-2/3 object-cover" />
+                                className="w-full h-full object-cover"
+                                />
+                                
+                            </div>
+
+                            <div className="absolute top-0 right-0  " >
+                                <UploadPencil updateProp={updateStateURL} />
+                            </div>
+
                         </div>
-                    </label>
-                    <div className='profileInfo'>
-                        <h1> User Name</h1>
-                        <a onClick={openEditProfileModal}> Edit profile</a>
-                        <br /><br />
-                        <h2> About me</h2>
-                        <p> Short description about shgfedrftguhgtfresdrftgytgrfeomething somenthing</p>
                     </div>
-                    <div className='socialButtons'>
-                        <button> 
-                            <BsGithub size={"2em"} color='white'/>
-                        </button>
-                        <button> 
-                            <BsLinkedin size={"2em"} color='white'/>
-                        </button>
+
+                    <div className='profileInfo flex flex-col items-center justify-center my-5'>
+                        <h1  > {username} </h1>
+                        <p className='mb-7 text-orange-500 font-bold'> {userData.occupation} </p>
+                        <button className='bg-white text-orange-500 font-bold rounded-full py-1 px-2 text-sm' >Edit Profile </button>
+                        {/* <a onClick={openEditProfileModal}> Edit profile</a> */}
+
+                    
+                        <div className="profileInfo flex flex-col items-center justify-center my-5" >
+                            <h2 > About me</h2>
+                            <p> {userData.aboutMe} </p>
+                        </div>
+
+                        <div className='flex items-center justify-center m-5 w-1/2 p-4
+                        grid grid-cols-4 gap-4 '>
+                            <div className='flex items-center justify-center' >
+                            <a href="mailto:your.email@example.com" className='flex-end' >
+                                <HiOutlineMail size={"2em"} />
+                            </a>
+                            </div>
+                            {/* <div className="col-span-3" >
+                                    <a>
+                                        <img src={artStation} className='w-10' ></img>
+                                    </a>
+                                    <button> 
+                                        <BsGithub size={"2em"} color='white'/>
+                                    </button>
+                            </div> */}
+                            {userData.artStation && userData.github ? 
+                                <div className="col-span-3" >
+                                    <a>
+                                        <img src={artStation} className='w-10' ></img>
+                                    </a>
+                                    <button> 
+                                        <BsGithub size={"2em"} color='white'/>
+                                    </button>
+                                </div>
+                            : 
+                                <div className="col-span-3" >
+                                <a>
+                                    <img src={artStation} className='w-10' ></img>
+                                </a>
+                                <button> 
+                                    <BsGithub size={"2em"} color='white'/>
+                                </button>
+                                </div>
+                            }
+                            
+                            
+                        </div>
                     </div>
-                    <div class="skillsContainer">
-                      <h3>Skills</h3>
-                      <div className='skillsTags'>
-                        <div className='bulletSkill'>
-                            <BsFillCameraFill/>
-                            <p>Skill One</p>
+
+                    <div className="flex flex-col items-center bg-slate-800 w-1/2 rounded-xl p-4">
+
+                        <h3 className="text-white text-xl" >Skills</h3>
+                        <div className='flex items-center justify-center'>
+
+                            <div className='bulletSkill'>
+                                <BsFillCameraFill/>
+                                <p>Skill One</p>
+                            </div>
+                            <div className='bulletSkill'>
+                                <BsFillCameraFill/>
+                                <p>Skill One</p>
+                            </div>                        
+                            <div className='bulletSkill'>
+                                <BsFillCameraFill/>
+                                <p>Skill two</p>
+                            </div>                        
+                            <div className='bulletSkill'>
+                                <BsFillCameraFill/>
+                                <p>Skill two</p>
+                            </div>
                         </div>
-                        <div className='bulletSkill'>
-                            <BsFillCameraFill/>
-                            <p>Skill One</p>
-                        </div>                        <div className='bulletSkill'>
-                            <BsFillCameraFill/>
-                            <p>Skill two</p>
-                        </div>                        <div className='bulletSkill'>
-                            <BsFillCameraFill/>
-                            <p>Skill two</p>
-                        </div>
-                      </div>
+
+                    </div>  
+
                         <div className='portfolioContainer'>
                             <h3>Portfolio</h3>
                             <div className='firtsRowMedia' style={{ display: 'flex', justifyContent: 'center' }}>
@@ -165,7 +247,7 @@ const Profile = () => {
                             </div>
                         </div>
                         {/* <Posts/> To be added*/}
-                    </div>
+                    
                 </div>
             </div>
             <br></br>

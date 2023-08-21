@@ -54,10 +54,7 @@ h1 {
 }
 .profileInfo {
     color: white;
-    margin-top: 15px;
-    text-align: center;
     font-size: 18px;
-    width: 95%;
 }
 
 .profileInfo h1 {
@@ -103,7 +100,6 @@ h1 {
 .skillsTags {
     display: flex;
     flex-direction: row;
-    margin-left: 130px;
 }
 
 .bulletSkill {

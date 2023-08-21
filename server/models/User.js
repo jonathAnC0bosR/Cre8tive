@@ -27,12 +27,14 @@ const userSchema = new Schema({
   },
   occupation: {
     type: String,
+    default: "Someone Amazing!"
   },
   location: {
     type: String,
   },
   aboutMe: {
     type: String,
+    default: "Tell us a bit about yourself, so we can put it here"
   },
   github: {
     type: String,
