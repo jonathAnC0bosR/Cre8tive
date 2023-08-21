@@ -96,27 +96,30 @@ const resolvers = {
 
     },
 
-    acceptBulletin: async (parent, {_id, acceptingUser}) =>{
+    acceptBulletin: async (parent, {id, acceptingUser}) => {
       try {
-        const activatedBulletin = await Bulletin.findByIdAndUpdate(
-          _id,
-          { isActive:true },
-          {acceptingUser },
+        const activateBulletin = await Bulletin.findByIdAndUpdate(
+          id,
+          // { acceptingUser },
+          // { isActive: true },
+          { acceptingUser, isActive: true },
           { new: true }
         );
-        return activatedBulletin;
+        return activateBulletin;
       } catch (err) {
-        throw new Error('error in activating the Bulletin post');
+        throw new Error('error in activating Bulletin post');
       }
     },
 
-    deleteBBPost: async (parent, { BBPostId }) => {
+    deleteBBPost: async (parent, { bulletinId }) => {
       try {
-        const deletedBulletin = await Bulletin.findOneAndDelete({ _id: BBPostId });
-        if (!deletedBulletin) {
-            throw new Error('Bulletin not found'); // Add more specific error message
+        const deletedBulletin = await Bulletin.findByIdAndDelete(bulletinId);
+        return {
+          success: true,
+          message: "Deleted Post"
         }
-        return deletedBulletin;
+        ;
+        
       } catch (error) {
         throw new Error('Failed to delete bulletin');
       }

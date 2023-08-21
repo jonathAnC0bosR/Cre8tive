@@ -18,7 +18,7 @@ const typeDefs = `
         imageURL: String
         createdAt: String
         userID:User
-        acceptingUser:User
+        acceptingUser: User
         isActive: Boolean
     }
 
@@ -84,20 +84,18 @@ const typeDefs = `
             userID: ID
         ): Bulletin, 
         acceptBulletin(
-            _id:ID!,
+            id: ID!,
             acceptingUser: ID!) 
         : Bulletin
-        deleteBBPost(_id:ID!):Bulletin, 
+        deleteBBPost(bulletinId: ID!): DeleteBulletinResponse!
+    }
+    type DeleteBulletinResponse {
+        success: Boolean!
+        message: String
     }
 `;
 
 module.exports = typeDefs;
 
-// this is what chat GPT says service should be; 
-// type Service {
-//     _id: ID
-//     serviceTitle: String
-//     serviceDescription: String
-//     userID: User
-//     skillID(_id: ID!): Skill
-//   }
+//b4
+// deleteBBPost(_id:ID!):Bulletin, 
