@@ -21,7 +21,7 @@ const Header = () => {
 
         {Auth.loggedIn() ? (
           <div className="col-span-9 ">
-            <div className="flex items-center grid grid-cols-9" >
+            <div className="items-center grid grid-cols-9" >
 
             <Link className="col-start-2 text-center" to={"/profile"}>
               <h1 className="lg:block md:block hidden p-1 hover:bg-pink-600 hover:rounded-full">Profile</h1>
