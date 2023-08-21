@@ -17,7 +17,9 @@ const typeDefs = `
         deliveryTime: String
         imageURL: String
         createdAt: String
-        userID: User
+        userID:User
+        acceptingUser:User
+        isActive: Boolean
     }
 
     type User {
@@ -79,8 +81,13 @@ const typeDefs = `
             deliveryTime: String, 
             imageURL: String, 
             createdAt: String, 
-            userID: ID!)
+            userID: ID
+        ): Bulletin, 
+        acceptBulletin(
+            _id:ID!,
+            acceptingUser: ID!) 
         : Bulletin
+        deleteBBPost(_id:ID!):Bulletin, 
     }
 `;
 

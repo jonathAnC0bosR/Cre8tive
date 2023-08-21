@@ -55,6 +55,7 @@ const CreateBBpost = () => {
 
     return (
     <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex items-center justify-center ">
+        
         <div className="bg-zinc-950 shadow-xl shadow-stone-950 lg:w-1/3 w-5/6 p-6 mb-20 sm:mt-40 lg:mt-20  rounded-lg z-[1]">
             <div className="text-center m-4 text-xl" >
                 <h1 className="text-white" >Create Post</h1>
