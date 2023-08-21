@@ -96,3 +96,13 @@ query Query {
   }
 }
 `;
+
+export const GET_ALLUSERS = gql`
+query Query {
+  getUsers {
+    _id
+    profileImage
+    username
+  }
+}
+`;

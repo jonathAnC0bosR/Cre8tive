@@ -24,6 +24,8 @@ const CreateBBpost = () => {
 
     const [createBBPost]= useMutation(ADD_BBPOST);
 
+    const photoID = "64e33b55d12c902c6f81eacd";
+
     const handleCreate = async (e) => {
         e.preventDefault();
         // console.log("submit.........", e);

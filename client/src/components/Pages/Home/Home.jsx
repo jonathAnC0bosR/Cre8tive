@@ -8,11 +8,12 @@ import Pana3 from "../../../assets/images/Pana-3.png";
 import Pana4 from "../../../assets/images/Pana-4.png";
 import "../Skills/SkillStyles.css";
 
-import Auth from "../../../utils/auth";
-import { useQuery, useMutation } from "@apollo/client";
-import {} from "../../../utils/mutations";
-import { GET_BBPOSTS } from "../../../utils/queries";
-import Card from "../../card/card";
+
+import Auth from '../../../utils/auth'
+import { useQuery, useMutation } from '@apollo/client';
+import { } from '../../../utils/mutations'
+import { GET_BBPOSTS } from '../../../utils/queries'
+import AllUsers from '../../card/allUsers'
 
 import {
   LiaCameraSolid,
@@ -22,16 +23,19 @@ import {
 } from "react-icons/lia";
 import { BiSolidCircle } from "react-icons/bi";
 import "../../Pages/Skills/skillStyles.css";
-import ProfilePic from "../../../assets/images/Profile-circle.png";
 
 const Home = (props) => {
   const authService = Auth;
-  const user = authService.getProfile().data;
-  const { _id, username } = user;
+
+    const user = authService.getProfile().data;
+    const {_id, username} = user;
+    
 
   const { loading, data } = useQuery(GET_BBPOSTS);
   const bbPosts = data?.bulletinPosts || [];
-  console.log("data from query: ", loading, bbPosts);
+  console.log("data from query: ", loading , bbPosts)
+  // const isUserAuthor = _id === bbPosts.userID._id;
+
 
   return (
     // main div
@@ -82,6 +86,7 @@ const Home = (props) => {
         </div>
 
         {/* Suggested Profiles */}
+
         <div>
           <h2 className="text-white text-2xl font-bold mt-4 gap-2">
             Suggested Profiles
@@ -123,13 +128,57 @@ const Home = (props) => {
             {loading ? (
               <div>Loading...</div>
             ) : (
-              bbPosts.map((post) => (
-                <div key={post.id} className="flex flex-col mb-5 mx-2">
-                  <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
-                    <h3>{post.bulletPostTitle}</h3>
+
+
+            bbPosts.map(post => (
+              <div key={post.id} className="flex flex-col mb-5 mx-2">
+                <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
+                  <h3>{post.bulletPostTitle}</h3>
+                  {/* {isUserAuthor && (
                     <button>
                       <BiPencil size={"1.5em"} />
                     </button>
+                  )}  */}
+                </div>
+                {/* Card */}
+                <div className="relative rounded-b-lg w-80 overflow-hidden relative ">
+                  {/* Pseudo-element for the blurred background */}
+                  {post.imageURL? 
+                    <img src={post.imageURL} className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner shadow" ></img>
+                    :
+                  <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
+                  }
+
+                  {/* Content */}
+                  {/* <ActiveJobsCard /> */}
+                  <div className="relative">
+                  <div className="mx-4">
+                  <div className="flex mb-4 flex-row items-center text-white mx-5 mt-5 mb-1">
+
+                    {/* User Profile Picture */}
+                    <div className="overflow-hidden rounded-full w-16 h-16 ">
+                      <img
+                      src={post.userID.profileImage}
+                      alt="Circular Image"
+                      className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    <div className="flex-column ml-4">
+                      {/* User Location */}
+                      <p className="text-xs text-shadow">{post.userID.location} </p>
+                      {/* Username */}
+                      <p className="text-xl font-bold text-shadow">{post.userID.username}</p>
+                      {/* User Rating */}
+                      <div className="flex flex-row text-shadow text-lg">
+                        <BiSolidCircle className="text-df4088" />
+                        <BiSolidCircle className="text-df4088" />
+                        <BiSolidCircle className="text-df4088" />
+                        <BiSolidCircle className="text-df4088" />
+                        <BiSolidCircle className="text-gray-200" />
+                      </div>
+                    </div>
+
                   </div>
                   {/* Card */}
                   <div className="relative rounded-b-lg w-80 overflow-hidden">
