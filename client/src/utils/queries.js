@@ -97,6 +97,16 @@ query Query {
 }
 `;
 
+export const GET_ALLUSERS = gql`
+query Query {
+  getUsers {
+    _id
+    profileImage
+    username
+  }
+}
+`;
+
 // get skills 
 export const GET_SKILLS = gql`
 query Query {

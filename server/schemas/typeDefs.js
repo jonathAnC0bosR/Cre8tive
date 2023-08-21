@@ -62,7 +62,7 @@ const typeDefs = `
     type Query {
         portfolioPosts: [Portfolio]
         bulletinPosts: [Bulletin]
-        users: [User]
+        getUsers: [User]
         getUser(id: ID!): User
         getProfileImg(id: ID!): User
         skills: [Skill]
