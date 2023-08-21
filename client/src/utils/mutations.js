@@ -99,3 +99,24 @@ export const ADD_BBPOST = gql`
   }
 }
 `;
+
+export const DELETE_BBPOST= gql`
+  mutation Mutation($bulletinId: ID!) {
+  deleteBBPost(bulletinId: $bulletinId) {
+    message
+    success
+  }
+}
+`
+
+export const ACTIVE_BBPOST = gql`
+  mutation Mutation($acceptBulletinId: ID!, $acceptingUser: ID!) {
+    acceptBulletin(id: $acceptBulletinId, acceptingUser: $acceptingUser) {
+      bulletPostTitle
+      isActive
+      acceptingUser {
+        _id
+      }
+    }
+  }
+`
