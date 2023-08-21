@@ -1,0 +1,39 @@
+/* Estilo del boton de consulta y su icono */
+.moving-bar {
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 50px;
+    z-index: 0;
+    background: #DF4088;
+    overflow: hidden;
+    border: 0;
+}
+
+.moving-bar:hover {
+    color: #DF4088 !important;
+    border-radius: 50px;
+}
+
+.moving-bar:hover:after {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.moving-bar:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: #fff;
+    border-radius: 50px;
+}
