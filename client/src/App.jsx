@@ -13,17 +13,13 @@ import "./index.css";
 import Landing from "./components/landing/landing";
 import Signup from "./components/Pages/Signup/Signup";
 import EditProfile from "./components/Pages/Profile/EditProfile";
-
-import Profile2 from "./components/Pages/Profile/Profile2";
-
-
 import Profile3 from "./components/Pages/Profile/Profile3";
 
 import BBpost from "./components/Pages/BBpost/BBpost";
 import CreateBBpost from "./components/Pages/BBpost/CreateBBpost";
 import Skills from "./components/Pages/Skills/Skills";
 import Home from "./components/Pages/Home/Home";
-import PostCard from "./components/card/card.jsx";
+import PostCard from "./components/card/allUsers.jsx";
 
 
 

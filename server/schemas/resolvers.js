@@ -33,8 +33,13 @@ const resolvers = {
     portfolioPosts: async () => {
       return Portfolio.find();
     },
-    users: async () => {
-        return User.find();
+    getUsers: async (parent, args) => {
+      try {
+        const allUsers = await User.find();
+        return allUsers;
+      } catch (error){
+        throw new Error('Error fetching users');
+      }  
     }, 
     getUser: async (parent, args) => {
       try {

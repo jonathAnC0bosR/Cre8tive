@@ -13,7 +13,7 @@ import Auth from '../../../utils/auth'
 import { useQuery, useMutation } from '@apollo/client';
 import { } from '../../../utils/mutations'
 import { GET_BBPOSTS } from '../../../utils/queries'
-import Card from '../../card/card'
+import AllUsers from '../../card/allUsers'
 
 import {
   LiaCameraSolid,
@@ -23,16 +23,17 @@ import {
 } from "react-icons/lia";
 import { BiSolidCircle } from "react-icons/bi";
 import "../../Pages/Skills/skillStyles.css";
-import ProfilePic from "../../../assets/images/Profile-circle.png";
 
 const Home = (props) => {
   const authService = Auth;
     const user = authService.getProfile().data;
     const {_id, username} = user;
+    
 
   const { loading, data } = useQuery(GET_BBPOSTS);
   const bbPosts = data?.bulletinPosts || [];
   console.log("data from query: ", loading , bbPosts)
+  // const isUserAuthor = _id === bbPosts.userID._id;
 
   return (
     // main div
@@ -82,21 +83,7 @@ const Home = (props) => {
         </div>
 
         {/* Suggested Profiles */}
-        <div>
-          <h2 className="text-white text-2xl text-df4088 font-bold mt-4 gap-2">
-            Suggested Profiles
-          </h2>
-          <div className="flex flex-row overflow-x-scroll custom-scrollbar gap-9 mt-1 mb-7">
-            <img src={Pana1} className="h-44 w-44 my-8" />
-            <img src={Pana2} className="h-44 w-44 my-8" />
-            <img src={Pana3} className="h-44 w-44 my-8" />
-            <img src={Pana4} className="h-44 w-44 my-8" />
-            <img src={Pana1} className="h-44 w-44 my-8" />
-            <img src={Pana2} className="h-44 w-44 my-8" />
-            <img src={Pana3} className="h-44 w-44 my-8" />
-            <img src={Pana4} className="h-44 w-44 my-8" />
-          </div>
-        </div>
+        <AllUsers  />
 
         {/* Searching for a Job */}
         <div>
@@ -127,9 +114,11 @@ const Home = (props) => {
               <div key={post.id} className="flex flex-col mb-5 mx-2">
                 <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
                   <h3>{post.bulletPostTitle}</h3>
-                  <button>
-                    <BiPencil size={"1.5em"} />
-                  </button>
+                  {/* {isUserAuthor && (
+                    <button>
+                      <BiPencil size={"1.5em"} />
+                    </button>
+                  )}  */}
                 </div>
                 {/* Card */}
                 <div className="relative rounded-b-lg w-80 overflow-hidden relative ">
