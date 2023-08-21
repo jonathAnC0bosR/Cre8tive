@@ -23,6 +23,7 @@ import BBpost from "./components/Pages/BBpost/BBpost";
 import CreateBBpost from "./components/Pages/BBpost/CreateBBpost";
 import Skills from "./components/Pages/Skills/Skills";
 import Home from "./components/Pages/Home/Home";
+import AboutUs from "./components/Pages/AboutUs/AboutUs";
 
 
 
@@ -62,6 +63,7 @@ function App() {
           <Route path= '/editProfile' element={<EditProfile />}  />
 
           <Route path="/home" element={<Home />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/profile" element={<Profile2 />} />
           <Route path="/CreateBBpost" element={<CreateBBpost />} />
           <Route path="/BBpost" element={<BBpost />} />
