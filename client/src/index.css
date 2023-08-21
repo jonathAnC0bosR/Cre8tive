@@ -45,6 +45,7 @@ h1 {
     -ms-flex-align: center;
     width: 100%;
 }
+
 .avatarImage {
     margin-left: 42.5%;
 }
@@ -52,6 +53,7 @@ h1 {
 .pencilButton {
     margin: -120px 50%;
 }
+
 .profileInfo {
     color: white;
     font-size: 18px;
@@ -60,20 +62,24 @@ h1 {
 .profileInfo h1 {
     font-size: 30px;
 }
+
 .profileInfo a {
     color: gray;
     font-size: 15px;
     text-decoration: underline;
 }
+
 .profileInfo h2 {
     font-size: 20px;
     font-weight: bold;
 }
+
 .socialButtons {
     display: flex;
     align-self: center;
     margin: 10px;
 }
+
 .socialButtons * {
     margin-right: 10px;
 }
@@ -82,12 +88,13 @@ h1 {
     display: flex;
     align-self: center;
     flex-direction: column;
-    
+
     margin: 40px;
     border-top: 10px;
     border-color: brown;
-    
+
 }
+
 .skillsContainer h3 {
     display: flex;
     align-self: center;
@@ -97,6 +104,7 @@ h1 {
     font-weight: bold;
     color: white;
 }
+
 .skillsTags {
     display: flex;
     flex-direction: row;
@@ -104,24 +112,28 @@ h1 {
 
 .bulletSkill {
     display: flex;
-    align-items: center; /* Vertically center the content */
+    align-items: center;
+    /* Vertically center the content */
     background-color: #262626;
     border-radius: 5px;
     border-color: #E04189;
     border-width: 2px;
-    padding: 8px; /* Increase padding for more separation */
-    margin: 5px; /* Adjust margin between bulletSkill elements */
+    padding: 8px;
+    /* Increase padding for more separation */
+    margin: 5px;
+    /* Adjust margin between bulletSkill elements */
     color: #E04189;
-  }
-  .bulletSkill p {
-    margin-left: 10px; /* Add space between icon and text */
-  }
-.progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: var(--red);
-    transform-origin: 0%;
-  }
+}
+
+.bulletSkill p {
+    margin-left: 10px;
+    /* Add space between icon and text */
+}
+
+.bg-gray-important {
+    background-color: #353434 !important;
+}
+
+.bg-pink-important {
+    background-color: #E04189 !important;
+}

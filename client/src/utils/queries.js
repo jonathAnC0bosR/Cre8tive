@@ -96,3 +96,23 @@ query Query {
   }
 }
 `;
+
+// get skills 
+export const GET_SKILLS = gql`
+query Query {
+  skills {
+    skillTitle
+    _id
+  }
+}
+`;
+
+// get skills by user
+export const GET_SKILLS_BY_USER = gql`
+query Query($getSkillsByUserId: ID!) {
+  getSkillsByUser(id: $getSkillsByUserId) {
+    skillTitle
+    _id
+  }
+}
+`;
