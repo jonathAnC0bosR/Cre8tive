@@ -11,10 +11,15 @@ const typeDefs = `
     type Bulletin{
         _id: ID
         bulletPostTitle: String
+        bulletText: String
         serviceOffer: [Service]
-        serviceExpectation: [Service]
+        serviceNeed: [Service]
+        deliveryTime: String
+        imageURL: String
         createdAt: String
-        userID(_id: ID!):User
+        userID:User
+        acceptingUser:User
+        isActive: Boolean
     }
 
     type User {
@@ -30,8 +35,8 @@ const typeDefs = `
         github: String
         artStation: String
         skills(_id: ID!): Skill
-        bulletinPosts(_id: ID!): Bulletin
-        portfolioPosts(_id: ID!): Portfolio
+        bulletinPosts(_id: ID!): [Bulletin]
+        portfolioPosts(_id: ID!): [Portfolio]
         profileImage: String
     }
 
@@ -68,7 +73,31 @@ const typeDefs = `
         login(email: String!, password: String!): Auth
         updateProfileImg(id: ID!, profileImage: String!): User
         updateUser(_id:ID!, aboutMe: String, location:String, occupation:String, age:String, username:String):User
+        addBBPost(
+            bulletPostTitle: String!,  
+            bulletText: String!, 
+            serviceOffer: [ID], 
+            serviceNeed: [ID], 
+            deliveryTime: String, 
+            imageURL: String, 
+            createdAt: String, 
+            userID: ID
+        ): Bulletin, 
+        acceptBulletin(
+            _id:ID!,
+            acceptingUser: ID!) 
+        : Bulletin
+        deleteBBPost(_id:ID!):Bulletin, 
     }
 `;
 
 module.exports = typeDefs;
+
+// this is what chat GPT says service should be; 
+// type Service {
+//     _id: ID
+//     serviceTitle: String
+//     serviceDescription: String
+//     userID: User
+//     skillID(_id: ID!): Skill
+//   }

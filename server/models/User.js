@@ -68,7 +68,7 @@ const userSchema = new Schema({
   profileImage: {
     type: String,
     default:
-      "https://res.cloudinary.com/dafx57m43/image/upload/v1692337951/Cre8tive/mbgnl82rnb9ifqvqmlwn.jpg",
+      "https://res.cloudinary.com/dafx57m43/image/upload/v1692499672/Cre8tive/lcav0tseedyuftfnpuxf.jpg",
   },
 });
 
