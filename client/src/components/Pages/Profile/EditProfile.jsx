@@ -87,11 +87,11 @@ console.log("URL: ", URL)
           <div className="h-30">
             <div className='flex items-center justify-center' >
               <div className='flex relative  ' >
-                <div className="overflow-hidden rounded-full w-32 h-32">
+                <div className="overflow-hidden rounded-full w-64 h-64">
                   <img
                     src={image}
-                    alt="Circular Image"
-                    className="w-full h-full object-cover"
+                    alt="Here goes your Img, upload it!"
+                    className="w-full h-full object-cover absolute "
                   />
 
                 </div>
