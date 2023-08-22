@@ -6,7 +6,7 @@ import { BsFillSendCheckFill } from "react-icons/bs";
 import { BiSolidTimer, BiSolidCircle } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { GET_SINGLE_PROFILE } from "../../../utils/queries";
+import { GET_SINGLE_POST, GET_USER } from "../../../utils/queries";
 
 import AnimatedButton from "../../UI/AnimatedButton";
 import ServicesButton from "../UserServices/servicesModal";
@@ -20,14 +20,15 @@ import FormElement from "../UserServices/servicesModal2";
 const BBpost = () => {
   const { id } = useParams();
   console.log(id);
-  const { loading, data } = useQuery(GET_SINGLE_PROFILE, {
+  const { loading, data } = useQuery(GET_SINGLE_POST, {
     variables: {
       bulletinId: id,
     },
   });
-
   const post = data?.bulletin || [];
-  console.log(post)
+  const user = {...post.userID};
+  console.log(user.username)
+  
 
   return (
     // main div
@@ -45,8 +46,8 @@ const BBpost = () => {
             <img src={Photo} className="w-32 rounded-full" />
           </div>
           <div className="ml-4">
-            <p></p>
-            <h1 className="text-4xl">{'title'}</h1>
+            <p>{user.location}</p>
+            <h1 className="text-4xl">{user.username}</h1>
             <div className="flex flex-row text-shadow text-lg">
               <BiSolidCircle className="text-df4088" />
               <BiSolidCircle className="text-df4088" />
