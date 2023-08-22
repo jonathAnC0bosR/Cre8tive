@@ -1,12 +1,15 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import loaderImg from '../../assets/images/loader2.svg';
-import loaderBg from '../../assets/images/loader_bg2.gif';  
+import loaderImg from '../../assets/images/loader.gif';
+import loaderBg from '../../assets/images/loader-bg.gif';  
 
 const fadeInOut = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
-  exit: { opacity: 0 }
+  exit: { opacity: 0 },
+  type: "spring",
+  stiffness: 700,
+  damping: 30
 };
 
 function Loader({ isLoading }) {
