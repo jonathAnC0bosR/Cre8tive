@@ -14,8 +14,6 @@ import Landing from "./components/landing/landing";
 import Signup from "./components/Pages/Signup/Signup";
 import EditProfile from "./components/Pages/Profile/EditProfile";
 
-import Profile2 from "./components/Pages/Profile/Profile2";
-
 
 import Profile3 from "./components/Pages/Profile/Profile3";
 
@@ -23,8 +21,10 @@ import BBpost from "./components/Pages/BBpost/BBpost";
 import CreateBBpost from "./components/Pages/BBpost/CreateBBpost";
 import Skills from "./components/Pages/Skills/Skills";
 import Home from "./components/Pages/Home/Home";
-import AboutUs from "./components/Pages/AboutUs/AboutUs";
+import ProtectedRoutes from "./ProtectedRoutes";
 
+
+import AboutUs from "./components/Pages/AboutUs/AboutUs";
 
 
 const httpLink = createHttpLink({
@@ -60,12 +60,16 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path= '/editProfile' element={<EditProfile />}  />
 
-          <Route path="/home" element={<Home />} />
+          <Route element = { <ProtectedRoutes/> }>
+            <Route path="/home" element={<Home />} />
+            <Route path="/CreateBBpost" element={<CreateBBpost />} />
+            <Route path= '/editProfile' element={<EditProfile />}  />
+          </Route>
+
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/profile" element={<Profile2 />} />
-          <Route path="/CreateBBpost" element={<CreateBBpost />} />
+          <Route path="/profile" element={<Profile3 />} />
           <Route path="/BBpost" element={<BBpost />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/profile3" element={<Profile3 />} />

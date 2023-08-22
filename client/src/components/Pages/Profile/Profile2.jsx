@@ -1,14 +1,8 @@
-import profilePicEx from "../../../assets/images/placeholderProfile.jpg";
-import pencil from "../../../assets/images/pencil.svg";
+
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-
-
-
 import { useQuery, useMutation } from '@apollo/client';
 import { UPDATE_PROFILEIMG } from '../../../utils/mutations'
-
-import { PLEASE } from '../../../utils/queries'
+import { GET_PROFILEIMG } from '../../../utils/queries'
 import Auth from '../../../utils/auth'
 import UploadPencil from "../../../components/UI/uploadPencil"
 
@@ -30,7 +24,7 @@ const Profile = () => {
     
 
     // function displayImg() {
-        const { data } = useQuery( PLEASE, {
+        const { data } = useQuery( GET_PROFILEIMG, {
             variables: {"getProfileImgId": _id}
         });
 

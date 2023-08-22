@@ -12,9 +12,15 @@ const bulletinSchema = new Schema({
         type: String,
     }, 
 
-    serviceOffer:[Service.schema],
+    serviceOffer:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Skill'
+    }],
 
-    serviceNeed:[Service.schema],
+    serviceNeed:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Skill'
+    }],
 
     deliveryTime: {
         type: String,
