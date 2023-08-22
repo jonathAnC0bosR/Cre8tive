@@ -9,11 +9,11 @@ import JobCard from "../../UI/JobCard";
 import "../Skills/skillStyles.css";
 import { useState } from 'react';
 import CardOffer from '../../card/byOffer'
-import CardNeed from '../../card/card'
+import CardNeed from '../../card/byNeed'
 
 
 const Skills = () => {
-  const [searchType, setSearchType] = useState('offers'); // 'offers' by default
+  const [searchType, setSearchType] = useState('need'); 
   const [selectedButton, setSelectedButton] = useState(1);
 
   const handleButtonClick = (buttonNumber) => {
@@ -21,6 +21,11 @@ const Skills = () => {
     console.log("selected button: ", selectedButton)
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submit.........", e);
+
+  }
 
   return (
     // main div
@@ -34,24 +39,26 @@ const Skills = () => {
         </div>
 
         <div className="rounded-xl p-5 m-4 border-2 border-gray-300	 " >
-          <form className="flex flex-row items-center justify-center " > 
+          <form className="flex flex-row items-center justify-center " onSubmit={handleSubmit} > 
           <div className="flex justify-center items-center basis-1/4   "> 
             <button
               className={`${
-                searchType === 'offers'
+                searchType === 'offer'
                   ? 'bg-df4088 text-white py-2.5 px-4  '
                   : 'bg-gray-300 text-gray-600 py-2 px-4'
               } rounded-l`}
-              onClick={() => setSearchType('offers')}>
+              // onClick={() => setSearchType('offer')}
+              >
               Offers
             </button>
             <button
               className={`${
-                searchType === 'needs'
+                searchType === 'need'
                   ? 'bg-df4088 text-white py-2.5 px-4  '
                   : 'bg-gray-300 text-gray-600 py-2 px-4'
               } rounded-r`}
-              onClick={() => setSearchType('needs')}>
+              // onClick={() => setSearchType('need')}
+              >
               Needs
             </button>
           </div>
@@ -62,7 +69,7 @@ const Skills = () => {
               } py-2 px-4 mx-2 rounded-full`}
               onClick={() => handleButtonClick(1)}
             >
-              Photo
+              UI/UX
             </button>
             <button
               className={`${
@@ -78,7 +85,7 @@ const Skills = () => {
               } py-2 px-4 mx-2 rounded-full`}
               onClick={() => handleButtonClick(3)}
             >
-              UI/UX
+              Photo
             </button>
             <button
               className={`${
@@ -104,15 +111,24 @@ const Skills = () => {
       </div>
       <hr className="my-4 border-t border-gray-300 mx-10" />
 
-      <div className="flex items-center m-16 gap-2">
+      <div className="flex items-center mt-10 mx-10 gap-2">
             <LiaCameraSolid size={"3em"} className="text-df4088" />
+            <h2 className="text-white text-xl font-bold">
+              Posts that
+            </h2>
+            <h2 className="text-pink-600 text-xl font-bold">
+              {searchType}
+            </h2>
             <h2 className="text-white text-xl font-bold">
               Photography!
             </h2>
       </div>
 
-      <div>
-      <CardOffer title={"Photo"} />
+      <div className="p-6" >
+        {searchType === "offer" ? ( 
+        <CardOffer title={"UI/UX"} />
+       ) : (
+        <CardNeed title={"Illustration"} />)}
       </div>
 
 

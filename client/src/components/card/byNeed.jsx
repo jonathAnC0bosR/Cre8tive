@@ -1,18 +1,18 @@
 import { BiSolidCircle } from "react-icons/bi";
 
-import { GET_BBPOST_byOFFER } from "../../utils/queries";
+import { GET_BBPOST_byNEED } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 
-const ByOffer = (props) => {
-    console.log(props.title);
-    const { loading, data } = useQuery(GET_BBPOST_byOFFER, {
+const ByNeed = (props) => {
+    console.log( "props: ", props);
+
+    const { loading, data, error } = useQuery(GET_BBPOST_byNEED, {
         variables: {"skillTitle": props.title}}
     );
-    const bbPosts = data?.getBulletinsByServiceOffer || [];
-    console.log("--Query: ", !loading, bbPosts);
+    const bbPosts = data?.getBulletinsByServiceNeed || [];
+    const errr = error ? error : [];
+    console.log("--Query: ", !loading, bbPosts, errr);
     
-    
-
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {loading ? (
@@ -92,10 +92,10 @@ const ByOffer = (props) => {
                         </h3>
                       </div>
                       <div>
-                        {post.serviceOffer &&
-                          post.serviceOffer.length > 0 && (
+                        {post.serviceNeed &&
+                          post.serviceNeed.length > 0 && (
                             <p className="text-lg font-bold ">
-                              {post.serviceOffer[0].skillTitle}
+                              {post.serviceNeed[0].skillTitle}
                             </p>
                           )}
                       </div>
@@ -117,4 +117,4 @@ const ByOffer = (props) => {
     )
 }
 
-export default ByOffer;
+export default ByNeed;

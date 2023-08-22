@@ -43,9 +43,13 @@ query Query($skillTitle: String!) {
     serviceOffer {
       skillTitle
     }
+    serviceNeed {
+      skillTitle
+    }
     userID {
       _id
       username
+      profileImage
     }
   }
 }
@@ -68,6 +72,10 @@ query GetBulletinsByServiceOffer($skillTitle: String!) {
     userID {
       _id
       username
+      profileImage
+    }
+    serviceOffer {
+      skillTitle
     }
   }
 }

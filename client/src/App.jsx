@@ -22,7 +22,7 @@ import CreateBBpost from "./components/Pages/BBpost/CreateBBpost";
 import Skills from "./components/Pages/Skills/Skills1";
 import Home from "./components/Pages/Home/Home";
 import ProtectedRoutes from "./ProtectedRoutes";
-import Card from "./components/card/card";
+import Card from "./components/card/byNeed";
 
 
 import AboutUs from "./components/Pages/AboutUs/AboutUs";
@@ -72,7 +72,7 @@ function App() {
           <Route path="/profile" element={<Profile3 />} />
           <Route path="/BBpost" element={<BBpost />} />
           <Route path="/skills" element={<Skills />} />
-          <Route path="/card" element={<Card />} />
+          <Route path="/card" element={<Card title={"UI/UX"}/>} />
 
         </Routes>
       </Router>
