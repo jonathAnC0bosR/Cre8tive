@@ -72,7 +72,7 @@ const BBpost = () => {
           </div>
           <ServicesButton />
         </div>
-        <AnimatedButton styles="bg-pink-600" title="Post" />
+        <AnimatedButton styles="bg-pink-600" title="Accept" />
       </form>
       <MainFooter />
     </div>
