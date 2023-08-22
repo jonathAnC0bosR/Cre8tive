@@ -21,6 +21,7 @@ export const GET_USER = gql`
     query GetUser($getUserId: ID!) {
   getUser(id: $getUserId) {
     aboutMe
+    username
     artStation
     github
     location
@@ -43,9 +44,13 @@ query Query($skillTitle: String!) {
     serviceOffer {
       skillTitle
     }
+    serviceNeed {
+      skillTitle
+    }
     userID {
       _id
       username
+      profileImage
     }
   }
 }
@@ -68,6 +73,10 @@ query GetBulletinsByServiceOffer($skillTitle: String!) {
     userID {
       _id
       username
+      profileImage
+    }
+    serviceOffer {
+      skillTitle
     }
   }
 }
@@ -78,6 +87,7 @@ export const GET_BBPOSTS = gql`
 query Query {
   bulletinPosts {
     bulletPostTitle
+    _id
     userID {
       _id
       location
@@ -96,6 +106,20 @@ query Query {
   }
 }
 `;
+
+export const GET_SINGLE_POST = gql `
+query Bulletin($bulletinId: ID!) {
+  bulletin(id: $bulletinId) {
+    _id
+    bulletPostTitle
+    bulletText
+    isActive
+    userID {
+      username
+      location
+    }
+  }
+}`
 
 export const GET_ALLUSERS = gql`
 query Query {

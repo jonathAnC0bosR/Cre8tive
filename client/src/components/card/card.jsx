@@ -1,39 +1,120 @@
 import { BiPencil } from "react-icons/bi";
 import ActiveJobsCard from "../UI/ActiveJobsCard";
+import { useQuery } from "@apollo/client";
+import { GET_BBPOST_byNEED, GET_BBPOST_byOFFER } from "../../utils/queries";
+import { useState } from "react";
 
 
-const PostCard = ({bbPosts}) => {
-  console.log(bbPosts)
+const PostCard = () => {
+  const [query, setQuery] = useState(GET_BBPOST_byOFFER)
+  const { loading, data } = useQuery(query);
+  if ( query == GET_BBPOST_byOFFER){
+    const bbPosts = data?.GetBulletinsByServiceOffer || [];
+    return bbPosts;
+  }
+  
 
     return (
-      
-        <div id="postCard" className="pt-[70px]" >
-
-            <h1>this is post card</h1>
-
-            {
-            bbPosts.map((post)=>{
-              <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
-                <h3>{post.bulletPostTitle} </h3>
-                <button>
-                  <BiPencil size={"1.5em"} />
-                </button>
-              </div>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-80 overflow-hidden relative ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <ActiveJobsCard />
-              </div>
+      <div className="flex overflow-x-scroll custom-scrollbar">
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        bbPosts.map((post) => (
+          <div key={post.id} className="flex flex-col mb-5 mx-2">
+            <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
+              <h3>{post.bulletPostTitle}</h3>
             </div>
 
-            }) }
-            
 
-        </div>
+            <div className="relative rounded-b-lg w-80 overflow-hidden relative py-5 px-2 ">
+
+              {post.imageURL ? (
+                <img
+                  src={post.imageURL}
+                  className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner"
+                ></img>
+              ) : (
+                <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner"></div>
+              )}
+
+              <div className="relative">
+                <div className="mx-4">
+                  <div className="flex mb-8 flex-row items-center text-white mx-5 mt-5 mb-1">
+
+                    {/* User Profile Picture */}
+                    <div className="overflow-hidden rounded-full w-16 h-16 ">
+                      <img
+                        src={post.userID.profileImage}
+                        alt="Circular Image"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    <div className="flex-column ml-4">
+                      {/* User Location */}
+                      <p className="text-xs text-shadow">
+                        {post.userID.location}{" "}
+                      </p>
+                      {/* Username */}
+                      <p className="text-xl font-bold text-shadow">
+                        {post.userID.username}
+                      </p>
+                      {/* User Rating */}
+                      <div className="flex flex-row text-shadow text-lg">
+                        <BiSolidCircle className="text-df4088" />
+                        <BiSolidCircle className="text-df4088" />
+                        <BiSolidCircle className="text-df4088" />
+                        <BiSolidCircle className="text-df4088" />
+                        <BiSolidCircle className="text-gray-200" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex m-2 items-center justify-center gap-8 mx-auto bg-white rounded-full ">
+                    <div>
+                      <h3 className="text-pink-600 text-lg font-bold mb-1">
+                        Needs
+                      </h3>
+                    </div>
+                    <div>
+                      {post.serviceNeed &&
+                        post.serviceNeed.length > 0 && (
+                          <p className="text-lg font-bold ">
+                            {post.serviceNeed[0].skillTitle}
+                          </p>
+                        )}
+                    </div>
+                  </div>
+
+                  <div className="flex m-2 items-center justify-center gap-8 mx-auto bg-white rounded-full ">
+                    <div>
+                      <h3 className="text-pink-600 font-bold text-lg mb-1 ">
+                        Offers
+                      </h3>
+                    </div>
+                    <div>
+                      {post.serviceNeed &&
+                        post.serviceNeed.length > 0 && (
+                          <p className="text-lg font-bold ">
+                            {post.serviceOffer[0].skillTitle}
+                          </p>
+                        )}
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end">
+                    <button className="bg-df4088 text-white text-lg font-bold px-7 py-2 m-4 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow">
+                      More...
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+      
     )
 
 }
