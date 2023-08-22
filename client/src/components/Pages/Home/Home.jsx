@@ -1,19 +1,3 @@
-import { BiPencil, BiSolidCircle } from "react-icons/bi";
-import { MdWavingHand } from "react-icons/md";
-import ActiveJobsCard from "../../UI/ActiveJobsCard";
-import "../Home/HomeStyles.css";
-import Pana1 from "../../../assets/images/Pana-1.png";
-import Pana2 from "../../../assets/images/Pana-2.png";
-import Pana3 from "../../../assets/images/Pana-3.png";
-import Pana4 from "../../../assets/images/Pana-4.png";
-import "../Skills/SkillStyles.css";
-
-import Auth from "../../../utils/auth";
-import { useQuery, useMutation } from "@apollo/client";
-import {} from "../../../utils/mutations";
-import { GET_BBPOSTS } from "../../../utils/queries";
-import AllUsers from "../../card/allUsers";
-
 import {
   LiaCameraSolid,
   LiaPencilAltSolid,
@@ -21,7 +5,7 @@ import {
   LiaCodeSolid,
   LiaEdit,
 } from "react-icons/lia";
-import { BiPencil } from "react-icons/bi";
+import { BiPencil, BiSolidCircle } from "react-icons/bi";
 import { MdWavingHand } from "react-icons/md";
 import ActiveJobsCard from "../../UI/ActiveJobsCard";
 // Dont remove HomeStyles
@@ -30,8 +14,13 @@ import Pana1 from "../../../assets/images/Pana-1.png";
 import Pana2 from "../../../assets/images/Pana-2.png";
 import Pana3 from "../../../assets/images/Pana-3.png";
 import Pana4 from "../../../assets/images/Pana-4.png";
-import "../Skills/SkillStyles.css";
+import "../../../../src/index.css";
 import AnimatedButtonHome from "../../UI/AnimatedButtonHome";
+import Auth from "../../../utils/auth";
+import { useQuery, useMutation } from "@apollo/client";
+import {} from "../../../utils/mutations";
+import { GET_BBPOSTS } from "../../../utils/queries";
+import AllUsers from "../../card/allUsers";
 
 const Home = (props) => {
   const authService = Auth;
