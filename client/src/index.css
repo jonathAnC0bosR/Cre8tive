@@ -134,6 +134,15 @@ h1 {
     background-color: #353434 !important;
 }
 
+.bg-gray-important:hover {
+    background-color: #353434 !important;
+
+}
+
 .bg-pink-important {
+    background-color: #E04189 !important;
+}
+
+.bg-pink-important:hover {
     background-color: #E04189 !important;
 }
