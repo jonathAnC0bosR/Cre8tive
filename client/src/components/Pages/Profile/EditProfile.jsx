@@ -109,7 +109,6 @@ console.log("URL: ", URL)
               onChange={handleInputChange}
             />
           </div>
-
           <div className="grid grid-cols-2 lg:grid lg:grid-cols-4 lg:ml-7 md:ml-4 ml-3 ">
             <Input
               type="text"
@@ -211,6 +210,7 @@ console.log("URL: ", URL)
           <div className="flex lg:justify-end md:justify-end justify-center lg:pr-7 md:pr-4">
             <div className="mx-4">
               <AnimatedButtonCancel
+
                 title="Cancel"
                 styles="border-2 border-red-500 text-red-500 bg-zinc-900"
               />

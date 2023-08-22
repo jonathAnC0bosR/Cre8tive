@@ -34,6 +34,8 @@ const CreateBBpost = () => {
 
   //--- getting skills from DB
 
+  //--- getting skills from DB
+
   const [number, setNumber] = useState(null);
   const [timeUnit, setTimeUnit] = useState(null);
 
@@ -45,6 +47,8 @@ const CreateBBpost = () => {
   // if (loading) return <p>Loading...</p>;
   // make and empty array if skills is empty
   const skills = data ? data.skills : [];
+
+  // console.log(skills);
 
   // console.log(skills);
 
@@ -130,11 +134,11 @@ const CreateBBpost = () => {
             {/* border-2 border-pink-600 */}
             <div
               className="bg-[#353535] rounded-lg
-                     grid-cols-6 flex items-center p-2 m-3 "
+           grid-cols-6 flex items-center p-2 m-3 "
             >
               {/* <div className="col-span-1" >
-                                <img src={icon3} className="" />
-                            </div> */}
+                      <img src={icon3} className="" />
+                  </div> */}
               <div className="flex w-full justify-between align-middle text-center px-4 col-span-3">
                 <h2 className="flex text-white font-bold md:text-base text-sm  my-2 col-span-2">
                   Service in Need
@@ -161,11 +165,11 @@ const CreateBBpost = () => {
             </div>
             <div
               className="bg-[#353535]    rounded-lg
-                         grid-cols-2 flex items-center p-2 m-3 "
+               grid-cols-2 flex items-center p-2 m-3 "
             >
               {/* <div className="col-span-1" >
-                                <img src={icon2} className="" />
-                            </div> */}
+                      <img src={icon2} className="" />
+                  </div> */}
               <div className="flex w-full justify-between align-middle text-center px-4 col-span-3">
                 <h2 className="text-white font-bold md:text-base text-sm my-2 ">
                   Service Offered
@@ -192,11 +196,11 @@ const CreateBBpost = () => {
             </div>
             <div
               className="bg-[#353535]    rounded-lg
-                         grid-cols-2 flex items-center p-2 m-3 "
+               grid-cols-2 flex items-center p-2 m-3 "
             >
               {/* <div className="col-span-1" >
-                                <img src={icon1} className="" />
-                            </div> */}
+                      <img src={icon1} className="" />
+                  </div> */}
               <div className="col-span-3  text-center">
                 <h2 className="text-white font-bold md:text-base text-sm w-auto">
                   Delivery Time

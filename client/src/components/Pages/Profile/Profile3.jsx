@@ -16,6 +16,13 @@ import { GET_PROFILEIMG, GET_USER } from '../../../utils/queries'
 import Auth from '../../../utils/auth'
 import UploadPencil from "../../../components/UI/uploadPencil"
 
+import { AiOutlineCamera } from "react-icons/ai";
+import { BsPencil } from "react-icons/bs";
+import { MdOutlineDesignServices } from "react-icons/md";
+import { TbBoxModel } from "react-icons/tb";
+import { SiTaichigraphics } from "react-icons/si";
+
+
 import artStation from "../../../assets/images/artstation.svg"
 import topBanerImg from "../../../assets/images/topBanerProfile.png"
 import topBanerImg2 from "../../../assets/images/colorPiece6.jpg"
@@ -192,19 +199,19 @@ const Profile = () => {
                             <div className='flex items-center justify-center'>
 
                                 <div className='bulletSkill'>
-                                    <BsFillCameraFill />
+                                    <MdOutlineDesignServices/>
                                     <p>Skill One</p>
                                 </div>
                                 <div className='bulletSkill'>
-                                    <BsFillCameraFill />
+                                    <iOutlineCamera />
                                     <p>Skill One</p>
                                 </div>
                                 <div className='bulletSkill'>
-                                    <BsFillCameraFill />
+                                    <BsPencil />
                                     <p>Skill two</p>
                                 </div>
                                 <div className='bulletSkill'>
-                                    <BsFillCameraFill />
+                                    <SiTaichigraphics />
                                     <p>Skill two</p>
                                 </div>
                             </div>
