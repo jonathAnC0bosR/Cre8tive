@@ -5,12 +5,15 @@ import ActiveJobsCard from "../../UI/ActiveJobsCard";
 import "../Home/HomeStyles.css";
 import "../Skills/SkillStyles.css";
 import { Link } from "react-router-dom";
+import logo from "../../../assets/images/Logo.png"
 
 import Auth from "../../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { GET_BBPOSTS } from "../../../utils/queries";
 import AllUsers from "../../card/allUsers";
 import Sock from "../../card/sock";
+import AllPosts from "../../card/allPosts";
+import ActivePosts from "../../card/activePost.jsx";
 import { BiSolidCircle } from "react-icons/bi";
 import "../../Pages/Skills/skillStyles.css";
 
@@ -18,12 +21,6 @@ const Home = () => {
   const authService = Auth;
   const user = authService.getProfile().data;
   const { _id, username } = user;
-  console.log("--", username);
-
-  const { loading, data } = useQuery(GET_BBPOSTS);
-  const bbPosts = data?.bulletinPosts || [];
-  console.log("data from query: ", loading, bbPosts);
-  // const isUserAuthor = _id === bbPosts.userID._id;
 
   const navigate = useNavigate();
 
@@ -38,59 +35,98 @@ const Home = () => {
   return (
     // main div
     <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex flex-col">
-      <div className="text-white rounded-bl-lg rounded-br-lg mx-auto sm:m-4 md:mt-24 md:mb-0 md:mx-12 m-50 flex items-center justify-center px-10 pt-10 pb-6">
-        <h1 className="text-5xl mr-2">Welcome {username}</h1>
-        <MdWavingHand size={"3em"} className="ml-2 text-yellow-300" />
-      </div>
 
-      <div className="flex flex-col p-8 rounded-lg mx-4 sm:m-4 md:mt-0 md:mb-5 md:mx-12">
-        {/* Active Jobs */}
-        <div className="mb-8">
-          <h2 className="text-2xl text-df4088 font-bold my-4 gap-2">
-            Active Jobs:
-          </h2>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
-                <h3>Portraits 4 Grad</h3>
-                <button>
-                  <BiPencil size={"1.5em"} />
-                </button>
-              </div>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-80 overflow-hidden">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner"></div>{" "}
-                {/* Content */}
-                <ActiveJobsCard />
-              </div>
-            </div>
+      
+
+      <div className="text-white items-center justify-between pt-[70px] rounded-bl-lg rounded-br-lg px-5 mx-auto sm:mx-4 md:mb-3 md:mx-12 flex pb-6">
+        
+        <h1 className="text-3xl mr-2">Welcome {username}</h1>
+        {/* <MdWavingHand size={"3em"} className="ml-2 text-yellow-300" /> */}
+        
+        <div className="flex items-center justify-center " >
+          <div className="flex justify-center text-3xl md:text-4xl lg:text-6xl ">
+                <h1 className="text-white   ">Cre</h1>
+                <h1 className="text-teal-500 ">8</h1>
+                <h1 className="text-white ">tive</h1>
           </div>
+
+          <img
+            src={logo}
+          className="lg:w-32 lg:h-32 md:w-16 md:h-16 w-10 h-10"/>
         </div>
 
-        {/* Get Started */}
-        <h2 className="text-white text-2xl font-bold my-4 gap-2">
-          Get Started!
-        </h2>
-        <div className="flex flex-row items-center justify-center mt-1 mb-7">
-          <p className="text-white text-lg">
-            Show your skills and develop tasks, get known in the cre8ive scene!
-          </p>
-          <button
+        <button
             onClick={handleCreatePost}
-            className="bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative"
+            className=" bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative"
           >
             <div className="flex items-center justify-center">Start a Post</div>
           </button>
+      </div>
+      <div className="flex justify-center" >
+      <hr className="mb-1 border-t border-gray-300 w-3/4" />
+      </div>
+
+      <div className="flex flex-col p-8 rounded-lg mx-4 sm:m-4 md:mt-0 md:mb-5 md:mx-12">
+       
+         {/* Active Jobs */}
+        <div className="mb-20">
+          <h2 className="text-2xl mx-4 text-df4088 font-bold my-4 gap-2">
+            Active Jobs:
+          </h2>
+          {/* Here the cards get stored */}
+           <div className="flex overflow-x-scroll custom-scrollbar">
+           <ActivePosts />
+           <ActivePosts />
+           <ActivePosts />
+           <ActivePosts className="hidden" />
+          </div> 
         </div>
+        
 
         {/* Suggested Profiles */}
         <AllUsers />
 
         {/* Searching for a Job */}
-        <div>
+        <div className="bg-teal-500 rounded-xl m-8 my-12 p-5 pl-8" >
+          <h2 className="text-white text-2xl font-bold my-4 gap-2">
+            Searching for a Job?
+          </h2>
+          <div className="flex flex-row items-center mt-1 mb-7">
+            <span className="text-white text-lg">
+              The best way to start, is by doing. Search for anything you might
+              be interested and don't be afraid to collabor
+              <p className="text-df4088 inline-block">8</p>!
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+      {/* -------------------empieza */}
+      {/* -------------------- Recommended Posts */}
+      <div className="mb-8">
+
+        <h2 className="text-white text-center text-2xl font-bold mb-8 gap-2">
+          Recommended Posts:
+        </h2>
+
+        
+        {/* -----------------Dynamic rendering of cards */}
+          <div className="px-2">
+            <AllPosts />
+          </div> 
+          <div className="flex items-center justify-center" >
+          <button className="bg-teal-500 text-white text-lg font-bold px-7 py-2 m-4 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow">
+            See More...
+          </button>
+          </div> 
+        {/*-------------------- fin dynamic render----------------  */}
+
+        <div className="flex justify-center m-20" >
+        <hr className="mb-1 border-t border-gray-300 w-3/4" />
+        </div>
+
+        <div className="bg-teal-500 rounded-xl m-8 my-12 p-5 pl-8" >
           <h2 className="text-white text-2xl font-bold my-4 gap-2">
             Searching for a Job?
           </h2>
@@ -103,115 +139,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* -------------------- Recommended Posts */}
-        <div className="mb-8">
-          <h2 className="text-white text-2xl font-bold my-4 gap-2">
-            Recommended Posts:
-          </h2>
-          {/* -----------------Dynamic rendering of cards */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            {loading ? (
-              <div>Loading...</div>
-            ) : (
-              bbPosts.map((post) => (
-                <div key={post._id} className="flex flex-col mb-5 mx-2">
-                  <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
-                    <h3>{post.bulletPostTitle}</h3>
-                  </div>
-
-                  <div className="relative rounded-b-lg w-80 overflow-hidden relative py-5 px-2 ">
-                    {post.imageURL ? (
-                      <img
-                        src={post.imageURL}
-                        className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner"
-                      ></img>
-                    ) : (
-                      <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner"></div>
-                    )}
-
-                    <div className="relative">
-                      <div className="mx-4">
-                        <div className="flex mb-8 flex-row items-center text-white mx-5 mt-5 mb-1">
-                          {/* User Profile Picture */}
-                          <div className="overflow-hidden rounded-full w-16 h-16 ">
-                            <img
-                              src={post.userID.profileImage}
-                              alt="Circular Image"
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-
-                          <div className="flex-column ml-4">
-                            {/* User Location */}
-                            <p className="text-xs text-shadow">
-                              {post.userID.location}{" "}
-                            </p>
-                            {/* Username */}
-                            <p className="text-xl font-bold text-shadow">
-                              {post.userID.username}
-                            </p>
-                            {/* User Rating */}
-                            <div className="flex flex-row text-shadow text-lg">
-                              <BiSolidCircle className="text-df4088" />
-                              <BiSolidCircle className="text-df4088" />
-                              <BiSolidCircle className="text-df4088" />
-                              <BiSolidCircle className="text-df4088" />
-                              <BiSolidCircle className="text-gray-200" />
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex m-2 items-center justify-center gap-8 mx-auto bg-white rounded-full ">
-                          <div>
-                            <h3 className="text-pink-600 text-lg font-bold mb-1">
-                              Needs
-                            </h3>
-                          </div>
-                          <div>
-                            {post.serviceNeed &&
-                              post.serviceNeed.length > 0 && (
-                                <p className="text-lg font-bold ">
-                                  {post.serviceNeed[0].skillTitle}
-                                </p>
-                              )}
-                          </div>
-                        </div>
-
-                        <div className="flex m-2 items-center justify-center gap-8 mx-auto bg-white rounded-full ">
-                          <div>
-                            <h3 className="text-pink-600 font-bold text-lg mb-1 ">
-                              Offers
-                            </h3>
-                          </div>
-                          <div>
-                            {post.serviceNeed &&
-                              post.serviceNeed.length > 0 && (
-                                <p className="text-lg font-bold ">
-                                  {post.serviceOffer[0].skillTitle}
-                                </p>
-                              )}
-                          </div>
-                        </div>
-                        <div className="flex justify-end">
-                          <Link to={`/BBpost/${post._id}`}>
-                            {" "}
-                            <button className="bg-df4088 text-white text-lg font-bold px-7 py-2 m-4 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow">
-                              More...
-                            </button>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-
-          {/*-------------------- fin dynamic render----------------  */}
-
-
-        </div>
       </div>
 
       <hr className="my-4 border-t border-gray-300 mx-10" />
