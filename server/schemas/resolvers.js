@@ -1,6 +1,6 @@
 const {AuthenticationError} = require('apollo-server-express')
-const {Portfolio, User, Bulletin, Skill, Service}  = require("../models");
-const { signToken } = require("../utils/auth");
+const { Portfolio, User, UserVerification, Bulletin, Skill, Service } = require("../models");
+const { signToken, generateVerificationToken, sendVerificationEmail } = require("../utils/auth");
 
 const resolvers = {
   Bulletin: {
@@ -33,6 +33,11 @@ const resolvers = {
     portfolioPosts: async () => {
       return Portfolio.find();
     },
+
+    users: async () => {
+      return User.find();
+    },
+
     getUsers: async (parent, args) => {
       try {
         const allUsers = await User.find();
@@ -41,15 +46,18 @@ const resolvers = {
         throw new Error('Error fetching users');
       }  
     }, 
+
     getUser: async (parent, args) => {
       try {
-        const getSingleUser= await User.findById(args.id);
+        const getSingleUser = await User.findById(args.id);
         return getSingleUser;
       } catch (error) {
         throw new Error('Error fetching profile image');
       }
     },
-
+    // users: async () => {
+    //   return User.find();
+    // },
     getProfileImg: async (parent, args) => {
       try {
         const user = await User.findById(args.id).populate('skills');
@@ -58,25 +66,25 @@ const resolvers = {
         throw new Error('Error fetching profile image');
       }
     },
-    
+
     bulletinPosts: async () => {
       return await Bulletin.find()
-      .populate(
-        {
-        path: 'serviceNeed serviceOffer', // Specify the paths to populate
-        select: 'skillTitle' // Only select the skillTitle field
-      }
-      )
-      ;
+        .populate(
+          {
+            path: 'serviceNeed serviceOffer', // Specify the paths to populate
+            select: 'skillTitle' // Only select the skillTitle field
+          }
+        )
+        ;
     },
     skills: async () => {
       return Skill.find();
     },
-    services: async() =>{
+    services: async () => {
       return Service.find();
-    }, 
-    
-    getBulletinsByServiceOffer: async (_, { skillTitle }) =>{
+    },
+
+    getBulletinsByServiceOffer: async (_, { skillTitle }) => {
       try {
         const skill = await Skill.findOne({ skillTitle });
         if (!skill) {
@@ -91,7 +99,7 @@ const resolvers = {
       } catch (error) {
         throw new Error('Error fetching bulletins: ' + error.message);
       }
-    }, 
+    },
 
     getBulletinsByServiceNeed: async (_, { skillTitle }) => {
       try {
@@ -115,9 +123,52 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
-      return { token, user };
+      const user = await User.create({ username, email, password, verified: false });
+
+      // Generate a verification token and send a verification email
+      const verificationToken = generateVerificationToken(user);
+      await sendVerificationEmail(email, verificationToken);
+
+      return { success: true, message: "User registered successfully. Please check your email for verification." };
+    },
+
+    requestUserVerification: async (parent, { userId }) => {
+      try {
+        const user = await User.findById(userId);
+        if (!user) {
+          throw new AuthenticationError("User not found");
+        }
+
+        const verificationToken = generateVerificationToken(user);
+        await sendVerificationEmail(user.email, verificationToken);
+
+        return { success: true, message: "Verification email sent successfully." };
+      } catch (error) {
+        throw new Error('Failed to request user verification');
+      }
+    },
+
+    verifyUser: async (parent, { token }) => {
+      try {
+        const verifiedUserId = UserVerification.verifyToken(token);
+        if (!verifiedUserId) {
+          throw new AuthenticationError("Invalid verification token");
+        }
+
+        const user = await User.findById(verifiedUserId);
+        if (!user) {
+          throw new AuthenticationError("User not found");
+        }
+
+        user.verified = true;
+        await user.save();
+
+        await UserVerification.deleteToken(token);
+
+        return { success: true, message: "User verified successfully." };
+      } catch (error) {
+        throw new Error('Failed to verify user');
+      }
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -134,7 +185,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    updateProfileImg: async (parent, {id, profileImage}) =>{
+    updateProfileImg: async (parent, { id, profileImage }) => {
       try {
         const updatedUser = await User.findByIdAndUpdate(
           id,
@@ -147,22 +198,22 @@ const resolvers = {
       }
     },
     updateUser: async (parent, args) => {
-        return await User.findByIdAndUpdate(args._id, args, {
-          new: true
-        })
+      return await User.findByIdAndUpdate(args._id, args, {
+        new: true
+      })
     },
 
     addBBPost: async (parent, args) => {
       try {
         const newPost = await Bulletin.create(args);
-      return newPost;
-    } catch (error) {
-      throw new Error('Failed to create bulletin');
-    }
+        return newPost;
+      } catch (error) {
+        throw new Error('Failed to create bulletin');
+      }
 
     },
 
-    acceptBulletin: async (parent, {id, acceptingUser}) => {
+    acceptBulletin: async (parent, { id, acceptingUser }) => {
       try {
         const activateBulletin = await Bulletin.findByIdAndUpdate(
           id,
@@ -182,14 +233,14 @@ const resolvers = {
           success: true,
           message: "Deleted Post"
         }
-        ;
-        
+          ;
+
       } catch (error) {
         throw new Error('Failed to delete bulletin');
       }
     },
 
-    addSkillsToBulletinServiceOffer: async (_, { bulletinId, skillIds }) =>{
+    addSkillsToBulletinServiceOffer: async (_, { bulletinId, skillIds }) => {
       try {
         const bulletin = await Bulletin.findById(bulletinId);
         const skills = await Skill.find({ _id: { $in: skillIds } });
@@ -200,9 +251,9 @@ const resolvers = {
       } catch (error) {
         throw new Error('Error adding skills to bulletin: ' + error.message);
       }
-    }, 
+    },
 
-    addSkillsToBulletinServiceNeed: async (_, { bulletinId, skillIds }) =>{
+    addSkillsToBulletinServiceNeed: async (_, { bulletinId, skillIds }) => {
       try {
         const bulletin = await Bulletin.findById(bulletinId);
         const skills = await Skill.find({ _id: { $in: skillIds } });
@@ -213,7 +264,7 @@ const resolvers = {
       } catch (error) {
         throw new Error('Error adding skills to bulletin: ' + error.message);
       }
-    }, 
+    },
 
   },
 };

@@ -61,7 +61,7 @@ const Profile = () => {
         const { loading, data } = useQuery( GET_PROFILEIMG, {
             variables: {"getProfileImgId": _id}
         });
-        const userData = data?.getProfileImg || [];
+        const userData = data?.getProfileImg || []; // if data exists, store in userData, otherwise undefined
         console.log("data from query: ", loading , userData)
         console.log(userData.aboutMe)
 
