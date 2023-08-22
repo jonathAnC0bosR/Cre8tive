@@ -93,22 +93,7 @@ const Home = (props) => {
         </div>
 
         {/* Suggested Profiles */}
-
-        <div>
-          <h2 className="text-white text-2xl font-bold mt-4 gap-2">
-            Suggested Profiles
-          </h2>
-          <div className="flex flex-row overflow-x-scroll custom-scrollbar gap-9 mt-1 mb-7">
-            <img src={Pana1} className="h-44 w-44 my-8" />
-            <img src={Pana2} className="h-44 w-44 my-8" />
-            <img src={Pana3} className="h-44 w-44 my-8" />
-            <img src={Pana4} className="h-44 w-44 my-8" />
-            <img src={Pana1} className="h-44 w-44 my-8" />
-            <img src={Pana2} className="h-44 w-44 my-8" />
-            <img src={Pana3} className="h-44 w-44 my-8" />
-            <img src={Pana4} className="h-44 w-44 my-8" />
-          </div>
-        </div>
+        <AllUsers  />
 
         {/* Searching for a Job */}
         <div>
