@@ -1,16 +1,27 @@
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-
+import "../../index.css";
 
 const AnimatedButton = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <motion.button
-      className={`${props.styles} my-10 h-10  mx-auto w-32 text-white rounded-full`}
-      whileHover={{ scale: 1.1 }}
-      transition={{ type: "spring", stiffness: 500, damping: 10 }}
-      whileTap={{ scale: 0.8 }}
+      layout
+      data-isOpen={isOpen}
+      initial={{ borderRadius: 50 }}
+      className={`moving-bar ${props.styles} my-10 h-10 mx-auto text-white rounded-full`}
       type={props.type}
+      onClick={() => setIsOpen(!isOpen)}
+      whileHover={{
+        scale: 1.1,
+        color: "#DF4088 !important",
+        borderRadius: "50px",
+      }}
     >
-      {props.title}
+      <div className="flex items-center justify-center">{props.title}</div>
+      <motion.div layout className="topCircle" initial={{}} />
+      <div className="moving-bar-after"></div>
     </motion.button>
   );
 };

@@ -8,6 +8,7 @@ import {
 import { BiSolidCircle } from "react-icons/bi";
 import "../Pages/Skills/skillStyles.css";
 import ProfilePic from "../../assets/images/Profile-circle.png";
+import AnimatedButtonCard from "./AnimatedButtonCard";
 
 const JobCard = () => {
   return (
@@ -64,9 +65,7 @@ const JobCard = () => {
         </div>
         <div className="flex justify-end">
           {/* Button for seeing more info about the job */}
-          <button className="bg-df4088 text-white text-lg font-bold px-7 py-2 m-4 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow">
-            More...
-          </button>
+          <AnimatedButtonCard styles='bg-pink-600' title="More..."/>
         </div>
       </div>
     </div>

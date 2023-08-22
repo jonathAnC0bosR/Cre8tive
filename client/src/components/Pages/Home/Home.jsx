@@ -8,12 +8,14 @@ import {
 import { BiPencil } from "react-icons/bi";
 import { MdWavingHand } from "react-icons/md";
 import ActiveJobsCard from "../../UI/ActiveJobsCard";
+// Dont remove HomeStyles
 import "../Home/HomeStyles.css";
 import Pana1 from '../../../assets/images/Pana-1.png';
 import Pana2 from '../../../assets/images/Pana-2.png';
 import Pana3 from '../../../assets/images/Pana-3.png';
 import Pana4 from '../../../assets/images/Pana-4.png';
 import "../Skills/SkillStyles.css";
+import AnimatedButtonHome from "../../UI/AnimatedButtonHome";
 
 const Home = (props) => {
   return (
@@ -59,9 +61,7 @@ const Home = (props) => {
           <p className="text-white text-lg">
             Show your skills and develop tasks, get known in the cre8ive scene!
           </p>
-          <button className="bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative">
-            <div className="flex items-center justify-center">Start a Post</div>
-          </button>
+          <AnimatedButtonHome styles='bg-pink-600' title="Start a Post"/>
         </div>
 
         {/* Suggested Profiles */}
