@@ -34,10 +34,6 @@ const resolvers = {
       return Portfolio.find();
     },
 
-    users: async () => {
-      return User.find();
-    },
-
     getUsers: async (parent, args) => {
       try {
         const allUsers = await User.find();

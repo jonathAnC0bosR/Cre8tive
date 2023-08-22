@@ -61,7 +61,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
-          <Route element = { <ProtectedRoutes/> }>
+          <Route element = {<ProtectedRoutes/>}>
             <Route path="/home" element={<Home />} />
             <Route path="/CreateBBpost" element={<CreateBBpost />} />
             <Route path= '/editProfile' element={<EditProfile />}  />
