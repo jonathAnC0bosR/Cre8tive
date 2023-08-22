@@ -6,7 +6,7 @@ import { LiaCubeSolid } from "react-icons/lia";
 import { LiaCodeSolid } from "react-icons/lia";
 import { LiaEdit } from "react-icons/lia";
 import JobCard from "../../UI/JobCard";
-import "../Skills/skillStyles.css";
+//import "../Skills/skillStyles.css";
 import { useState } from 'react';
 import ButtonGroup from "flowbite-react/lib/esm/components/Button/ButtonGroup";
 
