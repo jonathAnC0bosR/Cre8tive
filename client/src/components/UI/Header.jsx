@@ -31,8 +31,8 @@ const Header = () => {
               <h1 className="lg:block md:block hidden p-1 hover:bg-orange-500 hover:rounded-full">Search</h1>
             </Link>
 
-            <h1 onClick={logout} to={"/"} className="lg:block md:block hidden col-end-10 col-span-2 text-center 
-            p-1 w-1/2 hover:bg-teal-500 hover:rounded-full">Logout</h1>
+              <h1 onClick={logout} to={"/"} className="lg:block md:block hidden col-end-10 col-span-2 text-center 
+              p-1 w-1/2 hover:bg-teal-500 hover:rounded-full">Logout</h1>
             </div>
           </div>
         ) : (

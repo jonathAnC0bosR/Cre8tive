@@ -3,15 +3,16 @@ import { MdWavingHand } from "react-icons/md";
 import { Navigate, useNavigate } from "react-router-dom";
 import ActiveJobsCard from "../../UI/ActiveJobsCard";
 import "../Home/HomeStyles.css";
-import "../Skills/SkillStyles.css";
+//import "../Skills/SkillStyles.css";
 import { Link } from "react-router-dom";
 
 import Auth from "../../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { GET_BBPOSTS } from "../../../utils/queries";
 import AllUsers from "../../card/allUsers";
+import Sock from "../../card/sock";
 import { BiSolidCircle } from "react-icons/bi";
-import "../../Pages/Skills/skillStyles.css";
+//import "../../Pages/Skills/skillStyles.css";
 
 const Home = () => {
   const authService = Auth;
@@ -206,9 +207,20 @@ const Home = () => {
               ))
             )}
           </div>
+
+          {/*-------------------- fin dynamic render----------------  */}
+
+
         </div>
-        {/*-------------------- SE ACABA CARD----------------  */}
       </div>
+
+      <hr className="my-4 border-t border-gray-300 mx-10" />
+
+      <Sock  />
+
+      
+
+
 
       {/* Footer */}
     </div>
