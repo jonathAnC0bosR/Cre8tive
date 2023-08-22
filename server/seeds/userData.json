@@ -6,7 +6,8 @@
         "age":"22",
         "occupation":"Digital Artist",
         "location":"CDMX, Mexico",
-        "rating": 4 
+        "rating": 4,
+        "verified": true
     },
     {
         "username":"Jonathan",
@@ -15,7 +16,8 @@
         "age":"23",
         "occupation":"3D modeler",
         "location":"CDMX, Mexico",
-        "rating": 4 
+        "rating": 4,
+        "verified": true
     },
     {
         "username":"Salome",
@@ -24,7 +26,8 @@
         "age":"21",
         "occupation":"Illustrator",
         "location":"Toluca, Mexico",
-        "rating": 5 
+        "rating": 5,
+        "verified": true
     },
     {
         "username":"Cristofer",
@@ -33,6 +36,7 @@
         "age":"26",
         "occupation":"Photographer",
         "location":"Monterrey, Mexico",
-        "rating": 1
+        "rating": 1,
+        "verified": true
     }
 ]
