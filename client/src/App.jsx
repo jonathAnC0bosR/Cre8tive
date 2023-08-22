@@ -95,7 +95,7 @@ function App() {
           <Route path="/card" element={<Card title={"UI/UX"}/>} />
 
         </Routes>
-        <div className="w-full bg-zinc-900">
+        <div className="w-full bg-zinc-950">
           <MainFooter />
         </div>
       </Router>
