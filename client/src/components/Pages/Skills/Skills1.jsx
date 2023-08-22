@@ -1,15 +1,11 @@
-import { LiaCubeSolid } from "react-icons/lia";
-
-import { LiaCodeSolid } from "react-icons/lia";
-import { LiaEdit } from "react-icons/lia";
+import { LiaCodeSolid, LiaCubeSolid, LiaEdit } from "react-icons/lia";
 import JobCard from "../../UI/JobCard";
-////import "../Skills/skillStyles.css";
-
-import { useState } from 'react';
-import CardOffer from '../../card/byOffer'
-import CardNeed from '../../card/byNeed'
-import Sock from '../../card/sock'
-
+import "../../../../src/index.css";
+import { useState } from "react";
+import ButtonGroup from "flowbite-react/lib/esm/components/Button/ButtonGroup";
+import CardOffer from "../../card/byOffer";
+import CardNeed from "../../card/byNeed";
+import Sock from "../../card/sock";
 
 const Skills = () => {
   const [searchType, setSearchType] = useState(["lucas", "Matt"]);
@@ -25,8 +21,7 @@ const Skills = () => {
   return (
     // main div
     <div className=" lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex flex-col">
-
-      <div className="pt-20" >
+      <div className="pt-20">
         {/* bg-slate-300 shadow-md shadow-slate-300 */}
       <div className="	  mx-5 rounded  p-4" >
       

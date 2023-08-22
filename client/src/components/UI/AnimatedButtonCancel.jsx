@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "../../index.css";
 
-const AnimatedButton = (props) => {
+const AnimatedButtonCancel = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -10,7 +10,7 @@ const AnimatedButton = (props) => {
       layout
       data-isOpen={isOpen}
       initial={{ borderRadius: 50 }}
-      className={`moving-bar ${props.styles} my-10 h-10 mx-auto text-white rounded-full`}
+      className={`moving-bar-left ${props.styles} my-10 h-10 mx-auto text-white rounded-full`}
       type={props.type}
       onClick={() => setIsOpen(!isOpen)}
       whileHover={{
@@ -26,4 +26,4 @@ const AnimatedButton = (props) => {
   );
 };
 
-export default AnimatedButton;
+export default AnimatedButtonCancel;

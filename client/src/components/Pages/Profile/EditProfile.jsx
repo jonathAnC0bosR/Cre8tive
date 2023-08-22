@@ -9,14 +9,12 @@ import { TbBoxModel } from "react-icons/tb";
 import { SiTaichigraphics } from "react-icons/si";
 import SocialMedia from "../../UI/SocialMedia";
 import AnimatedButton from "../../UI/AnimatedButton";
+import AnimatedButtonCancel from "../../UI/AnimatedButtonCancel";
 import { useMutation } from "@apollo/client";
 import { UPDATE_USER } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
 
 import UploadPencil from "../../UI/uploadPencil"
-
-
-
 import banner from "../../../assets/images/banner.jpg";
 
 const EditProfile = () => {
@@ -210,7 +208,8 @@ console.log("URL: ", URL)
           </div>
           <div className="flex lg:justify-end md:justify-end justify-center lg:pr-7 md:pr-4">
             <div className="mx-4">
-              <AnimatedButton
+              <AnimatedButtonCancel
+
                 title="Cancel"
                 styles="border-2 border-red-500 text-red-500 bg-zinc-900"
               />
