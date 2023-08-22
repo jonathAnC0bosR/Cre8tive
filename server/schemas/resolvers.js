@@ -33,11 +33,6 @@ const resolvers = {
     portfolioPosts: async () => {
       return Portfolio.find();
     },
-
-    users: async () => {
-      return User.find();
-    },
-
     getUsers: async (parent, args) => {
       try {
         const allUsers = await User.find();
@@ -123,14 +118,19 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password, verified: false });
-
-      // Generate a verification token and send a verification email
-      const verificationToken = generateVerificationToken(user);
-      await sendVerificationEmail(email, verificationToken);
-
-      return { success: true, message: "User registered successfully. Please check your email for verification." };
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+      return { token, user };
     },
+    // addUserToken: async (parent, { username, email, password }) => {
+    //   const user = await User.create({ username, email, password, verified: false });
+
+    //   // Generate a verification token and send a verification email
+    //   const verificationToken = generateVerificationToken(user);
+    //   await sendVerificationEmail(email, verificationToken);
+
+    //   return { success: true, message: "User registered successfully. Please check your email for verification." };
+    // },
 
     requestUserVerification: async (parent, { userId }) => {
       try {
