@@ -39,7 +39,7 @@ export default function Upload(props){
 
     return (
         <div className="
-            overflow-hidden rounded-full w-12 h-12 bg-orange-500 flex items-center justify-center">
+            overflow-hidden rounded-full w-12 h-12 bg-pink8 flex items-center justify-center">
             {loading ? 
                 <div className='pl-2' >
                 <svg aria-hidden="true" className="w-8 h-8 mr-2 animate-spin fill-pink-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

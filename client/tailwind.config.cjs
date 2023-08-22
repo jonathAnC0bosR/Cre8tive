@@ -10,6 +10,7 @@ export default {
       colors: {
         df4088: "#DF4088",
         353434: "#353434",
+        pink8: "#E04189",
       },
       blur: {
         xs: '1.5px',
