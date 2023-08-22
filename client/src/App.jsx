@@ -68,7 +68,6 @@ function App() {
           </Route>
 
           <Route path="/aboutUs" element={<AboutUs />} />
-          <Route path="/profile" element={<Profile2 />} />
           <Route path="/profile" element={<Profile3 />} />
           <Route path="/BBpost" element={<BBpost />} />
           <Route path="/skills" element={<Skills />} />
