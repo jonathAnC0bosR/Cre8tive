@@ -2,12 +2,12 @@ import backImg from "../../../assets/images/example-img.png";
 import { BiEditAlt } from "react-icons/bi";
 import { RiUserReceivedFill } from "react-icons/ri";
 import { BsFillSendCheckFill } from "react-icons/bs";
-import { BiSolidTimer } from "react-icons/bi";
+import { BiSolidTimer, BiSolidCircle } from "react-icons/bi";
 
 import AnimatedButton from "../../UI/AnimatedButton";
 import ServicesButton from "../UserServices/servicesModal";
 import MainFooter from "../../UI/MainFooter";
-import Photo from '../../../assets/images/Photo-UIUX.png'
+import Photo from "../../../assets/images/Photo-UIUX.png";
 import FormElement from "../UserServices/servicesModal2";
 
 // import { motion } from "framer-motion";
@@ -21,7 +21,6 @@ const BBpost = () => {
         <img src={backImg} className="w-full h-96" alt="Background Image"></img>
         <div className="flex flex-row justify-between px-10 py-8">
           <h1 className="text-3xl">Post Title </h1>
-          <BiEditAlt size={"2em"} color="pink" />
         </div>
         <p className="pr-10 pl-10 pb-10">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
@@ -40,6 +39,19 @@ const BBpost = () => {
           <div>
             <p>Tokio</p>
             <h1 className="text-4xl">Shirota</h1>
+            <div className="flex flex-row text-shadow text-lg">
+              <BiSolidCircle className="text-df4088" />
+              <BiSolidCircle className="text-df4088" />
+              <BiSolidCircle className="text-df4088" />
+              <BiSolidCircle className="text-df4088" />
+              <BiSolidCircle className="text-gray-200" />
+            </div>
+          </div>
+          <div className="mx-auto">
+            <h1 className="text-green-600 text-2xl">Active</h1>
+            <div className="flex justify-center">
+              <BiSolidCircle size={'2em'} className="text-green-600" />
+            </div>
           </div>
           <div></div>
         </div>

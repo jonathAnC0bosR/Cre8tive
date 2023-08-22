@@ -70,7 +70,7 @@ function App() {
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/profile" element={<Profile3 />} />
           <Route path="/BBpost" element={<BBpost />} />
-          <Route path="/skills" element={<Skills />} />
+          <Route path="/jobs" element={<Skills />} />
           <Route path="/profile3" element={<Profile3 />} />
         </Routes>
       </Router>

@@ -136,12 +136,12 @@ console.log("im homeeeee");
                   )}  */}
                   </div>
                   {/* Card */}
-                  <div className="relative rounded-b-lg w-80 overflow-hidden relative ">
+                  <div className="rounded-b-lg w-80 overflow-hidden relative ">
                     {/* Pseudo-element for the blurred background */}
                     {post.imageURL ? (
                       <img
                         src={post.imageURL}
-                        className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner shadow"
+                        className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner"
                       ></img>
                     ) : (
                       <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
