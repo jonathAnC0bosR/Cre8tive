@@ -6,7 +6,7 @@ import {
   LiaCodeSolid,
 } from "react-icons/lia";
 import { BiSolidCircle } from "react-icons/bi";
-import "../Pages/Skills/skillStyles.css";
+//import "../Pages/Skills/skillStyles.css";
 import ProfilePic from "../../assets/images/Profile-circle.png";
 
 const ActiveJobsCard = () => {
