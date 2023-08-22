@@ -21,11 +21,11 @@ const server = new ApolloServer({
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = ['http://localhost:3000', 'https://salty-wave-79315-cd2465ff485d.herokuapp.com/'];
-    if (!origin || allowedOrigins.includes(origin)) {
+    //if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
+    //} else {
+      //callback(new Error('Not allowed by CORS'));
+    //}
   },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow cookies and authentication headers

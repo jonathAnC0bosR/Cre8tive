@@ -53,7 +53,7 @@ const Profile = () => {
     //--- getting logged user ID
     const authService = Auth;
     const user = authService.getProfile().data;
-    const {_id, username} = user;
+    const { _id, username } = user;
 
 
     //url state variable

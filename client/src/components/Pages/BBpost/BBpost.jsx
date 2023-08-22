@@ -11,7 +11,7 @@ import { UPDATE_POST_STATUS } from "../../../utils/mutations";
 
 import AnimatedButton from "../../UI/AnimatedButton";
 import ServicesButton from "../UserServices/servicesModal";
-import MainFooter from "../../UI/MainFooter";
+
 import Photo from "../../../assets/images/Photo-UIUX.png";
 import FormElement from "../UserServices/servicesModal2";
 
@@ -51,20 +51,20 @@ const BBpost = () => {
 
   return (
     // main div
-    <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex flex-col justify-center w-screen">
-      <div className="bg-gradient-to-r from-[#353434] to-[#424141] text-white rounded-lg flex-grow  place-self-center mx-4 xl:w-1/2 lg:w-1/2 md:w-1/2 w-5/6 ">
-        <img src={backImg} className="w-full h-96" alt="Background Image"></img>
+    <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex flex-col justify-center w-screen top-0">
+      <div className="bg-gradient-to-r from-[#353434] to-[#424141] text-white flex flex-col top-0 rounded-lg h-1/4 place-self-center mx-4 xl:w-1/2 lg:w-1/2 md:w-1/2 w-5/6 ">
+        <img src={backImg} className="w-full h-96 object-cover" alt="Background Image"></img>
         <div className="flex flex-row justify-between px-10 py-8">
           <h1 className="text-3xl">{post.bulletPostTitle}</h1>
         </div>
         <p className="pr-10 pl-10 pb-10">{post.bulletText}</p>
       </div>
-      <div className="text-white lg:w-1/2 mt-5 rounded flex-grow place-self-center mx-4 ">
-        <div className="grid grid-cols-3">
+      <div className="text-white lg:w-1/2 mt-5 rounded flex-grow place-self-center mx-4 place-content-center max-h-32">
+        <div className="grid grid-cols-3 justify-items-center items-center px-9">
           <div>
             <img src={Photo} className="w-32 rounded-full" />
           </div>
-          <div className="ml-4">
+          <div className="ml-4 ">
             <p>{user.location}</p>
             <h1 className="text-4xl">{user.username}</h1>
             <div className="flex flex-row text-shadow text-lg">
@@ -94,7 +94,7 @@ const BBpost = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col my-10 bg-gradient-to-r from-[#353434] to-[#424141] place-self-center p-8 rounded-lg mx-4 lg:w-1/2 md:w-1/2 w-5/6"
+        className="flex flex-col my-6 bg-gradient-to-r from-[#353434] to-[#424141] place-self-center p-8 rounded-lg mx-4 lg:w-1/2 md:w-1/2 w-5/6"
       >
         <div className="flex justify-between items-center mb-4 ml-3">
           <div className="flex flex-row items-center">
@@ -120,8 +120,9 @@ const BBpost = () => {
           </div>
           <p className="bg-pink-500 text-white px-4 py-3 rounded-3xl">3W</p>
         </div>
-
+        {!isActive && (
         <AnimatedButton type="submit" styles="bg-pink-500" title="Accept job" />
+        )}
       </form>
     </div>
   );
