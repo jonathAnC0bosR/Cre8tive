@@ -3,7 +3,7 @@ import { LiaCubeSolid } from "react-icons/lia";
 import { LiaCodeSolid } from "react-icons/lia";
 import { LiaEdit } from "react-icons/lia";
 import JobCard from "../../UI/JobCard";
-//import "../Skills/skillStyles.css";
+////import "../Skills/skillStyles.css";
 
 import { useState } from 'react';
 import CardOffer from '../../card/byOffer'

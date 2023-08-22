@@ -20,7 +20,7 @@ const server = new ApolloServer({
 // //-----------
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000'];
+    const allowedOrigins = ['http://localhost:3000', 'https://salty-wave-79315-cd2465ff485d.herokuapp.com/'];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
