@@ -1,42 +1,34 @@
-const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer"); // Import nodemailer for sending emails
+const jwt = require('jsonwebtoken');
 
-const secret = "mysecretshhhhh";
-const expiration = "2h";
-
-const generateVerificationToken = (user) => {
-  const token = jwt.sign({ userId: user._id }, secret, { expiresIn: expiration });
-  return token;
-};
-
-const sendVerificationEmail = async (email, token) => {
-  // Create a transporter using nodemailer
-  const transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-      user: "cre8tiveauth@gmail.com", // Replace with your Gmail email
-      pass: "vvtfudxuguejycys", // Replace with your Gmail password
-    },
-  });
-
-  const mailOptions = {
-    from: "cre8tiveauth@gmail.com", // Replace with your Gmail email
-    to: email,
-    subject: "Account Verification",
-    text: `Please click the following link to verify your account: http://your-app-url/verify/${token}`,
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    console.log(`Verification email sent successfully to ${email}`);
-  } catch (error) {
-    console.error("Error sending verification email:", error);
-  }
-};
+const secret = 'mysecretsshhhhh';
+const expiration = '2h';
 
 module.exports = {
-  // ... Existing authMiddleware and signToken functions ...
+  authMiddleware: function ({ req }) {
+    // allows token to be sent via req.body, req.query, or headers
+    let token = req.body.token || req.query.token || req.headers.authorization;
 
-  generateVerificationToken, // Export the new function
-  sendVerificationEmail, // Export the new function
+    // ["Bearer", "<tokenvalue>"]
+    if (req.headers.authorization) {
+      token = token.split(' ').pop().trim();
+    }
+
+    if (!token) {
+      return req;
+    }
+
+    try {
+      const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      req.user = data;
+    } catch {
+      console.log('Invalid token');
+    }
+
+    return req;
+  },
+  signToken: function ({ firstName, email, _id }) {
+    const payload = { firstName, email, _id };
+
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+  },
 };
