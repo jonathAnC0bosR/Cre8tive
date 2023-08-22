@@ -96,8 +96,7 @@ const typeDefs = `
             userID: ID
         ): Bulletin, 
         acceptBulletin(
-            id: ID!,
-            acceptingUser: ID!) 
+            id: ID!) 
         : Bulletin
         deleteBBPost(bulletinId: ID!): DeleteBulletinResponse!
         addSkillsToBulletinServiceOffer(
@@ -120,4 +119,4 @@ const typeDefs = `
 module.exports = typeDefs;
 
 //b4
-// deleteBBPost(_id:ID!):Bulletin, 
+// deleteBBPost(_id:ID!):Bulletin,

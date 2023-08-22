@@ -231,12 +231,11 @@ const resolvers = {
       }
     },
 
-    acceptBulletin: async (parent, { id, acceptingUser }) => {
+    acceptBulletin: async (parent, { id}) => {
       try {
         const activateBulletin = await Bulletin.findByIdAndUpdate(
           id,
-          { acceptingUser, isActive: true },
-          { new: true }
+          { isActive: true },
         );
         return activateBulletin;
       } catch (err) {

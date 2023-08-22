@@ -5,8 +5,9 @@ import { RiUserReceivedFill } from "react-icons/ri";
 import { BsFillSendCheckFill } from "react-icons/bs";
 import { BiSolidTimer, BiSolidCircle } from "react-icons/bi";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_SINGLE_POST, GET_USER } from "../../../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_SINGLE_POST } from "../../../utils/queries";
+import { UPDATE_POST_STATUS } from "../../../utils/mutations";
 
 import AnimatedButton from "../../UI/AnimatedButton";
 import ServicesButton from "../UserServices/servicesModal";
@@ -19,16 +20,34 @@ import FormElement from "../UserServices/servicesModal2";
 
 const BBpost = () => {
   const { id } = useParams();
-  console.log(id);
+
   const { loading, data } = useQuery(GET_SINGLE_POST, {
     variables: {
       bulletinId: id,
     },
   });
   const post = data?.bulletin || [];
-  const user = {...post.userID};
-  console.log(user.username)
-  
+  const user = { ...post.userID };
+  const isActive = post.isActive;
+
+  const [updateStatus, { error }] = useMutation(UPDATE_POST_STATUS);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Job Accepted");
+
+    try {
+      const { data } = await updateStatus({
+        variables: {
+          bulletinID: id,
+        },
+      });
+
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     // main div
@@ -56,14 +75,27 @@ const BBpost = () => {
               <BiSolidCircle className="text-gray-200" />
             </div>
           </div>
-          <div className="flex items-center flex-col ">
-            <h1 className="text-green-500 text-2xl ">Active</h1>
-            <BiSolidCircle size="1.5em" className="text-green-500 " />
+          <div className="flex items-center flex-col ml-10">
+            {isActive && (
+              <>
+                <h1 className="text-green-500 text-2xl ">Active</h1>
+                <BiSolidCircle size="1.5em" className="text-green-500 " />{" "}
+              </>
+            )}
+            {!isActive && (
+              <>
+                <h1 className="text-slate-500 text-2xl ">Unactive</h1>
+                <BiSolidCircle size="1.5em" className="text-slate-500 " />{" "}
+              </>
+            )}
           </div>
         </div>
       </div>
 
-      <form className="flex flex-col my-10 bg-gradient-to-r from-[#353434] to-[#424141] place-self-center p-8 rounded-lg mx-4 lg:w-1/2 md:w-1/2 w-5/6">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col my-10 bg-gradient-to-r from-[#353434] to-[#424141] place-self-center p-8 rounded-lg mx-4 lg:w-1/2 md:w-1/2 w-5/6"
+      >
         <div className="flex justify-between items-center mb-4 ml-3">
           <div className="flex flex-row items-center">
             <RiUserReceivedFill size={"2.8em"} color="pink" />
@@ -89,7 +121,7 @@ const BBpost = () => {
           <p className="bg-pink-500 text-white px-4 py-3 rounded-3xl">3W</p>
         </div>
 
-        <AnimatedButton styles="bg-pink-500" title="Accept job" />
+        <AnimatedButton type="submit" styles="bg-pink-500" title="Accept job" />
       </form>
     </div>
   );
