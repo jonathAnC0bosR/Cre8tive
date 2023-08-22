@@ -20,14 +20,14 @@ const Header = () => {
         </Link>
 
         {Auth.loggedIn() ? (
-          <div className="col-span-9 ">
+          <div className="col-span-9 items-end">
             <div className="items-center grid grid-cols-9" >
 
-            <Link className="col-start-2 text-center" to={"/profile"}>
+            <Link className="col-start-6 text-center" to={"/profile"}>
               <h1 className="lg:block md:block hidden p-1 hover:bg-pink-600 hover:rounded-full">Profile</h1>
             </Link>
 
-            <Link className="col-start-5 text-center" to={"/skills"}>
+            <Link className="col-start-7 text-center" to={"/skills"}>
               <h1 className="lg:block md:block hidden p-1 hover:bg-orange-500 hover:rounded-full">Search</h1>
             </Link>
 

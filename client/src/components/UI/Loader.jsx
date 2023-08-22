@@ -21,7 +21,7 @@ function Loader({ isLoading }) {
             animate="visible"
             exit="exit"
             variants={fadeInOut}
-            className="fixed top-0 left-0 w-full h-full bg-center bg-repeat"
+            className="fixed top-0 left-0 w-full h-full bg-center bg-repeat z-50"
             style={{ backgroundImage: loaderBg }}
           />
 
@@ -34,7 +34,7 @@ function Loader({ isLoading }) {
             animate="visible"
             exit="exit"
             variants={fadeInOut}
-            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-80"
           />
         </>
       )}

@@ -93,7 +93,7 @@ function App() {
           <Route path="/BBpost/:id" element={<BBpost />} />
           <Route path="/skills" element={<Skills />} />
         </Routes>
-        <div className="w-full bg-zinc-900">
+        <div className="w-full bg-zinc-950">
           <MainFooter />
         </div>
       </Router>
