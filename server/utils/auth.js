@@ -1,30 +1,42 @@
 const jwt = require("jsonwebtoken");
-const secret = "mysecretshhhhh";
+const nodemailer = require("nodemailer"); // Import nodemailer for sending emails
 
+const secret = "mysecretshhhhh";
 const expiration = "2h";
 
+const generateVerificationToken = (user) => {
+  const token = jwt.sign({ userId: user._id }, secret, { expiresIn: expiration });
+  return token;
+};
+
+const sendVerificationEmail = async (email, token) => {
+  // Create a transporter using nodemailer
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: "cre8tiveauth@gmail.com", // Replace with your Gmail email
+      pass: "vvtfudxuguejycys", // Replace with your Gmail password
+    },
+  });
+
+  const mailOptions = {
+    from: "cre8tiveauth@gmail.com", // Replace with your Gmail email
+    to: email,
+    subject: "Account Verification",
+    text: `Please click the following link to verify your account: http://your-app-url/verify/${token}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log(`Verification email sent successfully to ${email}`);
+  } catch (error) {
+    console.error("Error sending verification email:", error);
+  }
+};
+
 module.exports = {
-  authMiddleware: function ({ req }) {
-    let token = req.body.token || req.query.token || req.headers.authorization;
+  // ... Existing authMiddleware and signToken functions ...
 
-    if (req.header.authorization) {
-      token = token.split(" ").pop().trim();
-    }
-    if (!token) {
-      return req;
-    }
-
-    try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
-    } catch {
-      console.log("Invalid token");
-    }
-    return req;
-  },
-
-  signToken: function ({ email, username, _id }) {
-    const payload = { email, username, _id };
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-  },
+  generateVerificationToken, // Export the new function
+  sendVerificationEmail, // Export the new function
 };

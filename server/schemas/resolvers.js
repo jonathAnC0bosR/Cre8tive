@@ -1,6 +1,6 @@
 const {AuthenticationError} = require('apollo-server-express')
-const {Portfolio, User, Bulletin, Skill, Service}  = require("../models");
-const { signToken } = require("../utils/auth");
+const { Portfolio, User, UserVerification, Bulletin, Skill, Service } = require("../models");
+const { signToken, generateVerificationToken, sendVerificationEmail } = require("../utils/auth");
 
 const resolvers = {
   Bulletin: {
@@ -49,7 +49,9 @@ const resolvers = {
         throw new Error('Error fetching profile image');
       }
     },
-
+    // users: async () => {
+    //   return User.find();
+    // },
     getProfileImg: async (parent, args) => {
       try {
         const user = await User.findById(args.id).populate('skills');
@@ -115,9 +117,52 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
-      return { token, user };
+      const user = await User.create({ username, email, password, verified: false });
+
+      // Generate a verification token and send a verification email
+      const verificationToken = generateVerificationToken(user);
+      await sendVerificationEmail(email, verificationToken);
+
+      return { success: true, message: "User registered successfully. Please check your email for verification." };
+    },
+
+    requestUserVerification: async (parent, { userId }) => {
+      try {
+        const user = await User.findById(userId);
+        if (!user) {
+          throw new AuthenticationError("User not found");
+        }
+
+        const verificationToken = generateVerificationToken(user);
+        await sendVerificationEmail(user.email, verificationToken);
+
+        return { success: true, message: "Verification email sent successfully." };
+      } catch (error) {
+        throw new Error('Failed to request user verification');
+      }
+    },
+
+    verifyUser: async (parent, { token }) => {
+      try {
+        const verifiedUserId = UserVerification.verifyToken(token);
+        if (!verifiedUserId) {
+          throw new AuthenticationError("Invalid verification token");
+        }
+
+        const user = await User.findById(verifiedUserId);
+        if (!user) {
+          throw new AuthenticationError("User not found");
+        }
+
+        user.verified = true;
+        await user.save();
+
+        await UserVerification.deleteToken(token);
+
+        return { success: true, message: "User verified successfully." };
+      } catch (error) {
+        throw new Error('Failed to verify user');
+      }
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });

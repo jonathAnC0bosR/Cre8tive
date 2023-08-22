@@ -58,6 +58,10 @@ const typeDefs = `
         token: ID!
         user: User
     }
+    type VerificationResult {
+        success: Boolean!
+        message: String!
+    }
 
     type Query {
         portfolioPosts: [Portfolio]
@@ -73,6 +77,8 @@ const typeDefs = `
     }
 
     type Mutation {
+        requestUserVerification(userId: ID!): VerificationResult
+        verifyUser(token: String!): VerificationResult
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         updateProfileImg(id: ID!, profileImage: String!): User
