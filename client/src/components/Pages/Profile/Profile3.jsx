@@ -9,6 +9,7 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 
 
 import { useState, useEffect } from 'react';
+import { Navigate, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from '@apollo/client';
 import { UPDATE_PROFILEIMG} from '../../../utils/mutations'
 import { GET_PROFILEIMG, GET_USER } from '../../../utils/queries'
@@ -65,7 +66,12 @@ const Profile = () => {
         console.log("data from query: ", loading , userData)
         console.log(userData.aboutMe)
 
-
+        useEffect(() => {
+            if (!loading && data && data.getProfileImg) {
+              const profileImgURL = data.getProfileImg.profileImage;
+              setImage(profileImgURL);
+            }
+          }, [loading, data]);
 
     // useEffect(()=>{
     //     if (data && data.getProfileImg) {
@@ -104,6 +110,15 @@ const Profile = () => {
 
     }, [URL]);
 
+    const navigate = useNavigate();
+    const handleEditProfile = async () =>{
+        try {
+            navigate('/editProfile')
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
 
     return (
         <div id="profile div" className='pt-[70px] bg-gradient-to-r from-[#0C0F11] to-[#22282D]'>
@@ -134,7 +149,7 @@ const Profile = () => {
                     <div className='profileInfo flex flex-col items-center justify-center my-5'>
                         <h1  > {username} </h1>
                         <p className='mb-7 text-orange-500 font-bold'> {userData.occupation} </p>
-                        <button className='bg-white text-orange-500 font-bold rounded-full py-1 px-2 text-sm' >Edit Profile </button>
+                        <button onClick={handleEditProfile} className='bg-white text-orange-500 font-bold rounded-full py-1 px-2 text-sm' >Edit Profile </button>
                         {/* <a onClick={openEditProfileModal}> Edit profile</a> */}
 
                     
