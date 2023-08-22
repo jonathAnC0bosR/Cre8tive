@@ -33,6 +33,7 @@ const resolvers = {
     portfolioPosts: async () => {
       return Portfolio.find();
     },
+
     getUsers: async (parent, args) => {
       try {
         const allUsers = await User.find();

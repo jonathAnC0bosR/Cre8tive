@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 // import { motion } from "framer-motion";
 // import { Link } from "react-router-dom";
@@ -12,10 +12,10 @@ import AnimatedButton from "../../UI/AnimatedButton";
 import img1 from "../../../assets/images/colorPiece1.png";
 import img2 from "../../../assets/images/colorPiece2.png";
 
-
 const Login = () => {
   const [passwordIsShown, setPasswordIsShown] = useState(false);
   const togglePassword = () => setPasswordIsShown(!passwordIsShown);
+  const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
     email: "",
@@ -41,10 +41,22 @@ const Login = () => {
       });
 
       Auth.login(data.login.token);
+      if (data.login.token) {
+        navigate("/home");
+      }
     } catch (e) {
       console.error(e);
     }
   };
+
+/*   const isLoggedIn = Auth.loggedIn();
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/home");
+    }
+  },[isLoggedIn]
+  ); */
+
 
 
   return (
