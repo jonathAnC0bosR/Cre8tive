@@ -4,5 +4,6 @@ const Bulletin = require('./Bulletin');
 const Service = require('./Service');
 const Image = require('./Image');
 const Skill = require('./Skill');
+const UserVerification = require('./UserVerification');
 
-module.exports = {Portfolio, Bulletin, User, Service, Image, Skill };
+module.exports = {Portfolio, Bulletin, User, UserVerification, Service, Image, Skill };

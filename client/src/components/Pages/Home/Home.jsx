@@ -32,7 +32,7 @@ const Home = (props) => {
   const bbPosts = data?.bulletinPosts || [];
   console.log("data from query: ", loading, bbPosts);
   // const isUserAuthor = _id === bbPosts.userID._id;
-
+console.log("im homeeeee");
   return (
     // main div
     <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex flex-col">

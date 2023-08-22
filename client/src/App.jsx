@@ -19,7 +19,7 @@ import Profile3 from "./components/Pages/Profile/Profile3";
 
 import BBpost from "./components/Pages/BBpost/BBpost";
 import CreateBBpost from "./components/Pages/BBpost/CreateBBpost";
-import Skills from "./components/Pages/Skills/Skills";
+import Skills from "./components/Pages/Skills/Skills1";
 import Home from "./components/Pages/Home/Home";
 import ProtectedRoutes from "./ProtectedRoutes";
 import AboutUs from "./components/Pages/AboutUs/AboutUs";
