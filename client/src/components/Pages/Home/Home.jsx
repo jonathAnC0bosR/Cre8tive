@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import ActiveJobsCard from "../../UI/ActiveJobsCard";
 import "../Home/HomeStyles.css";
 import "../Skills/SkillStyles.css";
+import { Link } from "react-router-dom";
 
 import Auth from "../../../utils/auth";
 import { useQuery } from "@apollo/client";
@@ -16,7 +17,7 @@ const Home = () => {
   const authService = Auth;
   const user = authService.getProfile().data;
   const { _id, username } = user;
-  console.log("--", username)
+  console.log("--", username);
 
   const { loading, data } = useQuery(GET_BBPOSTS);
   const bbPosts = data?.bulletinPosts || [];
@@ -25,14 +26,13 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const handleCreatePost = async () =>{
+  const handleCreatePost = async () => {
     try {
-        navigate('/CreateBBpost')
+      navigate("/CreateBBpost");
     } catch (err) {
-        console.error(err)
+      console.error(err);
     }
-}
-
+  };
 
   return (
     // main div
@@ -77,13 +77,16 @@ const Home = () => {
           <p className="text-white text-lg">
             Show your skills and develop tasks, get known in the cre8ive scene!
           </p>
-          <button onClick={handleCreatePost} className="bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative">
+          <button
+            onClick={handleCreatePost}
+            className="bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative"
+          >
             <div className="flex items-center justify-center">Start a Post</div>
           </button>
         </div>
 
         {/* Suggested Profiles */}
-        <AllUsers  />
+        <AllUsers />
 
         {/* Searching for a Job */}
         <div>
@@ -110,14 +113,12 @@ const Home = () => {
               <div>Loading...</div>
             ) : (
               bbPosts.map((post) => (
-                <div key={post.id} className="flex flex-col mb-5 mx-2">
+                <div key={post._id} className="flex flex-col mb-5 mx-2">
                   <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
                     <h3>{post.bulletPostTitle}</h3>
                   </div>
 
-
                   <div className="relative rounded-b-lg w-80 overflow-hidden relative py-5 px-2 ">
-
                     {post.imageURL ? (
                       <img
                         src={post.imageURL}
@@ -130,7 +131,6 @@ const Home = () => {
                     <div className="relative">
                       <div className="mx-4">
                         <div className="flex mb-8 flex-row items-center text-white mx-5 mt-5 mb-1">
-
                           {/* User Profile Picture */}
                           <div className="overflow-hidden rounded-full w-16 h-16 ">
                             <img
@@ -191,11 +191,13 @@ const Home = () => {
                               )}
                           </div>
                         </div>
-
                         <div className="flex justify-end">
-                          <button className="bg-df4088 text-white text-lg font-bold px-7 py-2 m-4 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow">
-                            More...
-                          </button>
+                          <Link to={`/BBpost/${post._id}`}>
+                            {" "}
+                            <button className="bg-df4088 text-white text-lg font-bold px-7 py-2 m-4 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow">
+                              More...
+                            </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -204,9 +206,6 @@ const Home = () => {
               ))
             )}
           </div>
-
-
-
         </div>
         {/*-------------------- SE ACABA CARD----------------  */}
       </div>

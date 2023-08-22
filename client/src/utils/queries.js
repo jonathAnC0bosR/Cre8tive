@@ -78,6 +78,7 @@ export const GET_BBPOSTS = gql`
 query Query {
   bulletinPosts {
     bulletPostTitle
+    _id
     userID {
       _id
       location
@@ -96,6 +97,20 @@ query Query {
   }
 }
 `;
+
+export const GET_SINGLE_PROFILE = gql `
+query Bulletin($bulletinId: ID!) {
+  bulletin(id: $bulletinId) {
+    _id
+    bulletPostTitle
+    bulletText
+    isActive
+    userID {
+      username
+      location
+    }
+  }
+}`
 
 export const GET_ALLUSERS = gql`
 query Query {
