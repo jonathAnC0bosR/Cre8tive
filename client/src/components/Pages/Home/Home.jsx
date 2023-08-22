@@ -6,6 +6,7 @@ import {
 } from "react-icons/lia";
 import { BiPencil, BiSolidCircle } from "react-icons/bi";
 import { MdWavingHand } from "react-icons/md";
+import { Navigate, useNavigate } from "react-router-dom";
 import ActiveJobsCard from "../../UI/ActiveJobsCard";
 import Pana1 from "../../../assets/images/Pana-1.png";
 import Pana2 from "../../../assets/images/Pana-2.png";
@@ -13,6 +14,7 @@ import Pana3 from "../../../assets/images/Pana-3.png";
 import Pana4 from "../../../assets/images/Pana-4.png";
 import "../../../../src/index.css";
 import AnimatedButtonHome from "../../UI/AnimatedButtonHome";
+import { Link } from "react-router-dom";
 import Auth from "../../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { GET_BBPOSTS } from "../../../utils/queries";

@@ -269,7 +269,7 @@ h1 {
 .editpro-banner {
     width: 100%; /* Full width */
     height: 200px; /* Adjust based on your needs */
-    /* background-image: url('./src/assets/images/banner.jpg'); */
+    background-image: url('./src/assets/images/banner.jpg');
     background-size: cover; /* Ensures the image is not distorted */
     background-repeat: no-repeat;
     background-position: center; /* Centers the image */

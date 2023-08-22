@@ -206,7 +206,6 @@ console.log("URL: ", URL)
               />
             </div>
           </div>
-
           <div className="flex lg:justify-end md:justify-end justify-center lg:pr-7 md:pr-4">
             <div className="mx-4">
               <AnimatedButtonCancel
