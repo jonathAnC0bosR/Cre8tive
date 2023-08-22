@@ -19,6 +19,7 @@ import { SiTaichigraphics } from "react-icons/si";
 import { Button } from 'flowbite-react';
 import { HiAdjustments, HiCloudDownload, HiUserCircle } from 'react-icons/hi';
 
+
 const CreateBBpost = () => {
 
     //--- getting logged user ID
@@ -32,16 +33,21 @@ const CreateBBpost = () => {
         setURL(val);
     };
 
+    //--- getting skills from DB
+
+    const [number, setNumber] = useState(null);
+    const [timeUnit, setTimeUnit] = useState(null);
+
     const [selectedSkillNeededID, setSelectedSkillNeededID] = useState(null);
     const [selectedSkillOfferedID, setSelectedSkillOfferedID] = useState(null);
     // Fetch the data from your database using GET_SKILLS query
     const { loading, data } = useQuery(GET_SKILLS);
     // render a text if the data is loading
-    if (loading) return <div>Loading...</div>;
+    // if (loading) return <p>Loading...</p>;
     // make and empty array if skills is empty
     const skills = data ? data.skills : [];
 
-    console.log(skills);
+    // console.log(skills);
 
     const handleSkillNeededSelect = (skillID) => {
         setSelectedSkillNeededID(skillID);
@@ -81,6 +87,7 @@ const CreateBBpost = () => {
         // console.log(URL);
         const title = e.target[0].value;
         const text = e.target[1].value;
+        const deliveryTime = `${number}${timeUnit}`;
 
         const created = new Date().toISOString();
         try {
@@ -91,7 +98,7 @@ const CreateBBpost = () => {
                     userId: _id,
                     createdAt: created,
                     imageUrl: URL,
-                    deliveryTime: null,
+                    deliveryTime: deliveryTime,
                     serviceNeed: selectedSkillNeededID,
                     serviceOffer: selectedSkillOfferedID
                 }
@@ -120,13 +127,13 @@ const CreateBBpost = () => {
                     <div>
                         {/* border-2 border-pink-600 */}
                         <div className="bg-[#353535] rounded-lg
-                     grid-cols-2 flex items-center p-2 m-3 " >
+                     grid-cols-6 flex items-center p-2 m-3 " >
                             {/* <div className="col-span-1" >
                                 <img src={icon3} className="" />
                             </div> */}
                             <div className="flex w-full justify-between align-middle text-center px-4 col-span-3">
-                                <h2 className="flex text-white font-bold text-base min-w-fit" >Service in Need</h2>
-                                <Button.Group className="flex justify-center items-center bg-353434 min-w-fit">
+                                <h2 className="flex text-white font-bold md:text-base text-sm  my-2 col-span-2" >Service in Need</h2>
+                                <Button.Group className="flex justify-center items-center bg-353434 min-w-fit col-span-4">
                                     {skills.map(skill => (
                                         <Button
                                             key={skill._id}
@@ -149,7 +156,7 @@ const CreateBBpost = () => {
                                 <img src={icon2} className="" />
                             </div> */}
                             <div className="flex w-full justify-between align-middle text-center px-4 col-span-3">
-                                <h2 className="text-white font-bold text-base">Service Offered</h2>
+                                <h2 className="text-white font-bold md:text-base text-sm my-2 ">Service Offered</h2>
                                 <Button.Group className="flex justify-center items-center bg-353434 min-w-fit">
                                     {skills.map(skill => (
                                         <Button
@@ -167,15 +174,47 @@ const CreateBBpost = () => {
                             </div>
 
                         </div>
-                        <div className="bg-[#353535] rounded-lg
-                    grid grid-cols-6 flex items-center p-2 m-3 " >
+                        <div className="bg-[#353535]    rounded-lg
+                         grid-cols-2 flex items-center p-2 m-3 " >
                             {/* <div className="col-span-1" >
                                 <img src={icon1} className="" />
                             </div> */}
                             <div className="col-span-3  text-center">
-                                <h2 className="text-white font-bold text-base">Delivery Time</h2>
+                                <h2 className="text-white font-bold md:text-base text-sm w-auto">Delivery Time</h2>
                             </div>
-                            <button className="col-span-1 bg-teal-500  h-10  mx-auto w-32 text-white rounded-full" >Select</button>
+                            <div className="flex w-full justify-end align-middle text-center px-4 col-span-3">
+                                <input
+                                    type="number"
+                                    className="w-20 rounded-lg bg-[#353535] text-white my-2 mx-2 h-full" 
+                                    value={number}
+                                    onChange={(e) => setNumber(e.target.value)}
+                                    placeholder="#"
+                                />
+
+                                <Button.Group className="flex justify-center items-center bg-353434 min-w-fit text-sm">
+                                    <Button
+                                        color="pink"
+                                        onClick={() => setTimeUnit('d')}
+                                        className={timeUnit === 'd' ? 'bg-pink-important text-xs' : 'bg-gray-important text-xs text-white'}
+                                    >
+                                        Days
+                                    </Button>
+                                    <Button
+                                        color="pink"
+                                        onClick={() => setTimeUnit('w')}
+                                        className={timeUnit === 'w' ? 'bg-pink-important text-xs' : 'bg-gray-important text-xs text-white'}
+                                    >
+                                        Weeks
+                                    </Button>
+                                    <Button
+                                        color="pink"
+                                        onClick={() => setTimeUnit('m')}
+                                        className={timeUnit === 'm' ? 'bg-pink-important text-xs' : 'bg-gray-important text-xs text-white'}
+                                    >
+                                        Months
+                                    </Button>
+                                </Button.Group>
+                            </div>
                         </div>
 
 
@@ -189,7 +228,7 @@ const CreateBBpost = () => {
                             />
                         </div>
 
-                        <div className="absolute top-10 right-[120px]" >
+                        <div className="absolute top-10 center" >
                             <UploadPencil updateProp={updateStateURL} />
                         </div>
                     </div>

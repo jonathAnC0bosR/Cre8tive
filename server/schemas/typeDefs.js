@@ -66,6 +66,8 @@ const typeDefs = `
     type Query {
         portfolioPosts: [Portfolio]
         bulletinPosts: [Bulletin]
+        bulletin(id:ID!): Bulletin
+        userID(id: ID!): User
         getUsers: [User]
         getUser(id: ID!): User
         getProfileImg(id: ID!): User
@@ -94,8 +96,7 @@ const typeDefs = `
             userID: ID
         ): Bulletin, 
         acceptBulletin(
-            id: ID!,
-            acceptingUser: ID!) 
+            id: ID!) 
         : Bulletin
         deleteBBPost(bulletinId: ID!): DeleteBulletinResponse!
         addSkillsToBulletinServiceOffer(
@@ -118,4 +119,4 @@ const typeDefs = `
 module.exports = typeDefs;
 
 //b4
-// deleteBBPost(_id:ID!):Bulletin, 
+// deleteBBPost(_id:ID!):Bulletin,

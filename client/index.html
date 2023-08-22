@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cre8tive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Poppins&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <!-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> -->
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cre8tive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="root"></div>
+  <!-- Background Loader -->
+  <div id="background-loader"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('./src/assets/images/loader-bg.gif') repeat center center;">
+  </div>
+
+  <!-- Primary Loader -->
+  <img id="primary-loader" src="./src/assets/images/loader.gif" alt="Loading..."
+    style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+
+  <!-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> -->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

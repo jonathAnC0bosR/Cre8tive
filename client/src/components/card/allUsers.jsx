@@ -28,7 +28,7 @@ const AllUsers = () =>{
                                 />
                             </div>
                             <div className='flex items-center justify-center ' >
-                                <h1 className='text-white' >{user.username} </h1>
+                                <h1 className='text-pink-600 bg-white rounded-full px-1 mt-1' >{user.username} </h1>
                             </div>
                         </div>
                     ))

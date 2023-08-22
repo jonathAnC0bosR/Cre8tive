@@ -40,7 +40,7 @@ const Skills = () => {
               {/* Card */}
               <div className="relative rounded-b-lg w-72 overflow-hidden ">
                 {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
+                <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner"></div>
                 {/* Content */}
                 <JobCard />
               </div>
@@ -67,7 +67,7 @@ const Skills = () => {
               {/* Card */}
               <div className="relative rounded-b-lg w-72 overflow-hidden ">
                 {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-Illustration.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
+                <div className="absolute inset-0 bg-[url('assets/images/Photo-Illustration.png')] bg-cover bg-center filter blur-xs shadow-inner"></div>
                 {/* Content */}
                 <JobCard />
               </div>
@@ -93,7 +93,7 @@ const Skills = () => {
               {/* Card */}
               <div className="relative rounded-b-lg w-72 overflow-hidden  ">
                 {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-3D.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
+                <div className="absolute inset-0 bg-[url('assets/images/Photo-3D.png')] bg-cover bg-center filter blur-xs shadow-inner "></div>
                 {/* Content */}
                 <JobCard />
               </div>
@@ -117,7 +117,7 @@ const Skills = () => {
               {/* Card */}
               <div className="relative rounded-b-lg w-72 overflow-hidden ">
                 {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-UIUX.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
+                <div className="absolute inset-0 bg-[url('assets/images/Photo-UIUX.png')] bg-cover bg-center filter blur-xs shadow-inner"></div>
                 {/* Content */}
                 <JobCard />
               </div>
@@ -143,7 +143,7 @@ const Skills = () => {
               {/* Card */}
               <div className="relative rounded-b-lg w-72 overflow-hidden ">
                 {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-GDesign.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
+                <div className="absolute inset-0 bg-[url('assets/images/Photo-GDesign.png')] bg-cover bg-center filter blur-xs shadow-inner "></div>
                 {/* Content */}
                 <JobCard />
               </div>

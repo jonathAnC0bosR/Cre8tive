@@ -142,3 +142,11 @@ mutation AddSkillsToBulletinServiceOffer($bulletinId: ID!, $skillIds: [ID!]!) {
 // {  "bulletinId": null,
 //   "skillIds": nulll
 // }
+
+export const UPDATE_POST_STATUS = gql `
+mutation Mutation($bulletinID: ID!) {
+  acceptBulletin(id: $bulletinID) {
+    isActive
+  }
+}
+`
