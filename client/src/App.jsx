@@ -1,4 +1,4 @@
-  import {
+import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
@@ -13,7 +13,7 @@ import "./index.css";
 import Landing from "./components/landing/landing";
 import Signup from "./components/Pages/Signup/Signup";
 import EditProfile from "./components/Pages/Profile/EditProfile";
-
+import MainFooter from "./components/UI/MainFooter";
 
 import Profile3 from "./components/Pages/Profile/Profile3";
 
@@ -23,9 +23,7 @@ import Skills from "./components/Pages/Skills/Skills1";
 import Home from "./components/Pages/Home/Home";
 import ProtectedRoutes from "./ProtectedRoutes";
 
-
 import AboutUs from "./components/Pages/AboutUs/AboutUs";
-
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -45,7 +43,6 @@ const client = new ApolloClient({
   // uri: '/graphql', //---------------------------------
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  
 });
 
 function App() {
@@ -61,17 +58,20 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
-          <Route element = {<ProtectedRoutes/>}>
+          <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
             <Route path="/CreateBBpost" element={<CreateBBpost />} />
-            <Route path= '/editProfile' element={<EditProfile />}  />
+            <Route path="/editProfile" element={<EditProfile />} />
           </Route>
 
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/profile" element={<Profile3 />} />
-          <Route path="/BBpost" element={<BBpost />} />
+          <Route path="/BBpost/:id" element={<BBpost />} />
           <Route path="/skills" element={<Skills />} />
         </Routes>
+        <div className="w-full bg-zinc-900">
+          <MainFooter />
+        </div>
       </Router>
     </ApolloProvider>
   );
