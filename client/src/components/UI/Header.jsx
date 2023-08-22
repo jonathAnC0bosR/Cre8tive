@@ -23,16 +23,16 @@ const Header = () => {
           <div className="col-span-9 ">
             <div className="items-center grid grid-cols-9" >
 
-            <Link className="col-start-2 text-center" to={"/profile"}>
-              <h1 className="lg:block md:block hidden p-1 hover:bg-pink-600 hover:rounded-full">Profile</h1>
-            </Link>
+              <Link className="col-start-2 text-center" to={"/profile"}>
+                <h1 className="lg:block md:block hidden p-1 hover:bg-pink-600 hover:rounded-full">Profile</h1>
+              </Link>
 
-            <Link className="col-start-5 text-center" to={"/skills"}>
-              <h1 className="lg:block md:block hidden p-1 hover:bg-orange-500 hover:rounded-full">Search</h1>
-            </Link>
+              <Link className="col-start-5 text-center" to={"/skills"}>
+                <h1 className="lg:block md:block hidden p-1 hover:bg-orange-500 hover:rounded-full">Search</h1>
+              </Link>
 
-            <h1 onClick={logout} to={"/"} className="lg:block md:block hidden col-end-10 col-span-2 text-center 
-            p-1 w-1/2 hover:bg-teal-500 hover:rounded-full">Logout</h1>
+              <h1 onClick={logout} to={"/"} className="lg:block md:block hidden col-end-10 col-span-2 text-center 
+              p-1 w-1/2 hover:bg-teal-500 hover:rounded-full">Logout</h1>
             </div>
           </div>
         ) : (

@@ -20,12 +20,12 @@ import EditProfile from "./components/Pages/Profile/EditProfile";
 import MainFooter from "./components/UI/MainFooter";
 
 import Profile3 from "./components/Pages/Profile/Profile3";
-
 import BBpost from "./components/Pages/BBpost/BBpost";
 import CreateBBpost from "./components/Pages/BBpost/CreateBBpost";
 import Skills from "./components/Pages/Skills/Skills1";
 import Home from "./components/Pages/Home/Home";
 import ProtectedRoutes from "./ProtectedRoutes";
+import Card from "./components/card/byNeed";
 
 import AboutUs from "./components/Pages/AboutUs/AboutUs";
 
@@ -88,15 +88,18 @@ function App() {
             <Route path="/editProfile" element={<EditProfile />} />
           </Route>
 
-          <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="/contactUs" element={<AboutUs />} />
           <Route path="/profile" element={<Profile3 />} />
           <Route path="/BBpost/:id" element={<BBpost />} />
           <Route path="/skills" element={<Skills />} />
+          <Route path="/card" element={<Card title={"UI/UX"}/>} />
+
         </Routes>
         <div className="w-full bg-zinc-900">
           <MainFooter />
         </div>
       </Router>
+
     </ApolloProvider>
   );
 }

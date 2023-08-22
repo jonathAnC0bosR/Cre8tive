@@ -1,26 +1,21 @@
-import SearchBar from "../../UI/SkillsSearchBar";
-import { BsFire } from "react-icons/bs";
-import { LiaCameraSolid } from "react-icons/lia";
-import { LiaPencilAltSolid } from "react-icons/lia";
 import { LiaCubeSolid } from "react-icons/lia";
-import { LiaCodeSolid } from "react-icons/lia";
-import { LiaEdit } from "react-icons/lia";
-import JobCard from "../../UI/JobCard";
 import "../Skills/skillStyles.css";
 import { useState } from 'react';
-import ButtonGroup from "flowbite-react/lib/esm/components/Button/ButtonGroup";
+import CardOffer from '../../card/byOffer'
+import CardNeed from '../../card/byNeed'
+import Sock from '../../card/sock'
 
 
 const Skills = () => {
-  const [searchType, setSearchType] = useState('offers'); // 'offers' by default
-  const [selectedButton, setSelectedButton] = useState(1);
+  const [searchType, setSearchType] = useState(["lucas", "Matt"]);
 
-  const handleButtonClick = (buttonNumber) => {
-    setSelectedButton(buttonNumber);
-    console.log("selected button: ", selectedButton)
-  };
-
-  const skills =  [["Photo","1"], ["Illustration","2"],  ["UI/UX",3],  ["Graphic Design",4],  ["3D Design", 2 ]];
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const drop1 = e.target.querySelector("#drop1").value;
+    const selectedOption = e.target.querySelector("#skills").value;
+    console.log(drop1, selectedOption)
+    setSearchType([drop1, selectedOption]);
+  }
 
   return (
     // main div
@@ -34,35 +29,58 @@ const Skills = () => {
         </div>
 
         <div className="rounded-xl p-5 m-4 border-2 border-gray-300	 " >
-          <form className="flex flex-row " > 
-          <div className="flex justify-center items-center basis-1/4   "> 
-            <button
-              className={`${
-                searchType === 'offers'
-                  ? 'bg-df4088 text-white'
-                  : 'bg-gray-300 text-gray-600'
-              } py-2 px-4 rounded-l`}
-              onClick={() => setSearchType('offers')}>
-              Offers
-            </button>
-            <button
-              className={`${
-                searchType === 'needs'
-                  ? 'bg-df4088 text-white'
-                  : 'bg-gray-300 text-gray-600'
-              } py-2 px-4 rounded-r`}
-              onClick={() => setSearchType('needs')}>
-              Needs
-            </button>
-          </div>
-          <div className="flex" >
+          <form className="flex flex-row items-center justify-center " onSubmit={handleSubmit} > 
+            {/* <div className="flex justify-center items-center basis-1/3   "> 
+              <button type="button"
+                className={`${
+                  searchType === 'offer'
+                    ? 'bg-df4088 text-white py-2.5 px-4  '
+                    : 'bg-white text-gray-600 py-2 px-4'
+                } rounded-l`}
+                // onClick={() => setSearchType('offer')}
+                >
+                Offers
+              </button>
+              <button type="button"
+                className={`${
+                  searchType === 'need'
+                    ? 'bg-df4088 text-white py-2.5 px-4  '
+                    : 'bg-white text-gray-600 py-2 px-4'
+                } rounded-r`}
+                // onClick={() => setSearchType('need')}
+                >
+                Needs
+              </button>
+            </div> */}
+            
+            <div className="basis-1/3 flex items-center justify-center " >
+              <select id="drop1" className="rounded-full text-pink-600 font-bold px-12
+              border border-pink-600 focus:ring-2 focus:ring-df4088 focus:border-transparent" >
+                <option value="offer" className="text-center" >Offers</option>
+                <option value="need" className="text-center">Needs</option>
+              </select>
+            </div>
+
+            <div className="basis-1/3 flex items-center justify-center " >
+              <select id="skills" className="rounded-full text-pink-600 font-bold
+              border border-pink-600 focus:ring-2 focus:ring-df4088 focus:border-transparent" >
+                <option value="UI/UX" className="text-center" >UI/UX</option>
+                <option value="Illustration" className="text-center">Illustration</option>
+                <option value="Photo" className="text-center">Photo</option>
+                <option value="Graphic Design" className="text-center">Graphic Design</option>
+                <option value="3D Design" className="text-center">3D Design</option>
+              </select>
+            </div>
+
+
+            {/* <div className="flex" >
             <button
               className={`${
                 selectedButton === 1  ? 'bg-df4088 text-white' : 'bg-gray-200 text-df4088 '
               } py-2 px-4 mx-2 rounded-full`}
               onClick={() => handleButtonClick(1)}
             >
-              Photo
+              UI/UX
             </button>
             <button
               className={`${
@@ -78,7 +96,7 @@ const Skills = () => {
               } py-2 px-4 mx-2 rounded-full`}
               onClick={() => handleButtonClick(3)}
             >
-              UI/UX
+              Photo
             </button>
             <button
               className={`${
@@ -96,167 +114,72 @@ const Skills = () => {
             >
               3D Design
             </button>
+            </div> */}
 
+          <div className="basis-1/3 flex justify-center" >
+          <button className=" text-pink-600 font-bold text-xl  
+          h-10 w-1/3 rounded-full  mx-auto  bg-white  ">
+            Find</button>
           </div>
-          <button className=" text-pink-600 font-bold bg-white h-10  mx-auto w-32 rounded-full"  >Create Post!</button>
           </form>
         </div>
       </div>
       <hr className="my-4 border-t border-gray-300 mx-10" />
-      {/* <div className="flex justify-center items-center mt-4">
-        {
-          skills.map((arr, index)=>(
-            
-            <button
-              key={arr._id}
-              className={`${
-                selectedButton === num  ? 'bg-df4088 text-white' : 'bg-gray-200 text-df4088 '
-              } py-2 px-4 mx-2 rounded-full`}
-              onClick={() => handleButtonClick(num)}
-            >
-              {arr[0]}
-            </button>
-          ))
-        }
-      </div> */}
-      <div className="flex items-center m-16 gap-2">
-            <LiaCameraSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl font-bold">
-              Photography
-            </h2>
-      </div>
 
-      <div className="flex flex-col p-8 rounded-lg mx-4 sm:m-4 md:mt-0 md:mb-5 md:mx-12">
-        {/* Photography */}
-        <div className="mb-8">
-          {/* Title of the section with icon */}
-          <div className="flex items-center mb-4 gap-2">
-            <LiaCameraSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl font-bold">
-              Photography
-            </h2>
-          </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Illustration */}
-        <div className="mb-8">
-          {/* Title of the section with icon */}
-          <div className="flex items-center mb-4 gap-2">
-            <LiaPencilAltSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl font-bold">
-              Illustration
-            </h2>
-          </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-Illustration.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 3D Design */}
-        <div className="mb-8">
-          <div className="flex items-center mb-4 gap-2">
+      <div>
+      {searchType[0] === "offer" ? (
+        <div>
+          <div className="flex items-center ml-28 mt-10  mb-6 gap-2">
             <LiaCubeSolid size={"3em"} className="text-df4088" />
             <h2 className="text-white text-xl font-bold">
-              3D Design
+              Posts that
             </h2>
-          </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden  ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-3D.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* UI/UX */}
-        <div className="mb-8">
-          <div className="flex items-center mb-4 gap-2">
-            <LiaCodeSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl font-bold">UI/UX</h2>
-          </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-UIUX.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Graphic Design */}
-        <div className="mb-8">
-          <div className="flex items-center mb-4 gap-2">
-            <LiaEdit size={"3em"} className="text-df4088" />
+            <h2 className="text-pink-600 text-xl font-bold">
+              {searchType[0]}
+            </h2>
             <h2 className="text-white text-xl font-bold">
-              Graphic Design
+              {searchType[1]}
             </h2>
           </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-GDesign.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
+
+          <div className="px-16"  >
+          <CardOffer title={searchType[1]} />
+          </div>
+
+        </div>
+      ) : searchType[0] === "need" ? (
+        <div>
+          <div className="flex items-center  ml-28 mt-10  mb-6 gap-2">
+            <LiaCubeSolid size={"3em"} className="text-df4088" />
+            <h2 className="text-white text-xl font-bold">
+              Posts that
+            </h2>
+            <h2 className="text-pink-600 text-xl font-bold">
+              {searchType[0]}
+            </h2>
+            <h2 className="text-white text-xl font-bold">
+              {searchType[1]}
+            </h2>
+          </div>
+
+          <div className="px-16">
+            <CardNeed title={searchType[1]} />
           </div>
         </div>
+      ) : (
+          <div className="flex h-[50vh] flex-col items-center justify-center" >
+            <h1 className="text-orange-500 text-5xl mb-4 text-center  " >Explore job posts by skill!</h1>
+            <h2 className="text-lg text-white mb-5">In this page you can try filter job posts by Need or Offer.</h2>
+            <LiaCubeSolid size={"8em"} className="text-df4088" />
+          </div>        
+      )}
       </div>
+      <hr className="my-4 border-t border-gray-300 mx-10" />
+      
+      <Sock  />
+
+
+
 
       {/* Footer */}
       </div>
