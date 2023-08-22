@@ -71,7 +71,6 @@ function App() {
           <Route path="/profile" element={<Profile3 />} />
           <Route path="/BBpost" element={<BBpost />} />
           <Route path="/skills" element={<Skills />} />
-          <Route path="/profile3" element={<Profile3 />} />
         </Routes>
       </Router>
     </ApolloProvider>

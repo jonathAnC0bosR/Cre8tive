@@ -1,5 +1,6 @@
 import { BiPencil } from "react-icons/bi";
 import { MdWavingHand } from "react-icons/md";
+import { Navigate, useNavigate } from "react-router-dom";
 import ActiveJobsCard from "../../UI/ActiveJobsCard";
 import "../Home/HomeStyles.css";
 import Pana1 from "../../../assets/images/Pana-1.png";
@@ -33,7 +34,16 @@ const Home = (props) => {
   const bbPosts = data?.bulletinPosts || [];
   console.log("data from query: ", loading, bbPosts);
   // const isUserAuthor = _id === bbPosts.userID._id;
-console.log("im homeeeee");
+  const navigate = useNavigate();
+
+  const handleCreatePost = async () =>{
+    try {
+        navigate('/CreateBBpost')
+    } catch (err) {
+        console.error(err)
+    }
+}
+
   return (
     // main div
     <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex flex-col">
@@ -77,28 +87,13 @@ console.log("im homeeeee");
           <p className="text-white text-lg">
             Show your skills and develop tasks, get known in the cre8ive scene!
           </p>
-          <button className="bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative">
+          <button onClick={handleCreatePost} className="bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative">
             <div className="flex items-center justify-center">Start a Post</div>
           </button>
         </div>
 
         {/* Suggested Profiles */}
-
-        <div>
-          <h2 className="text-white text-2xl font-bold mt-4 gap-2">
-            Suggested Profiles
-          </h2>
-          <div className="flex flex-row overflow-x-scroll custom-scrollbar gap-9 mt-1 mb-7">
-            <img src={Pana1} className="h-44 w-44 my-8" />
-            <img src={Pana2} className="h-44 w-44 my-8" />
-            <img src={Pana3} className="h-44 w-44 my-8" />
-            <img src={Pana4} className="h-44 w-44 my-8" />
-            <img src={Pana1} className="h-44 w-44 my-8" />
-            <img src={Pana2} className="h-44 w-44 my-8" />
-            <img src={Pana3} className="h-44 w-44 my-8" />
-            <img src={Pana4} className="h-44 w-44 my-8" />
-          </div>
-        </div>
+        <AllUsers  />
 
         {/* Searching for a Job */}
         <div>

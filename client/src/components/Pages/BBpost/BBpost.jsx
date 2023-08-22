@@ -83,7 +83,9 @@ const BBpost = () => {
             3W
           </p>
         </div>
+
         <AnimatedButton styles="bg-pink-500" title="Accept job" />
+
       </form>
       <MainFooter />
     </div>
