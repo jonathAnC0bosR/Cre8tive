@@ -19,7 +19,14 @@ const server = new ApolloServer({
 
 // //-----------
 const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with the allowed origin
+  origin: function (origin, callback) {
+    const allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000'];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow cookies and authentication headers
   optionsSuccessStatus: 204, // No content response for preflight requests

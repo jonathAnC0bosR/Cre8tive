@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const MainFooter = () => {
   return (
-    <div className="text-white lg:mx-7 mb-4 grid grid-cols-2 mx-12 ">
+    <div className="text-white lg:mx-7 py-4 grid grid-cols-2 mx-12 ">
       <div>
         {" "}
         <h1 className="mb-3">Quick Links</h1>

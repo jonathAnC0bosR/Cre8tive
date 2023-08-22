@@ -21,6 +21,7 @@ export const GET_USER = gql`
     query GetUser($getUserId: ID!) {
   getUser(id: $getUserId) {
     aboutMe
+    username
     artStation
     github
     location
@@ -86,6 +87,7 @@ export const GET_BBPOSTS = gql`
 query Query {
   bulletinPosts {
     bulletPostTitle
+    _id
     userID {
       _id
       location
@@ -104,6 +106,20 @@ query Query {
   }
 }
 `;
+
+export const GET_SINGLE_POST = gql `
+query Bulletin($bulletinId: ID!) {
+  bulletin(id: $bulletinId) {
+    _id
+    bulletPostTitle
+    bulletText
+    isActive
+    userID {
+      username
+      location
+    }
+  }
+}`
 
 export const GET_ALLUSERS = gql`
 query Query {
