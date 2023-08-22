@@ -47,7 +47,6 @@ const Profile = () => {
     const authService = Auth;
     const user = authService.getProfile().data;
     const {_id, username} = user;
-    console.log("--",username)
 
     //url state variable
     const [URL, setURL]= useState(null);

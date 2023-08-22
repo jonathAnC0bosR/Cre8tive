@@ -13,10 +13,7 @@ import "./index.css";
 import Landing from "./components/landing/landing";
 import Signup from "./components/Pages/Signup/Signup";
 import EditProfile from "./components/Pages/Profile/EditProfile";
-
-
 import Profile3 from "./components/Pages/Profile/Profile3";
-
 import BBpost from "./components/Pages/BBpost/BBpost";
 import CreateBBpost from "./components/Pages/BBpost/CreateBBpost";
 import Skills from "./components/Pages/Skills/Skills1";
@@ -68,14 +65,14 @@ function App() {
             <Route path= '/editProfile' element={<EditProfile />}  />
           </Route>
 
-          <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="/contactUs" element={<AboutUs />} />
           <Route path="/profile" element={<Profile3 />} />
           <Route path="/BBpost" element={<BBpost />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/card" element={<Card title={"UI/UX"}/>} />
 
         </Routes>
-      </Router>
+        </Router>
     </ApolloProvider>
   );
 }

@@ -9,6 +9,7 @@ import Auth from "../../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { GET_BBPOSTS } from "../../../utils/queries";
 import AllUsers from "../../card/allUsers";
+import Sock from "../../card/sock";
 import { BiSolidCircle } from "react-icons/bi";
 import "../../Pages/Skills/skillStyles.css";
 
@@ -204,12 +205,18 @@ const Home = () => {
               ))
             )}
           </div>
-        {/*-------------------- fin dynamic render----------------  */}
-
+          {/*-------------------- fin dynamic render----------------  */}
 
         </div>
-        
       </div>
+
+      <hr className="my-4 border-t border-gray-300 mx-10" />
+
+      <Sock  />
+
+      
+
+
 
       {/* Footer */}
     </div>

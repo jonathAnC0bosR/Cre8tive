@@ -3,6 +3,7 @@ import "../Skills/skillStyles.css";
 import { useState } from 'react';
 import CardOffer from '../../card/byOffer'
 import CardNeed from '../../card/byNeed'
+import Sock from '../../card/sock'
 
 
 const Skills = () => {
@@ -53,7 +54,7 @@ const Skills = () => {
             </div> */}
             
             <div className="basis-1/3 flex items-center justify-center " >
-              <select id="drop1" className="rounded-full text-pink-600 font-bold 
+              <select id="drop1" className="rounded-full text-pink-600 font-bold px-12
               border border-pink-600 focus:ring-2 focus:ring-df4088 focus:border-transparent" >
                 <option value="offer" className="text-center" >Offers</option>
                 <option value="need" className="text-center">Needs</option>
@@ -72,7 +73,7 @@ const Skills = () => {
             </div>
 
 
-          {/* <div className="flex" >
+            {/* <div className="flex" >
             <button
               className={`${
                 selectedButton === 1  ? 'bg-df4088 text-white' : 'bg-gray-200 text-df4088 '
@@ -113,11 +114,11 @@ const Skills = () => {
             >
               3D Design
             </button>
-          </div> */}
+            </div> */}
 
           <div className="basis-1/3 flex justify-center" >
           <button className=" text-pink-600 font-bold text-xl  
-          h-10 w-1/3 rounded  mx-auto  bg-white  ">
+          h-10 w-1/3 rounded-full  mx-auto  bg-white  ">
             Find</button>
           </div>
           </form>
@@ -166,10 +167,16 @@ const Skills = () => {
           </div>
         </div>
       ) : (
-        <h1>Select a type</h1>
+          <div className="flex h-[50vh] flex-col items-center justify-center" >
+            <h1 className="text-orange-500 text-5xl mb-4 text-center  " >Explore job posts by skill!</h1>
+            <h2 className="text-lg text-white mb-5">In this page you can try filter job posts by Need or Offer.</h2>
+            <LiaCubeSolid size={"8em"} className="text-df4088" />
+          </div>        
       )}
       </div>
-
+      <hr className="my-4 border-t border-gray-300 mx-10" />
+      
+      <Sock  />
 
 
 
