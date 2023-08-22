@@ -8,7 +8,8 @@ import { LiaEdit } from "react-icons/lia";
 import JobCard from "../../UI/JobCard";
 import "../Skills/skillStyles.css";
 import { useState } from 'react';
-import ButtonGroup from "flowbite-react/lib/esm/components/Button/ButtonGroup";
+import CardOffer from '../../card/byOffer'
+import CardNeed from '../../card/card'
 
 
 const Skills = () => {
@@ -20,7 +21,6 @@ const Skills = () => {
     console.log("selected button: ", selectedButton)
   };
 
-  const skills =  [["Photo","1"], ["Illustration","2"],  ["UI/UX",3],  ["Graphic Design",4],  ["3D Design", 2 ]];
 
   return (
     // main div
@@ -34,23 +34,23 @@ const Skills = () => {
         </div>
 
         <div className="rounded-xl p-5 m-4 border-2 border-gray-300	 " >
-          <form className="flex flex-row " > 
+          <form className="flex flex-row items-center justify-center " > 
           <div className="flex justify-center items-center basis-1/4   "> 
             <button
               className={`${
                 searchType === 'offers'
-                  ? 'bg-df4088 text-white'
-                  : 'bg-gray-300 text-gray-600'
-              } py-2 px-4 rounded-l`}
+                  ? 'bg-df4088 text-white py-2.5 px-4  '
+                  : 'bg-gray-300 text-gray-600 py-2 px-4'
+              } rounded-l`}
               onClick={() => setSearchType('offers')}>
               Offers
             </button>
             <button
               className={`${
                 searchType === 'needs'
-                  ? 'bg-df4088 text-white'
-                  : 'bg-gray-300 text-gray-600'
-              } py-2 px-4 rounded-r`}
+                  ? 'bg-df4088 text-white py-2.5 px-4  '
+                  : 'bg-gray-300 text-gray-600 py-2 px-4'
+              } rounded-r`}
               onClick={() => setSearchType('needs')}>
               Needs
             </button>
@@ -96,167 +96,28 @@ const Skills = () => {
             >
               3D Design
             </button>
-
           </div>
-          <button className=" text-pink-600 font-bold bg-white h-10  mx-auto w-32 rounded-full"  >Create Post!</button>
+
+          <button className=" text-pink-600 font-bold text-xl  h-10  mx-auto w-32 underline underline-offset-4"  >Find</button>
           </form>
         </div>
       </div>
       <hr className="my-4 border-t border-gray-300 mx-10" />
-      {/* <div className="flex justify-center items-center mt-4">
-        {
-          skills.map((arr, index)=>(
-            
-            <button
-              key={arr._id}
-              className={`${
-                selectedButton === num  ? 'bg-df4088 text-white' : 'bg-gray-200 text-df4088 '
-              } py-2 px-4 mx-2 rounded-full`}
-              onClick={() => handleButtonClick(num)}
-            >
-              {arr[0]}
-            </button>
-          ))
-        }
-      </div> */}
+
       <div className="flex items-center m-16 gap-2">
             <LiaCameraSolid size={"3em"} className="text-df4088" />
             <h2 className="text-white text-xl font-bold">
-              Photography
+              Photography!
             </h2>
       </div>
 
-      <div className="flex flex-col p-8 rounded-lg mx-4 sm:m-4 md:mt-0 md:mb-5 md:mx-12">
-        {/* Photography */}
-        <div className="mb-8">
-          {/* Title of the section with icon */}
-          <div className="flex items-center mb-4 gap-2">
-            <LiaCameraSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl font-bold">
-              Photography
-            </h2>
-          </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Illustration */}
-        <div className="mb-8">
-          {/* Title of the section with icon */}
-          <div className="flex items-center mb-4 gap-2">
-            <LiaPencilAltSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl font-bold">
-              Illustration
-            </h2>
-          </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-Illustration.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 3D Design */}
-        <div className="mb-8">
-          <div className="flex items-center mb-4 gap-2">
-            <LiaCubeSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl font-bold">
-              3D Design
-            </h2>
-          </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden  ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-3D.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* UI/UX */}
-        <div className="mb-8">
-          <div className="flex items-center mb-4 gap-2">
-            <LiaCodeSolid size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl font-bold">UI/UX</h2>
-          </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-UIUX.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Graphic Design */}
-        <div className="mb-8">
-          <div className="flex items-center mb-4 gap-2">
-            <LiaEdit size={"3em"} className="text-df4088" />
-            <h2 className="text-white text-xl font-bold">
-              Graphic Design
-            </h2>
-          </div>
-          {/* Here the cards get stored */}
-          <div className="flex overflow-x-scroll custom-scrollbar">
-            <div className="flex flex-col mb-5">
-              {/* Card Title */}
-              <h3 className="text-white text-lg font-bold bg-df4088 rounded-t-lg px-8 pt-3 pb-2">
-                Portraits 4 Grad
-              </h3>
-              {/* Card */}
-              <div className="relative rounded-b-lg w-72 overflow-hidden ">
-                {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo-GDesign.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                {/* Content */}
-                <JobCard />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div>
+      <CardOffer title={"Photo"} />
       </div>
+
+
+
+
 
       {/* Footer */}
       </div>
