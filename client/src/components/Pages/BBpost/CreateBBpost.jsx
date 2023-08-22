@@ -132,7 +132,7 @@ const CreateBBpost = () => {
                                 <img src={icon3} className="" />
                             </div> */}
                             <div className="flex w-full justify-between align-middle text-center px-4 col-span-3">
-                                <h2 className="flex text-white font-bold md:text-base text-sm my-2 col-span-2" >Service in Need</h2>
+                                <h2 className="flex text-white font-bold md:text-base text-sm  my-2 col-span-2" >Service in Need</h2>
                                 <Button.Group className="flex justify-center items-center bg-353434 min-w-fit col-span-4">
                                     {skills.map(skill => (
                                         <Button
