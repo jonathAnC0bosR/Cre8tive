@@ -71,7 +71,7 @@ const Home = (props) => {
               {/* Card */}
               <div className="relative rounded-b-lg w-80 overflow-hidden">
                 {/* Pseudo-element for the blurred background */}
-                <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>{" "}
+                <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner"></div>{" "}
                 {/* Content */}
                 <ActiveJobsCard />
               </div>
@@ -131,22 +131,22 @@ const Home = (props) => {
                   )}  */}
                   </div>
                   {/* Card */}
-                  <div className="relative rounded-b-lg w-80 overflow-hidden relative ">
+                  <div className="relative rounded-b-lg w-80 overflow-hidden">
                     {/* Pseudo-element for the blurred background */}
                     {post.imageURL ? (
                       <img
                         src={post.imageURL}
-                        className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner shadow"
+                        className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner"
                       ></img>
                     ) : (
-                      <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
+                      <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner"></div>
                     )}
 
                     {/* Content */}
                     {/* <ActiveJobsCard /> */}
                     <div className="relative">
                       <div className="mx-4">
-                        <div className="flex mb-4 flex-row items-center text-white mx-5 mt-5 mb-1">
+                        <div className="flex mb-4 flex-row items-center text-white mx-5 mt-5 ">
                           {/* User Profile Picture */}
                           <div className="overflow-hidden rounded-full w-16 h-16 ">
                             <img
@@ -181,10 +181,10 @@ const Home = (props) => {
                           {post.imageURL ? (
                             <img
                               src={post.imageURL}
-                              className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner shadow"
+                              className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner"
                             ></img>
                           ) : (
-                            <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
+                            <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner"></div>
                           )}
 
                           {/* Content */}

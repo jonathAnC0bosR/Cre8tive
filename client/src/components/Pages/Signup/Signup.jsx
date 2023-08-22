@@ -67,6 +67,7 @@ const Signup = () => {
       });
 
       Auth.login(data.addUser.token);
+      window.location.replace('/home')
     } catch (e) {
       console.error(e);
     }
