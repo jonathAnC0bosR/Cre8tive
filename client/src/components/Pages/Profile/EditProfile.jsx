@@ -13,10 +13,24 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_USER } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
 
+import UploadPencil from "../../UI/uploadPencil"
+
+
+
 import banner from "../../../assets/images/banner.jpg";
 
 const EditProfile = () => {
   const authService = Auth;
+
+  //url state variable
+  const [URL, setURL] = useState(null);
+  const [image, setImage] = useState(null);
+
+  const updateStateURL = (val) => {
+    setURL(val);
+    setImage(val);
+  };
+console.log("URL: ", URL)
 
   const [updateProfile, { loading, error }] = useMutation(UPDATE_USER);
 
@@ -28,6 +42,7 @@ const EditProfile = () => {
     age: "",
     aboutMe: "",
     location: "",
+    profileImage: URL,
   });
 
   const handleInputChange = (e) => {
@@ -62,19 +77,31 @@ const EditProfile = () => {
   return (
     <>
       <div className="lg:h-16 h-10 md:h-16"></div> {/* Spacer */}
-      <div className="flex justify-center">
-        <div class="relative w-full h-48 bg-center bg-no-repeat bg-cover transform rotate-90" style="background-image: url(../../../assets/images/banner.jpg)">
+      <div className="flex flex-col justify-center grid-cols-2">
+        <div class="editpro-banner">
         </div>
         <form
           onSubmit={handleSubmit}
           className="lg:text-sm text-white bg-zinc-950 min-h-screen w-screen"
         >
-          <div className="bg-pink-600 h-30">
-            <img
-              src="https://img.icons8.com/doodle/96/user-male-circle.png"
-              alt="user-male-circle"
-              className="mx-auto lg:h-28  "
-            />
+          <div className="h-30">
+            <div className='flex items-center justify-center' >
+              <div className='flex relative  ' >
+                <div className="overflow-hidden rounded-full w-32 h-32">
+                  <img
+                    src={image}
+                    alt="Circular Image"
+                    className="w-full h-full object-cover"
+                  />
+
+                </div>
+
+                <div className="absolute bottom-0 right-0  " >
+                  <UploadPencil updateProp={updateStateURL} />
+                </div>
+
+              </div>
+            </div>
           </div>
           <div className="w-48 mx-auto lg:mb-1">
             <label className="lg:ml-2 ">Username:</label>
@@ -173,11 +200,7 @@ const EditProfile = () => {
                 src="https://img.icons8.com/ios-glyphs/30/000000/github.png"
                 title="Github"
               />
-              <SocialMedia
-                title="Stack Overflow"
-                src="https://img.icons8.com/ios/50/000000/stackoverflow.png"
-                styles="h-8"
-              />
+
               <SocialMedia
                 title="ArStation"
                 src="https://img.icons8.com/color/48/artstation.png"

@@ -3,7 +3,7 @@ import { InstagramEmbed } from 'react-social-media-embed';
 import { TwitterEmbed } from 'react-social-media-embed';
 import { PinterestEmbed } from 'react-social-media-embed';
 
-import { BsGithub,BsLinkedin,BsFillCameraFill } from "react-icons/bs";
+import { BsGithub, BsLinkedin, BsFillCameraFill } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
@@ -11,7 +11,7 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from '@apollo/client';
-import { UPDATE_PROFILEIMG} from '../../../utils/mutations'
+import { UPDATE_PROFILEIMG } from '../../../utils/mutations'
 import { GET_PROFILEIMG, GET_USER } from '../../../utils/queries'
 import Auth from '../../../utils/auth'
 import UploadPencil from "../../../components/UI/uploadPencil"
@@ -26,8 +26,8 @@ import EditProfile from './EditProfile';
 // const goToEditProfile = () => {
 // }
 
-  
-  
+
+
 
 
 
@@ -41,16 +41,16 @@ const Profile = () => {
     const closeEditProfileModal = () => {
         setIsEditProfileModalOpen(false);
     };
-    
+
     //---------------------------------------
     //--- getting logged user ID
     const authService = Auth;
     const user = authService.getProfile().data;
-    const {_id, username} = user;
-    console.log("--",username)
+    const { _id, username } = user;
+    console.log("--", username)
 
     //url state variable
-    const [URL, setURL]= useState(null);
+    const [URL, setURL] = useState(null);
     const [image, setImage] = useState(null);
 
     const updateStateURL = (val) => {
@@ -59,19 +59,19 @@ const Profile = () => {
 
     // const [responseQuery, setresponseQuery] = useState('');
     // displayImg
-        const { loading, data } = useQuery( GET_PROFILEIMG, {
-            variables: {"getProfileImgId": _id}
-        });
-        const userData = data?.getProfileImg || []; // if data exists, store in userData, otherwise undefined
-        console.log("data from query: ", loading , userData)
-        console.log(userData.aboutMe)
+    const { loading, data } = useQuery(GET_PROFILEIMG, {
+        variables: { "getProfileImgId": _id }
+    });
+    const userData = data?.getProfileImg || []; // if data exists, store in userData, otherwise undefined
+    console.log("data from query: ", loading, userData)
+    console.log(userData.aboutMe)
 
-        useEffect(() => {
-            if (!loading && data && data.getProfileImg) {
-              const profileImgURL = data.getProfileImg.profileImage;
-              setImage(profileImgURL);
-            }
-          }, [loading, data]);
+    useEffect(() => {
+        if (!loading && data && data.getProfileImg) {
+            const profileImgURL = data.getProfileImg.profileImage;
+            setImage(profileImgURL);
+        }
+    }, [loading, data]);
 
     // useEffect(()=>{
     //     if (data && data.getProfileImg) {
@@ -85,25 +85,25 @@ const Profile = () => {
     //         setImage(profileImgURL);
     //     }
     // }, [data] )  
-    
-    const [add2Model, {error}]= useMutation(UPDATE_PROFILEIMG);
 
-    useEffect(()=>{
-        if (URL!=null) {
+    const [add2Model, { error }] = useMutation(UPDATE_PROFILEIMG);
+
+    useEffect(() => {
+        if (URL != null) {
             try {
-                const {idk} = add2Model({
+                const { idk } = add2Model({
                     variables: {
-                        id: _id, 
+                        id: _id,
                         profileImage: URL
                     }
-                }). then((idk) => {
+                }).then((idk) => {
                     console.log('--------added img URL to DB')
                     const urlyes = idk.data.updateProfileImg.profileImage;
                     setImage(urlyes)
-                    }
+                }
                 )
             } catch (error) {
-                console.log("Failed to add to DB: ",error);
+                console.log("Failed to add to DB: ", error);
             }
 
         }
@@ -111,7 +111,7 @@ const Profile = () => {
     }, [URL]);
 
     const navigate = useNavigate();
-    const handleEditProfile = async () =>{
+    const handleEditProfile = async () => {
         try {
             navigate('/editProfile')
         } catch (err) {
@@ -132,11 +132,11 @@ const Profile = () => {
                         <div className='flex relative  ' >
                             <div className="overflow-hidden rounded-full w-32 h-32">
                                 <img
-                                src={image}
-                                alt="Circular Image"
-                                className="w-full h-full object-cover"
+                                    src={image}
+                                    alt="Circular Image"
+                                    className="w-full h-full object-cover"
                                 />
-                                
+
                             </div>
 
                             <div className="absolute top-0 right-0  " >
@@ -152,7 +152,7 @@ const Profile = () => {
                         <button onClick={handleEditProfile} className='bg-white text-orange-500 font-bold rounded-full py-1 px-2 text-sm' >Edit Profile </button>
                         {/* <a onClick={openEditProfileModal}> Edit profile</a> */}
 
-                    
+
                         <div className="profileInfo flex flex-col items-center justify-center my-5" >
                             <h2 > About me</h2>
                             <p> {userData.aboutMe} </p>
@@ -161,9 +161,9 @@ const Profile = () => {
                         <div className='flex items-center justify-center m-5 w-1/2 p-4
                         grid grid-cols-4 gap-4 '>
                             <div className='flex items-center justify-center' >
-                            <a href="mailto:your.email@example.com" className='flex-end' >
-                                <HiOutlineMail size={"2em"} />
-                            </a>
+                                <a href="mailto:your.email@example.com" className='flex-end' >
+                                    <HiOutlineMail size={"2em"} />
+                                </a>
                             </div>
                             {/* <div className="col-span-3" >
                                     <a>
@@ -173,27 +173,27 @@ const Profile = () => {
                                         <BsGithub size={"2em"} color='white'/>
                                     </button>
                             </div> */}
-                            {userData.artStation && userData.github ? 
+                            {userData.artStation && userData.github ?
                                 <div className="col-span-3" >
                                     <a>
                                         <img src={artStation} className='w-10' ></img>
                                     </a>
-                                    <button> 
-                                        <BsGithub size={"2em"} color='white'/>
+                                    <button>
+                                        <BsGithub size={"2em"} color='white' />
                                     </button>
                                 </div>
-                            : 
+                                :
                                 <div className="col-span-3" >
-                                <a>
-                                    <img src={artStation} className='w-10' ></img>
-                                </a>
-                                <button> 
-                                    <BsGithub size={"2em"} color='white'/>
-                                </button>
+                                    <a>
+                                        <img src={artStation} className='w-10' ></img>
+                                    </a>
+                                    <button>
+                                        <BsGithub size={"2em"} color='white' />
+                                    </button>
                                 </div>
                             }
-                            
-                            
+
+
                         </div>
                     </div>
 
@@ -203,66 +203,66 @@ const Profile = () => {
                         <div className='flex items-center justify-center'>
 
                             <div className='bulletSkill'>
-                                <BsFillCameraFill/>
+                                <BsFillCameraFill />
                                 <p>Skill One</p>
                             </div>
                             <div className='bulletSkill'>
-                                <BsFillCameraFill/>
+                                <BsFillCameraFill />
                                 <p>Skill One</p>
-                            </div>                        
+                            </div>
                             <div className='bulletSkill'>
-                                <BsFillCameraFill/>
+                                <BsFillCameraFill />
                                 <p>Skill two</p>
-                            </div>                        
+                            </div>
                             <div className='bulletSkill'>
-                                <BsFillCameraFill/>
+                                <BsFillCameraFill />
                                 <p>Skill two</p>
                             </div>
                         </div>
 
-                    </div>  
+                    </div>
 
-                        <div className='portfolioContainer'>
-                            <h3>Portfolio</h3>
-                            <div className='firtsRowMedia' style={{ display: 'flex', justifyContent: 'center' }}>
-                                <PinterestEmbed url="https://www.pinterest.com.mx/pin/9570217950888311/" 
-                                    width={200}
-                                    height={200}
-                                />
-                                <PinterestEmbed url="https://www.pinterest.com.mx/pin/670895675752727009/" 
-                                    width={200}
-                                    height={200}
-                                />
-                                <PinterestEmbed url="https://www.pinterest.com.mx/pin/612067405622271768/" 
-                                    width={200}
-                                    height={200}
-                                />
-                                <PinterestEmbed url="https://www.pinterest.com.mx/pin/654007177161332170/" 
-                                    width={200}
-                                    height={200}
-                                />
-                            </div>
-                            <div className='secondsRowMedia' style={{ display: 'flex', justifyContent: 'center' }}>
-                                <PinterestEmbed url="https://www.pinterest.com.mx/pin/55732114131342304/" 
-                                    width={200}
-                                    height={200}
-                                />
-                                <PinterestEmbed url="https://www.pinterest.com.mx/pin/55732114131342304/" 
-                                    width={200}
-                                    height={200}
-                                />
-                                <PinterestEmbed url="https://www.pinterest.com.mx/pin/55732114131342304/" 
-                                    width={200}
-                                    height={200}
-                                />
-                                <PinterestEmbed url="https://www.pinterest.com.mx/pin/55732114131342304/" 
-                                    width={200}
-                                    height={200}
-                                />
-                            </div>
+                    <div className='portfolioContainer'>
+                        <h3>Portfolio</h3>
+                        <div className='firtsRowMedia' style={{ display: 'flex', justifyContent: 'center' }}>
+                            <PinterestEmbed url="https://www.pinterest.com.mx/pin/9570217950888311/"
+                                width={200}
+                                height={200}
+                            />
+                            <PinterestEmbed url="https://www.pinterest.com.mx/pin/670895675752727009/"
+                                width={200}
+                                height={200}
+                            />
+                            <PinterestEmbed url="https://www.pinterest.com.mx/pin/612067405622271768/"
+                                width={200}
+                                height={200}
+                            />
+                            <PinterestEmbed url="https://www.pinterest.com.mx/pin/654007177161332170/"
+                                width={200}
+                                height={200}
+                            />
                         </div>
-                        {/* <Posts/> To be added*/}
-                    
+                        <div className='secondsRowMedia' style={{ display: 'flex', justifyContent: 'center' }}>
+                            <PinterestEmbed url="https://www.pinterest.com.mx/pin/55732114131342304/"
+                                width={200}
+                                height={200}
+                            />
+                            <PinterestEmbed url="https://www.pinterest.com.mx/pin/55732114131342304/"
+                                width={200}
+                                height={200}
+                            />
+                            <PinterestEmbed url="https://www.pinterest.com.mx/pin/55732114131342304/"
+                                width={200}
+                                height={200}
+                            />
+                            <PinterestEmbed url="https://www.pinterest.com.mx/pin/55732114131342304/"
+                                width={200}
+                                height={200}
+                            />
+                        </div>
+                    </div>
+                    {/* <Posts/> To be added*/}
+
                 </div>
             </div>
             <br></br>
@@ -270,7 +270,7 @@ const Profile = () => {
             <br></br>
             {isEditProfileModalOpen && (
                 <EditProfile onClose={closeEditProfileModal} />
-    )}
+            )}
         </div>
     )
 }
