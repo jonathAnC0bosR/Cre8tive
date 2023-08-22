@@ -50,7 +50,7 @@ const EditProfile = () => {
         variables: updatedData ,
       });
 
-      window.location.replace('/')
+      window.location.replace('/profile')
       console.log("Updated Profile");
     } catch (e) {
       console.error(e);
