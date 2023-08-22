@@ -65,7 +65,12 @@ const Profile = () => {
         console.log("data from query: ", loading , userData)
         console.log(userData.aboutMe)
 
-
+        useEffect(() => {
+            if (!loading && data && data.getProfileImg) {
+              const profileImgURL = data.getProfileImg.profileImage;
+              setImage(profileImgURL);
+            }
+          }, [loading, data]);
 
     // useEffect(()=>{
     //     if (data && data.getProfileImg) {

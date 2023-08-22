@@ -54,31 +54,24 @@ const Landing = () => {
             to exchange talents, expertise, and assistance.
           </p>
           <p className="p-[2%]">
-            Whether you're looking to offer your skills or seeking services that
-            match your needs, our platform is designed to bring people together
-            to exchange talents, expertise, and assistance.
-          </p>
+          Discover the simplicity of our platform: just post the job you need assistance with from an artist, and in return, list the skill or service you can offer.          </p>
         </div>
       </div>
-      <div className="flex bg-zinc-950 mb-[2.5%] p-6 w-4/5 rounded-lg text-white shadow-xl shadow-stone-950">
-        <div className="">
+      <div className="flex bg-zinc-950 mb-[2.5%] p-6 w-4/5 rounded-lg text-white  grid grid-cols-2 shadow-xl shadow-stone-950">
+        <div className="flex flex-col items-center justify-center">
           <h1 className="text-xl lg:text-center md:text-1xl lg:text-2xl m-[1%]">
             Exchange Freely
           </h1>
-          <p className="p-[2%]">
-            Whether you're looking to offer your skills or seeking services that
-            match your needs, our platform is designed to bring people together
-            to exchange talents, expertise, and assistance.
-          </p>
+          <p className="p-[2%] w-3/4 ">
+          Benefit from free interactions, elevate your projects, and embrace the freedom of job interchange.          </p>
         </div>
         <div className="">
           <h1 className="text-xl lg:text-center md:text-1xl lg:text-2xl m-[1%]">
             New Economy
           </h1>
           <p className="p-[2%]">
-            Whether you're looking to offer your skills or seeking services that
-            match your needs, our platform is designed to bring people together
-            to exchange talents, expertise, and assistance.
+          Unlocking artistry and fostering a collaborative economy, our platform unites individuals to share skills, services, and expertise within the vibrant community.
+
           </p>
         </div>
       </div>
