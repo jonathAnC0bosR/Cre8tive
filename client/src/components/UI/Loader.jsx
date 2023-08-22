@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import loaderImg from '../../assets/images/loader.gif';
-import loaderBg from '../../assets/images/loader-bg.gif';  
+import loaderImg from '../../assets/images/loader2.svg';
+import loaderBg from '../../assets/images/loader_bg2.gif';  
 
 const fadeInOut = {
   hidden: { opacity: 0 },

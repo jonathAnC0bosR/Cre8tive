@@ -104,6 +104,7 @@ const CreateBBpost = () => {
                 }
             }).then((newPost) => {
                 console.log('--------added new post to DB');
+                Window.location.replace='/home';
             })
 
         } catch (error) {
