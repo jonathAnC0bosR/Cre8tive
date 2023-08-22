@@ -109,7 +109,7 @@ console.log("URL: ", URL)
               onChange={handleInputChange}
             />
           </div>
-          <div className="grid grid-cols-2 lg:grid lg:grid-cols-4 lg:ml-7 md:ml-4 ml-3 ">
+          <div className="grid grid-cols-2 lg:grid lg:grid-cols-2 mx-10">
             <Input
               type="text"
               label="First name:"
@@ -184,7 +184,7 @@ console.log("URL: ", URL)
                 </ProfileIcon>
               </div>
             </div>
-            <div className="w-full md:pr-4 pr-3 col-span-2 lg:col-span-1">
+            <div className="w-full md:pr-4 pr-3 col-span-2 lg:col-span-2">
               <label>IG Portfolio: </label>
               <button className="bg-zinc-800 w-full flex items-center rounded-md border-pink-600 border-2 p-2 ">
                 {" "}
@@ -192,7 +192,7 @@ console.log("URL: ", URL)
                 <p className="ml-2">Connect Instagram Account</p>
               </button>
             </div>
-            <div className="lg:ml-4 md:pr-4 pr-3">
+            <div className="lg:ml-4 md:pr-4 pr-3 col-span-2 lg:col-span-2" >
               <label>Social Media</label>
               <SocialMedia
                 src="https://img.icons8.com/ios-glyphs/30/000000/github.png"
@@ -206,7 +206,7 @@ console.log("URL: ", URL)
               />
             </div>
           </div>
-          <div className="flex lg:justify-end md:justify-end justify-center lg:pr-7 md:pr-4">
+          <div className="flex  justify-center lg:pr-7 md:pr-4">
             <div className="mx-4">
               <AnimatedButtonCancel
 
