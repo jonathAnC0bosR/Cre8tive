@@ -1,5 +1,6 @@
 import { BiPencil } from "react-icons/bi";
 import { MdWavingHand } from "react-icons/md";
+import { Navigate, useNavigate } from "react-router-dom";
 import ActiveJobsCard from "../../UI/ActiveJobsCard";
 import "../Home/HomeStyles.css";
 import "../Skills/SkillStyles.css";
@@ -21,6 +22,17 @@ const Home = () => {
   const bbPosts = data?.bulletinPosts || [];
   console.log("data from query: ", loading, bbPosts);
   // const isUserAuthor = _id === bbPosts.userID._id;
+
+  const navigate = useNavigate();
+
+  const handleCreatePost = async () =>{
+    try {
+        navigate('/CreateBBpost')
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 
   return (
     // main div
@@ -65,7 +77,7 @@ const Home = () => {
           <p className="text-white text-lg">
             Show your skills and develop tasks, get known in the cre8ive scene!
           </p>
-          <button className="bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative">
+          <button onClick={handleCreatePost} className="bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative">
             <div className="flex items-center justify-center">Start a Post</div>
           </button>
         </div>
