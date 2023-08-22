@@ -8,33 +8,41 @@ import Pana3 from "../../../assets/images/Pana-3.png";
 import Pana4 from "../../../assets/images/Pana-4.png";
 import "../Skills/SkillStyles.css";
 
-
-import Auth from '../../../utils/auth'
-import { useQuery, useMutation } from '@apollo/client';
-import { } from '../../../utils/mutations'
-import { GET_BBPOSTS } from '../../../utils/queries'
-import AllUsers from '../../card/allUsers'
+import Auth from "../../../utils/auth";
+import { useQuery, useMutation } from "@apollo/client";
+import {} from "../../../utils/mutations";
+import { GET_BBPOSTS } from "../../../utils/queries";
+import AllUsers from "../../card/allUsers";
 
 import {
   LiaCameraSolid,
   LiaPencilAltSolid,
   LiaCubeSolid,
   LiaCodeSolid,
+  LiaEdit,
 } from "react-icons/lia";
+import { BiPencil } from "react-icons/bi";
+import { MdWavingHand } from "react-icons/md";
+import ActiveJobsCard from "../../UI/ActiveJobsCard";
+// Dont remove HomeStyles
+import "../Home/HomeStyles.css";
+import Pana1 from "../../../assets/images/Pana-1.png";
+import Pana2 from "../../../assets/images/Pana-2.png";
+import Pana3 from "../../../assets/images/Pana-3.png";
+import Pana4 from "../../../assets/images/Pana-4.png";
+import "../Skills/SkillStyles.css";
 import AnimatedButtonHome from "../../UI/AnimatedButtonHome";
 
 const Home = (props) => {
   const authService = Auth;
 
-    const user = authService.getProfile().data;
-    const {_id, username} = user;
-    
+  const user = authService.getProfile().data;
+  const { _id, username } = user;
 
   const { loading, data } = useQuery(GET_BBPOSTS);
   const bbPosts = data?.bulletinPosts || [];
-  console.log("data from query: ", loading , bbPosts)
+  console.log("data from query: ", loading, bbPosts);
   // const isUserAuthor = _id === bbPosts.userID._id;
-
 
   return (
     // main div
@@ -79,7 +87,7 @@ const Home = (props) => {
           <p className="text-white text-lg">
             Show your skills and develop tasks, get known in the cre8ive scene!
           </p>
-          <AnimatedButtonHome styles='bg-pink-600' title="Start a Post"/>
+          <AnimatedButtonHome styles="bg-pink-600" title="Start a Post" />
         </div>
 
         {/* Suggested Profiles */}
@@ -125,60 +133,18 @@ const Home = (props) => {
             {loading ? (
               <div>Loading...</div>
             ) : (
-
-
-            bbPosts.map(post => (
-              <div key={post.id} className="flex flex-col mb-5 mx-2">
-                <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
-                  <h3>{post.bulletPostTitle}</h3>
-                  {/* {isUserAuthor && (
+              bbPosts.map((post) => (
+                <div key={post.id} className="flex flex-col mb-5 mx-2">
+                  <div className="flex flex-row justify-between text-white text-lg font-bold bg-df4088 rounded-t-lg pl-8 pr-4 pt-3 pb-2">
+                    <h3>{post.bulletPostTitle}</h3>
+                    {/* {isUserAuthor && (
                     <button>
                       <BiPencil size={"1.5em"} />
                     </button>
                   )}  */}
-                </div>
-                {/* Card */}
-                <div className="relative rounded-b-lg w-80 overflow-hidden relative ">
-                  {/* Pseudo-element for the blurred background */}
-                  {post.imageURL? 
-                    <img src={post.imageURL} className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner shadow" ></img>
-                    :
-                  <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
-                  }
-
-                  {/* Content */}
-                  {/* <ActiveJobsCard /> */}
-                  <div className="relative">
-                  <div className="mx-4">
-                  <div className="flex mb-4 flex-row items-center text-white mx-5 mt-5 mb-1">
-
-                    {/* User Profile Picture */}
-                    <div className="overflow-hidden rounded-full w-16 h-16 ">
-                      <img
-                      src={post.userID.profileImage}
-                      alt="Circular Image"
-                      className="w-full h-full object-cover"
-                      />
-                    </div>
-
-                    <div className="flex-column ml-4">
-                      {/* User Location */}
-                      <p className="text-xs text-shadow">{post.userID.location} </p>
-                      {/* Username */}
-                      <p className="text-xl font-bold text-shadow">{post.userID.username}</p>
-                      {/* User Rating */}
-                      <div className="flex flex-row text-shadow text-lg">
-                        <BiSolidCircle className="text-df4088" />
-                        <BiSolidCircle className="text-df4088" />
-                        <BiSolidCircle className="text-df4088" />
-                        <BiSolidCircle className="text-df4088" />
-                        <BiSolidCircle className="text-gray-200" />
-                      </div>
-                    </div>
-
                   </div>
                   {/* Card */}
-                  <div className="relative rounded-b-lg w-80 overflow-hidden">
+                  <div className="relative rounded-b-lg w-80 overflow-hidden relative ">
                     {/* Pseudo-element for the blurred background */}
                     {post.imageURL ? (
                       <img
@@ -193,7 +159,7 @@ const Home = (props) => {
                     {/* <ActiveJobsCard /> */}
                     <div className="relative">
                       <div className="mx-4">
-                        <div className="flex mb-4 flex-row items-center text-white mx-5 mt-5 ">
+                        <div className="flex mb-4 flex-row items-center text-white mx-5 mt-5 mb-1">
                           {/* User Profile Picture */}
                           <div className="overflow-hidden rounded-full w-16 h-16 ">
                             <img
@@ -222,14 +188,59 @@ const Home = (props) => {
                             </div>
                           </div>
                         </div>
+                        {/* Card */}
+                        <div className="relative rounded-b-lg w-80 overflow-hidden">
+                          {/* Pseudo-element for the blurred background */}
+                          {post.imageURL ? (
+                            <img
+                              src={post.imageURL}
+                              className="absolute inset-0 bg-cover bg-center filter blur-xs shadow-inner shadow"
+                            ></img>
+                          ) : (
+                            <div className="absolute inset-0 bg-[url('assets/images/Photo.png')] bg-cover bg-center filter blur-xs shadow-inner shadow"></div>
+                          )}
 
-                        {/* <div className="flex flex-row gap-8 mx-auto justify-center text-center">
+                          {/* Content */}
+                          {/* <ActiveJobsCard /> */}
+                          <div className="relative">
+                            <div className="mx-4">
+                              <div className="flex mb-4 flex-row items-center text-white mx-5 mt-5 ">
+                                {/* User Profile Picture */}
+                                <div className="overflow-hidden rounded-full w-16 h-16 ">
+                                  <img
+                                    src={post.userID.profileImage}
+                                    alt="Circular Image"
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+
+                                <div className="flex-column ml-4">
+                                  {/* User Location */}
+                                  <p className="text-xs text-shadow">
+                                    {post.userID.location}{" "}
+                                  </p>
+                                  {/* Username */}
+                                  <p className="text-xl font-bold text-shadow">
+                                    {post.userID.username}
+                                  </p>
+                                  {/* User Rating */}
+                                  <div className="flex flex-row text-shadow text-lg">
+                                    <BiSolidCircle className="text-df4088" />
+                                    <BiSolidCircle className="text-df4088" />
+                                    <BiSolidCircle className="text-df4088" />
+                                    <BiSolidCircle className="text-df4088" />
+                                    <BiSolidCircle className="text-gray-200" />
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* <div className="flex flex-row gap-8 mx-auto justify-center text-center">
 
                     <div className="text-shadow my-1 align-center w-100">
                       <h3 className="text-white text-lg mb-1 text-shadow">Needs</h3>
                       <div className="flex flex-row justify-between"> */}
-                        {/* Icons of the services */}
-                        {/* <button className="bg-353434 p-2.5 rounded-lg transition-all duration-300 transform hover:scale-110 custom-shadow">
+                              {/* Icons of the services */}
+                              {/* <button className="bg-353434 p-2.5 rounded-lg transition-all duration-300 transform hover:scale-110 custom-shadow">
                           <LiaCubeSolid size={"3em"} className="text-df4088" />{" "}
                         </button>
                       </div>
@@ -238,11 +249,11 @@ const Home = (props) => {
                       
                     </div> */}
 
-                        {/* <div className="text-shadow my-1 align-center w-100">
+                              {/* <div className="text-shadow my-1 align-center w-100">
                       <h3 className="text-white text-lg mb-1 text-shadow">Offers</h3>
                       <div className="flex flex-row justify-between"> */}
-                        {/* Icons of the services */}
-                        {/* <button className="bg-353434 p-2.5 rounded-lg transition-all duration-300 transform hover:scale-110 custom-shadow">
+                              {/* Icons of the services */}
+                              {/* <button className="bg-353434 p-2.5 rounded-lg transition-all duration-300 transform hover:scale-110 custom-shadow">
                           <LiaCameraSolid size={"3em"} className="text-df4088" />{" "}
                         </button>
                       </div>
@@ -254,43 +265,46 @@ const Home = (props) => {
 
                   </div> */}
 
-                        <div className="flex m-2 items-center justify-center gap-8 mx-auto bg-white rounded-full ">
-                          <div>
-                            <h3 className="text-pink-600 text-lg font-bold mb-1">
-                              Needs
-                            </h3>
-                          </div>
-                          <div>
-                            {post.serviceNeed &&
-                              post.serviceNeed.length > 0 && (
-                                <p className="text-lg font-bold ">
-                                  {post.serviceNeed[0].skillTitle}
-                                </p>
-                              )}
-                          </div>
-                        </div>
+                              <div className="flex m-2 items-center justify-center gap-8 mx-auto bg-white rounded-full ">
+                                <div>
+                                  <h3 className="text-pink-600 text-lg font-bold mb-1">
+                                    Needs
+                                  </h3>
+                                </div>
+                                <div>
+                                  {post.serviceNeed &&
+                                    post.serviceNeed.length > 0 && (
+                                      <p className="text-lg font-bold ">
+                                        {post.serviceNeed[0].skillTitle}
+                                      </p>
+                                    )}
+                                </div>
+                              </div>
 
-                        <div className="flex m-2 items-center justify-center gap-8 mx-auto bg-white rounded-full ">
-                          <div>
-                            <h3 className="text-pink-600 font-bold text-lg mb-1 ">
-                              Offers
-                            </h3>
-                          </div>
-                          <div>
-                            {post.serviceNeed &&
-                              post.serviceNeed.length > 0 && (
-                                <p className="text-lg font-bold ">
-                                  {post.serviceOffer[0].skillTitle}
-                                </p>
-                              )}
-                          </div>
-                        </div>
+                              <div className="flex m-2 items-center justify-center gap-8 mx-auto bg-white rounded-full ">
+                                <div>
+                                  <h3 className="text-pink-600 font-bold text-lg mb-1 ">
+                                    Offers
+                                  </h3>
+                                </div>
+                                <div>
+                                  {post.serviceNeed &&
+                                    post.serviceNeed.length > 0 && (
+                                      <p className="text-lg font-bold ">
+                                        {post.serviceOffer[0].skillTitle}
+                                      </p>
+                                    )}
+                                </div>
+                              </div>
 
-                        <div className="flex justify-end">
-                          {/* Button for seeing more info about the job */}
-                          <button className="bg-df4088 text-white text-lg font-bold px-7 py-2 m-4 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow">
-                            More...
-                          </button>
+                              <div className="flex justify-end">
+                                {/* Button for seeing more info about the job */}
+                                <button className="bg-df4088 text-white text-lg font-bold px-7 py-2 m-4 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow">
+                                  More...
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
