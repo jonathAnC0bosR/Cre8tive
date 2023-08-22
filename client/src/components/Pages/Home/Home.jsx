@@ -8,8 +8,6 @@ import {
 import { BiPencil, BiSolidCircle } from "react-icons/bi";
 import { MdWavingHand } from "react-icons/md";
 import ActiveJobsCard from "../../UI/ActiveJobsCard";
-// Dont remove HomeStyles
-import "../Home/HomeStyles.css";
 import Pana1 from "../../../assets/images/Pana-1.png";
 import Pana2 from "../../../assets/images/Pana-2.png";
 import Pana3 from "../../../assets/images/Pana-3.png";
@@ -32,7 +30,7 @@ const Home = (props) => {
   const bbPosts = data?.bulletinPosts || [];
   console.log("data from query: ", loading, bbPosts);
   // const isUserAuthor = _id === bbPosts.userID._id;
-console.log("im homeeeee");
+  console.log("im homeeeee");
   return (
     // main div
     <div className="lg:text-sm min-h-screen bg-gradient-to-r from-[#0C0F11] to-[#22282D] flex flex-col">
@@ -72,7 +70,7 @@ console.log("im homeeeee");
         <h2 className="text-white text-2xl font-bold my-4 gap-2">
           Get Started!
         </h2>
-        <div className="flex flex-row items-center justify-center mt-1 mb-7">
+        <div className="flex flex-row items-center justify-between mt-1 mb-7">
           <p className="text-white text-lg">
             Show your skills and develop tasks, get known in the cre8ive scene!
           </p>

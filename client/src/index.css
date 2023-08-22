@@ -181,3 +181,78 @@ h1 {
 .shadow {
     box-shadow: inset 0 0 130px #000000;
 }
+
+/* Slide button white to pink */
+.moving-bar, .moving-bar-left, .moving-bar-skills {
+    min-width: 100px;
+    height: 40px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 50px;
+    z-index: 0;
+    background: #DF4088;
+    overflow: hidden;
+    border: 0;
+}
+
+.moving-bar-left {
+    background: red;
+}
+
+.moving-bar-skills {
+    min-width: auto;
+    background: #fff;
+    color: #DF4088;
+}
+
+.moving-bar:hover, .moving-bar-left:hover, .moving-bar-skills:hover {
+    color: #DF4088 !important;
+    border-radius: 50px;
+}
+
+.moving-bar-left:hover {
+    color: red !important;
+}
+
+.moving-bar-skills:hover {
+    color: #fff !important;
+}
+
+.moving-bar:hover:after, .moving-bar-left:hover:after, .moving-bar-skills:hover:after {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.moving-bar:after, .moving-bar-skills:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: #fff;
+    border-radius: 50px;
+}
+
+.moving-bar-left:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: #fff;
+    border-radius: 50px;
+}
+
+.moving-bar-skills:after {
+    background: #DF4088;
+}

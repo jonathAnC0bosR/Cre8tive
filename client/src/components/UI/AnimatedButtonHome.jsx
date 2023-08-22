@@ -10,7 +10,7 @@ const AnimatedButtonHome = (props) => {
       layout
       data-isOpen={isOpen}
       initial={{ borderRadius: 50 }}
-      className={`moving-bar ${props.styles} bg-df4088 moving-bar text-xl px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow relative`}
+      className={`moving-bar ${props.styles} bg-df4088 moving-bar text-lg px-7 pt-3 pb-9 rounded-3xl transition-all duration-300 transform hover:scale-110 custom-shadow`}
       type={props.type}
       onClick={() => setIsOpen(!isOpen)}
       whileHover={{

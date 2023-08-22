@@ -10,11 +10,11 @@ const AnimatedButtonCard = (props) => {
       layout
       data-isOpen={isOpen}
       initial={{ borderRadius: 50 }}
-      className={`moving-bar ${props.styles} bg-df4088 text-white text-xl font-bold m-4 rounded-2xl transition-all duration-300 custom-shadow`}
+      className={`moving-bar ${props.styles} text-base font-bold m-4 rounded-2xl custom-shadow justify-center`}
       type={props.type}
       onClick={() => setIsOpen(!isOpen)}
       whileHover={{
-        scale: 1.1,
+        scale: 1.04,
         color: "#DF4088 !important",
         borderRadius: "50px",
       }}

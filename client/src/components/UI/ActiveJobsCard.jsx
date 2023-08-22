@@ -6,7 +6,7 @@ import {
   LiaCodeSolid,
 } from "react-icons/lia";
 import { BiSolidCircle } from "react-icons/bi";
-import "../Pages/Skills/skillStyles.css";
+import "../../../src/index.css";
 import ProfilePic from "../../assets/images/Profile-circle.png";
 import AnimatedButtonCard from "./AnimatedButtonCard";
 
@@ -60,9 +60,9 @@ const ActiveJobsCard = () => {
           </div>
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-center">
           {/* Button for seeing more info about the job */}
-          <AnimatedButtonCard styles='bg-pink-600' title="More..."/>
+          <AnimatedButtonCard title="More..."/>
         </div>
       </div>
     </div>
