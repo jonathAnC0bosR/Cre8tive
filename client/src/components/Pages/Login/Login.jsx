@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 // import { motion } from "framer-motion";
 // import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
@@ -44,6 +45,8 @@ const Login = () => {
       console.error(e);
     }
   };
+
+
   return (
     <div className="lg:text-sm pt-20 bg-gradient-to-r from-[#0C0F11] to-[#22282D] min-h-screen flex justify-center items-center w-screen">
       <img

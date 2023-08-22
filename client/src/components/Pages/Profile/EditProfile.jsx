@@ -162,7 +162,7 @@ const EditProfile = () => {
               <p className="ml-2">Connect Instagram Account</p>
             </button>
           </div>
-          <div className="lg:ml-4 md:pr-4 pr-3 ">
+          <div className="lg:ml-4 md:pr-4 pr-3">
             <label>Social Media</label>
             <SocialMedia
               src="https://img.icons8.com/ios-glyphs/30/000000/github.png"
