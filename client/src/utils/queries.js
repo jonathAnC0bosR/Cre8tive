@@ -21,6 +21,7 @@ export const GET_USER = gql`
     query GetUser($getUserId: ID!) {
   getUser(id: $getUserId) {
     aboutMe
+    username
     artStation
     github
     location
@@ -98,7 +99,7 @@ query Query {
 }
 `;
 
-export const GET_SINGLE_PROFILE = gql `
+export const GET_SINGLE_POST = gql `
 query Bulletin($bulletinId: ID!) {
   bulletin(id: $bulletinId) {
     _id
