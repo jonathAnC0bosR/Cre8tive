@@ -146,3 +146,13 @@ h1 {
 .bg-pink-important:hover {
     background-color: #E04189 !important;
 }
+
+.editpro-banner {
+    width: 100%; /* Full width */
+    height: 200px; /* Adjust based on your needs */
+    background-image: url('path_to_your_banner_image.jpg');
+    background-size: cover; /* Ensures the image is not distorted */
+    background-repeat: no-repeat;
+    background-position: center; /* Centers the image */
+    transform: rotate(90deg); /* Rotates the banner image by 90° */
+}
